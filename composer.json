@@ -1,0 +1,15 @@
+{
+  "name": "skytech/PHP_SDK",
+  "description": "Prototipe",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Elena Arevkina",
+      "email": "ea@skytecrussia.com"
+    }
+  ],
+  "require": {
+    "codeception/codeception": "2.3.6"
+  }
+}
