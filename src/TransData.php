@@ -12,11 +12,11 @@ namespace Skytech;
 class TransData
 {
     public $rezultoperation;
-    public $responcecode;
-    public $responcedescription;
-    public $responce;
+    public $responsecode;
+    public $responsedescription;
+    public $response;
     public $approvalcode; /** @var  transaction approval code */
-    public $approvalcodestr; /** @var  transaction approval responce */
+    public $approvalcodestr; /** @var  transaction approval response */
     public $threedsverification;
     public $transid;    /** @var transaction id */
     public function __construct()

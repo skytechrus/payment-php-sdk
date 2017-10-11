@@ -33,18 +33,86 @@ class Order
     private $cancelurl;
     private $approveurl;
     public $customer; /** @var Customer info*/
-    public $transdata;
+    public $recipient; /** @var Customer TransData  */
+    public $transdata; /** @var TransData  */
     public $card;
     private $status; /** @var  int request status*/
+    private $origamount;
+    private $origcurrency;
+    private $orderexpperiod;
+    private $vendorid;
 
-    function __construct(Customer $customer,TransData $transdata,Card $card)
+    function __construct(Customer $customer,TransData $transdata,Card $card, Customer $recipient=null)
     {
         $this->orderdate = time();
         $this->customer = $customer;
+        $this->recipient = $recipient;
         $this->transdata = $transdata;
         $this->card = $card;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getVendorid()
+    {
+        return $this->vendorid;
+    }
+
+    /**
+     * @param mixed $vendorid
+     */
+    public function setVendorid($vendorid)
+    {
+        $this->vendorid = $vendorid;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrderexpperiod()
+    {
+        return $this->orderexpperiod;
+    }
+
+    /**
+     * @param mixed $orderexpperiod
+     */
+    public function setOrderexpperiod($orderexpperiod)
+    {
+        $this->orderexpperiod = $orderexpperiod;
+    }
+    /**
+     * @return int
+     */
+    public function getOrigamount()
+    {
+        return $this->origamount;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrigcurrency()
+    {
+        return $this->origcurrency;
+    }
+
+    /**
+     * @param int $origamount
+     */
+    public function setOrigamount($origamount)
+    {
+        $this->origamount = $origamount;
+    }
+
+    /**
+     * @param mixed $origcurrency
+     */
+    public function setOrigcurrency($origcurrency)
+    {
+        $this->origcurrency = $origcurrency;
+    }
     /**
      * @param mixed $url
      */
