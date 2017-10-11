@@ -10,6 +10,7 @@ namespace Skytech;
 
 
 use function filter_var;
+use function htmlentities;
 use UnexpectedValueException;
 
 class Customer
@@ -30,7 +31,7 @@ class Customer
      */
     public function setAddress(CustAddress $address)
     {
-        $this->address = $address;
+        $this->address = htmlentities( $address);
     }
     /**
      * @return mixed

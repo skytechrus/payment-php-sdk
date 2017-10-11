@@ -7,6 +7,7 @@
  */
 
 namespace Skytech;
+use function htmlentities;
 use SimpleXMLElement;
 use XMLWriter;
 
@@ -39,7 +40,6 @@ class Order
     function __construct(Customer $customer,TransData $transdata,Card $card)
     {
         $this->orderdate = time();
-        $this->operationtype = "Purchase";
         $this->customer = $customer;
         $this->transdata = $transdata;
         $this->card = $card;
@@ -135,7 +135,7 @@ class Order
      */
     public function setDescription($description)
     {
-        $this->description = $description;
+        $this->description = htmlentities( $description);
     }
 
 

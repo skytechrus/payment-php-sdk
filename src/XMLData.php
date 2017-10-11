@@ -9,7 +9,6 @@
 namespace Skytech;
 
 
-use b;
 use function imagetruecolortopalette;
 use SimpleXMLElement;
 use XMLWriter;
@@ -21,10 +20,9 @@ class XMLData extends DataProvider
     /**
      * XMLData constructor.
      */
-    public function __construct(Customer $customer)
+    public function __construct(Order $order)
     {
-        parent::__construct();
-        $this->order->setCustomer($customer);
+        parent::__construct($order);
     }
     /**
      * return request in XML format
@@ -290,11 +288,27 @@ class XMLData extends DataProvider
         $this->order->transdata->responcedescription =   $crordresp->xpath('TKKPG/Response/Reversal/RespMessage');
     }
     public function getInfoRequestResp($xmlresponce)
-    {  //??
+    {
         $crordresp = new SimpleXMLElement($xmlresponce);
         $this->order->setOperation($crordresp->xpath('TKKPG/Response/Operation'));
         $this->order->setStatus($crordresp->xpath('TKKPG/Response/Status'));
-        $this->order->setOrderid($crordresp->xpath('TKKPG/Response/Order/OrderId'));
+        $this->order->setOrderid($crordresp->xpath('Order/row/id'));
+        $this->order->setOperationtype($crordresp->xpath('Order/row/OrderType'));
+        $this->order->setSessionid($crordresp->xpath('Order/row/SessionID'));
+        $this->order->setMerchantid($crordresp->xpath('Order/row/MerchantID'));
+        $this->order->setAmount($crordresp->xpath('Order/row/Amount'));
+        $this->order->setCurrency($crordresp->xpath('Order/row/Currency'));
+        $this->order->setLanguage($crordresp->xpath('Order/row/OrderLanguage'));
+        $this->order->setDescription($crordresp->xpath('Order/row/Description'));
+
+        $this->order->setApproveurl($crordresp->xpath('Order/row/ApproveURL'));
+        $this->order->setCancelurl($crordresp->xpath('Order/row/CancelURL'));
+        $this->order->setDeclineurl($crordresp->xpath('Order/row/DeclineURL'));
+
+        $this->order->setOrderstatus($crordresp->xpath('Order/row/Orderstatus'));
+        $this->order->transdata->transid = $crordresp->xpath('Order/row/twoId');
+        $this->order->setFee($crordresp->xpath('Order/row/Fee'));
+
     }
     public function getRefundResp($xmlresponce)
     {

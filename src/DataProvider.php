@@ -16,7 +16,7 @@ abstract class DataProvider
    {
        $this->order = $order;
    }
-   public function getRequestData()
-   {}
+   abstract public function getRequestData();
+   abstract public function getResponceData($responce);
 
 }
