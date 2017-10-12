@@ -12,14 +12,36 @@ namespace Skytech;
 use function is_int;
 use UnexpectedValueException;
 
+/**
+ * Class Card
+ * @package Skytech
+ */
 class Card
 {
+    /**
+     * @var
+     */
     private $pan;
+    /**
+     * @var
+     */
     private $expmonth;
+    /**
+     * @var
+     */
     private $expyear;
+    /**
+     * @var
+     */
     private $brand;
+    /**
+     * @var
+     */
     private $cardUID;
 
+    /**
+     * Card constructor.
+     */
     public function __construct()
     {
     }
@@ -72,6 +94,9 @@ class Card
         $this->cardUID = $cardUID;
     }
 
+    /**
+     * @return string
+     */
     public function getExpDate()
     {
         return $this->expyear . $this->expmonth;
