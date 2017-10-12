@@ -15,10 +15,10 @@ class TransData
     public $responsecode;
     public $responsedescription;
     public $response;
-    public $approvalcode; /** @var  transaction approval code */
-    public $approvalcodestr; /** @var  transaction approval response */
+    public $approvalcode; /** @var  string transaction approval code */
+    public $approvalcodestr; /** @var  int transaction approval response */
     public $threedsverification;
-    public $transid;    /** @var transaction id */
+    public $transid;    /** @var int transaction id */
     public function __construct()
     {
     }

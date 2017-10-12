@@ -11,21 +11,24 @@ namespace Skytech;
 
 class Connector
 {  private $orderdata;
-
-   public function __construct(DataProvider $dataProvider)
+   private $hostname;
+   private $port;
+   public function __construct(DataProvider $dataProvider,$hostname,$port)
    {
       $this->orderdata = $dataProvider;
+      $this->hostname  = $hostname;
+      $this->port      = $port;
    }
-   public function sendrequest($hostname,$port)
+   public function send_request()
    {
      $path = '/Exec';
      $content ='';
-     $fp = fsockopen($hostname, $port, $errno, $errstr, 30);
+     $fp = fsockopen($this->hostname, $this->port, $errno, $errstr, 30);
      $request_data = $this->orderdata->getRequestData(); //XML For request
      if (!$fp) die('<p>'.$errstr.' ('.$errno.')</p>'); // Проверить установку соединения
        // Заголовок HTTPS-запроса
      $headers = 'POST '.$path." HTTP/1.0\r\n";
-     $headers .= 'Host: '.$hostname."\r\n";
+     $headers .= 'Host: '.$this->hostname."\r\n";
      $headers .= "Content-type: application/x-www-form-urlencoded\r\n";
      $headers .= 'Content-Length: '.strlen($request_data)."\r\n\r\n";
      // Отправить HTTPS-запрос серверу
@@ -42,8 +45,8 @@ class Connector
      fclose($fp);
      return ($content);
    }
-   public function process_response($xml)
+   public function process_response($response)
    {
-     $this->orderdata->getResponseData($xml);
+     $this->orderdata->getResponseData($response);
    }
 }

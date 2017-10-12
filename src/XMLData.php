@@ -8,8 +8,6 @@
 
 namespace Skytech;
 
-
-use function imagetruecolortopalette;
 use SimpleXMLElement;
 use XMLWriter;
 
@@ -20,7 +18,7 @@ class XMLData extends DataProvider
      */
     public function __construct(Order $order)
     {
-        parent::__construct($order);
+        $this->order=$order;
     }
     /**
      * return request in XML format

@@ -8,10 +8,6 @@
 
 namespace Skytech;
 use function htmlentities;
-use SimpleXMLElement;
-use XMLWriter;
-
-include 'purchase.php';
 
 class Order
 {
@@ -29,20 +25,17 @@ class Order
     private $merchantid;
     private $fee;
     private $url;
-    private $declineurl;
-    private $cancelurl;
-    private $approveurl;
-    public $customer; /** @var Customer info*/
-    public $recipient; /** @var Customer TransData  */
+    public $customer; /** @var Customer */
+    public $recipient; /** @var Customer   */
     public $transdata; /** @var TransData  */
     public $card;
-    private $status; /** @var  int request status*/
+    private $status; /** @var  int  */
     private $origamount;
     private $origcurrency;
     private $orderexpperiod;
     private $vendorid;
 
-    function __construct(Customer $customer,TransData $transdata,Card $card, Customer $recipient=null)
+    function __construct(Customer $customer,TransData $transdata=null,Card $card=null, Customer $recipient=null)
     {
         $this->orderdate = time();
         $this->customer = $customer;
@@ -328,53 +321,6 @@ class Order
         $this->$orderstatus = $orderstatus;
     }
 
-    /**
-     * @param mixed $approveurl
-     */
-    public function setApproveurl($approveurl)
-    {
-        $this->approveurl = $approveurl;
-    }
-
-    /**
-     * @param mixed $cancelurl
-     */
-    public function setCancelurl($cancelurl)
-    {
-        $this->cancelurl = $cancelurl;
-    }
-
-    /**
-     * @param mixed $declineurl
-     */
-    public function setDeclineurl($declineurl)
-    {
-        $this->declineurl = $declineurl;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getApproveurl()
-    {
-        return $this->approveurl;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDeclineurl()
-    {
-        return $this->declineurl;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCancelurl()
-    {
-        return $this->cancelurl;
-    }
 
     /**
      * @return mixed
