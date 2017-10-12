@@ -20,16 +20,8 @@ class Card
     private $brand;
     private $cardUID;
 
-public function __construct()
-{
-}
-
-    /**
-     * @param mixed $pan
-     */
-    public function setPan($pan)
+    public function __construct()
     {
-        $this->pan = $pan;
     }
 
     /**
@@ -41,11 +33,11 @@ public function __construct()
     }
 
     /**
-     * @param string $brand
+     * @param mixed $pan
      */
-    public function setBrand($brand)
+    public function setPan($pan)
     {
-        $this->brand = $brand;
+        $this->pan = $pan;
     }
 
     /**
@@ -54,6 +46,14 @@ public function __construct()
     public function getBrand()
     {
         return $this->brand;
+    }
+
+    /**
+     * @param string $brand
+     */
+    public function setBrand($brand)
+    {
+        $this->brand = $brand;
     }
 
     /**
@@ -71,21 +71,12 @@ public function __construct()
     {
         $this->cardUID = $cardUID;
     }
-    /**
-     * @param int $expmonth
-     */
-    public function setExpmonth($expmonth)
-    {
-        if ($expmonth >12 or !is_int($expmonth))
-        {
-            throw new UnexpectedValueException('Invalid month');
-        }
-        $this->expmonth = $expmonth;
-    }
+
     public function getExpDate()
     {
-        return $this->expyear.$this->expmonth;
+        return $this->expyear . $this->expmonth;
     }
+
     /**
      * @return int card expiration month
      */
@@ -95,15 +86,14 @@ public function __construct()
     }
 
     /**
-     * @param integer $expyear
+     * @param int $expmonth
      */
-    public function setExpyear($expyear)
+    public function setExpmonth($expmonth)
     {
-        if (!is_int($expyear))
-        {
-            throw new UnexpectedValueException('Invalid card expiration year');
+        if ($expmonth > 12 or !is_int($expmonth)) {
+            throw new UnexpectedValueException('Invalid month');
         }
-        $this->expyear = $expyear;
+        $this->expmonth = $expmonth;
     }
 
     /**
@@ -112,5 +102,16 @@ public function __construct()
     public function getExpyear()
     {
         return $this->expyear;
+    }
+
+    /**
+     * @param integer $expyear
+     */
+    public function setExpyear($expyear)
+    {
+        if (!is_int($expyear)) {
+            throw new UnexpectedValueException('Invalid card expiration year');
+        }
+        $this->expyear = $expyear;
     }
 }
