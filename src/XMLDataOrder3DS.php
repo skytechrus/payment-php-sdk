@@ -13,7 +13,8 @@ class XMLDataOrder3DS extends DataProvider
 {
     use XMLOrderGetResponse;
     /**
-     * XMLData constructor.
+     * XMLDataOrder3DS constructor.
+     * @param Operation $operation
      */
     public function __construct(Operation $operation)
     {
@@ -64,7 +65,7 @@ class XMLDataOrder3DS extends DataProvider
         $xml_add_par->writeElement('email',$this->operation->customer->getEmailaddr());
         $xml_add_par->writeElement('phone',$this->operation->customer->getPhone());
         $xml_add_par->writeElement('SenderName',$this->operation->customer->firstname);
-        $xml_add_par->writeElement('Address',$this->order->operation->address->addressline);
+        $xml_add_par->writeElement('Address',$this->operation->customer->address->addressline);
         $xml_add_par->writeElement('ResidentCountry',$this->operation->customer->address->getCountry());
         $xml_add_par->writeElement('ResidentCityInLatin',$this->operation->customer->address->getCity());
         $xml_add_par->writeElement('SenderPostalCode',$this->operation->customer->address->getZip());

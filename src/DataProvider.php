@@ -11,9 +11,7 @@ namespace Skytech;
 
 abstract class DataProvider
 {
-   protected $order;
    protected $operation;
    abstract public function getRequestData();
    abstract public function getResponseData($response);
-
 }

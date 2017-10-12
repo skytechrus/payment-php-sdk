@@ -13,7 +13,8 @@ class XMLDataOrderp2p extends DataProvider
 {
     use XMLOrderGetResponse;
     /**
-     * XMLData constructor.
+     * XMLDataOrderp2p constructor.
+     * @param Operation $operation
      */
     public function __construct(Operation $operation)
     {
@@ -63,16 +64,16 @@ class XMLDataOrderp2p extends DataProvider
         $xml_add_par->setIndent(true);
         $xml_add_par->writeElement('OrigAmount',$this->operation->order->getOrigamount());
         $xml_add_par->writeElement('OrigCurrency',$this->operation->order->getOrigcurrency());
-        $xml_add_par->writeElement('RFirstName',$this->order->recipient->firstname);
-        $xml_add_par->writeElement('RSurname',$this->order->recipient->lastname);
-        $xml_add_par->writeElement('ReMail',$this->order->recipient->getEmailaddr());
-        $xml_add_par->writeElement('RPhone',$this->order->recipient->getPhone());
-        $xml_add_par->writeElement('SFirstName',$this->order->customer->firstname);
-        $xml_add_par->writeElement('SSurname',$this->order->customer->lastname);
-        $xml_add_par->writeElement('SeMail',$this->order->customer->getEmailaddr());
-        $xml_add_par->writeElement('SPhone',$this->order->customer->getPhone());
-        $xml_add_par->writeElement('SAddress',$this->order->customer->address->addressline);
-        $xml_add_par->writeElement('SCountry',$this->order->customer->address->getCountry());
+        $xml_add_par->writeElement('RFirstName',$this->operation->order->recipient->firstname);
+        $xml_add_par->writeElement('RSurname',$this->operation->order->recipient->lastname);
+        $xml_add_par->writeElement('ReMail',$this->operation->order->recipient->getEmailaddr());
+        $xml_add_par->writeElement('RPhone',$this->operation->order->recipient->getPhone());
+        $xml_add_par->writeElement('SFirstName',$this->operation->order->customer->firstname);
+        $xml_add_par->writeElement('SSurname',$this->operation->order->customer->lastname);
+        $xml_add_par->writeElement('SeMail',$this->operation->order->customer->getEmailaddr());
+        $xml_add_par->writeElement('SPhone',$this->operation->order->customer->getPhone());
+        $xml_add_par->writeElement('SAddress',$this->operation->order->customer->address->addressline);
+        $xml_add_par->writeElement('SCountry',$this->operation->order->customer->address->getCountry());
         $xml_add_par->writeElement('Fee',$this->operation->order->getFee());
         $xml_add_par->writeElement('DescriptionHtml');
         $xml = $xml_add_par->outputMemory(true);
@@ -80,6 +81,6 @@ class XMLDataOrderp2p extends DataProvider
     }
     public function getResponseData($xmlresponse)
     {
-        $this->getOrderResponseData($xmlresponse,$this->order);
+        $this->getOrderResponseData($xmlresponse,$this->operation);
     }
 }

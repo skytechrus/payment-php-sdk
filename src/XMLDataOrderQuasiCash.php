@@ -12,8 +12,10 @@ use XMLWriter;
 class XMLDataOrderQuasiCash extends DataProvider
 {
     use XMLOrderGetResponse;
+
     /**
-     * XMLData constructor.
+     * XMLDataOrderQuasiCash constructor.
+     * @param Operation $operation
      */
     public function __construct(Operation $operation)
     {

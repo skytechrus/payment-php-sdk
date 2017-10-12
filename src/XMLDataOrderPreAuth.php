@@ -12,8 +12,10 @@ use XMLWriter;
 class XMLDataOrderPreAuth extends DataProvider
 {
     use XMLOrderGetResponse;
+
     /**
-     * XMLData constructor.
+     * XMLDataOrderPreAuth constructor.
+     * @param Operation $operation
      */
     public function __construct(Operation $operation)
     {

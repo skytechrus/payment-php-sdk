@@ -10,7 +10,7 @@ namespace Skytech;
 
 
 class Connector
-{  private $orderdata;
+{  public $orderdata;
    private $hostname;
    private $port;
    public function __construct(DataProvider $dataProvider,$hostname,$port)
@@ -47,6 +47,6 @@ class Connector
    }
    public function process_response($response)
    {
-     $this->orderdata->getResponseData($response);
+      $this->orderdata->getResponseData($response);
    }
 }

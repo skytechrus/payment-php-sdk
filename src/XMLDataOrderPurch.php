@@ -13,8 +13,10 @@ class XMLDataOrderPurch extends DataProvider
 {
     use XMLOrderGetResponse;
     use XML_FADA_Data;
+
     /**
-     * XMLData constructor.
+     * XMLDataOrderPurch constructor.
+     * @param Operation $operation
      */
     public function __construct(Operation $operation)
     {

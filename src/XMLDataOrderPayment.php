@@ -13,7 +13,8 @@ class XMLDataOrderPayment extends DataProvider
 {
     use XMLOrderGetResponse;
     /**
-     * XMLData constructor.
+     * XMLDataOrderPayment constructor.
+     * @param Operation $operation
      */
     public function __construct(Operation $operation)
     {

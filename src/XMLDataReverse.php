@@ -12,6 +12,10 @@ use SimpleXMLElement;
 
 class XMLDataReverse extends DataProvider
 {
+    /**
+     * XMLDataReverse constructor.
+     * @param Operation $operation
+     */
     public function __construct(Operation $operation)
     {
         $this->operation=$operation;

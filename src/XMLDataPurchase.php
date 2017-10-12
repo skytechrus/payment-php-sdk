@@ -14,6 +14,11 @@ use SimpleXMLElement;
 class XMLDataPurchase extends DataProvider
 {
     use XML_FADA_Data;
+
+    /**
+     * XMLDataPurchase constructor.
+     * @param Operation $operation
+     */
     public function __construct(Operation $operation)
     {
         $this->operation=$operation;

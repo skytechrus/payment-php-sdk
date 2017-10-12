@@ -12,6 +12,11 @@ use XMLWriter;
 
 class XMLDataGetOrderStatus  extends DataProvider
 {
+
+    /**
+    * XMLDataGetOrderStatus constructor.
+    * @param Operation $operation
+    */
     public function __construct(Operation $operation)
     {
         $this->operation=$operation;

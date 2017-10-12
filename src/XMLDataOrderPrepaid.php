@@ -12,8 +12,10 @@ use XMLWriter;
 class XMLDataOrderPrepaid extends DataProvider
 {
     use XMLOrderGetResponse;
+
     /**
-     * XMLData constructor.
+     * XMLDataOrderPrepaid constructor.
+     * @param Operation $operation
      */
     public function __construct(Operation $operation)
     {
