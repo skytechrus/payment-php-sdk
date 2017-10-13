@@ -31,6 +31,7 @@ class XMLDataPurchase extends DataProvider
     public function getResponseData($xmlresponse)
     {
         $this->getPurchaseResp($xmlresponse);
+        return $this->operation;
     }
     public function makeXMLPurchase()
     {

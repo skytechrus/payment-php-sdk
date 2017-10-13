@@ -47,6 +47,7 @@ class Connector
    }
    public function process_response($response)
    {
-      $this->orderdata->getResponseData($response);
+      $operation = $this->orderdata->getResponseData($response);
+      return  $operation;
    }
 }

@@ -25,23 +25,15 @@ class Order
     private $merchantid;
     private $fee;
     private $url;
-    public $customer; /** @var Customer */
-    public $recipient; /** @var Customer   */
-    public $transdata; /** @var TransData  */
-    public $card;
     private $status; /** @var  int  */
     private $origamount;
     private $origcurrency;
     private $orderexpperiod;
     private $vendorid;
 
-    function __construct(Customer $customer,TransData $transdata=null,Card $card=null, Customer $recipient=null)
+    function __construct()
     {
-        $this->orderdate = time();
-        $this->customer = $customer;
-        $this->recipient = $recipient;
-        $this->transdata = $transdata;
-        $this->card = $card;
+
     }
 
     /**
@@ -142,29 +134,6 @@ class Order
     public function getStatus()
     {
         return $this->status;
-    }
-    /**
-     * @param Customer $customer
-     */
-    public function setCustomer(Customer $customer)
-    {
-        $this->customer = $customer;
-       // $this->customer->;
-    }
-    /**
-     * @param mixed $transdata
-     */
-    public function setTransdata(TransData $transdata)
-    {
-        $this->transdata = $transdata;
-    }
-
-    /**
-     * @param Card $card
-     */
-    public function setCard(Card $card)
-    {
-        $this->card = $card;
     }
     /**
      * @param mixed $xid

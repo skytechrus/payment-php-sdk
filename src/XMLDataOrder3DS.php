@@ -75,5 +75,6 @@ class XMLDataOrder3DS extends DataProvider
     public function getResponseData($xmlresponse)
     {
         $this->getOrderResponseData($xmlresponse,$this->operation);
+        return $this->operation;
     }
 }

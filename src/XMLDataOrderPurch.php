@@ -77,5 +77,6 @@ class XMLDataOrderPurch extends DataProvider
     public function getResponseData($xmlresponse)
     {
         $this->getOrderResponseData($xmlresponse,$this->operation);
+        return $this->operation;
     }
 }

@@ -15,26 +15,30 @@ use UnexpectedValueException;
 
 class Customer
 {
-    public $firstname;
-    public $lastname;
-    public $middlename;
-    private $emailaddr;
-    public $phone;
-    public $address;
-    private $ip;
+    public $firstname; /** @var  string */
+    public $lastname;  /** @var  string */
+    public $middlename; /** @var  string */
+    private $emailaddr; /** @var  string */
+    public $phone;  /** @var string */
+    public $address; /** @var  CustAddress */
+    private $ip; /** @var string */
+    /**
+     * Customer constructor.
+     * @param CustAddress $address
+     */
     public function __construct(CustAddress $address)
     {
         $this->address = $address;
     }
     /**
-     * @param mixed $address
+     * @param CustAddress $address
      */
     public function setAddress(CustAddress $address)
     {
         $this->address = htmlentities( $address);
     }
     /**
-     * @return mixed
+     * @return string
      */
     public function getPhone()
     {
@@ -42,7 +46,7 @@ class Customer
     }
 
     /**
-     * @param mixed $phone
+     * @param string $phone
      */
     public function setPhone($phone)
     {
@@ -50,7 +54,7 @@ class Customer
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getEmailaddr()
     {
@@ -58,7 +62,7 @@ class Customer
     }
 
     /**
-     * @param mixed $emailaddr
+     * @param string $emailaddr
      */
     public function setEmailaddr($emailaddr)
     {

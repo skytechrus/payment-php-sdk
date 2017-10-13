@@ -36,21 +36,136 @@ class Operation
   }
 
     /**
-     * @param URL_Settings $url_Settings
-     * @param Customer $customer
-     * @param string $hostname
-     * @param int $port
+     * @param Card $card
      */
- /*   public function CreateOrderOnPurchase(URL_Settings $url_Settings,Customer $customer, $hostname, $port)
-  {
-      $this->url_settings = $url_Settings;
-      $this->customer  = $customer;
-      $orderdata = new XMLDataOrderPurch($this);
-      $connector = new Connector($orderdata,$hostname,$port);
-      $response = $connector->send_request();
-      $connector->process_response($response);//!!!!!!!!!!!!!!!!
+    public function setCard(Card $card)
+    {
+        $this->card = $card;
+    }
 
-  }*/
+    /**
+     * @param Order $order
+     */
+    public function setOrder($order)
+    {
+        $this->order = $order;
+    }
 
+    /**
+     * @param Customer $customer
+     */
+    public function setCustomer(Customer $customer)
+    {
+        $this->customer = $customer;
+    }
+
+    /**
+     * @param Customer $recipient
+     */
+    public function setRecipient(Customer $recipient)
+    {
+        $this->recipient = $recipient;
+    }
+
+    /**
+     * @param TransData $transaction
+     */
+    public function setTransaction(TransData $transaction)
+    {
+        $this->transaction = $transaction;
+    }
+
+    /**
+     * @param URL_Settings $url_settings
+     */
+    public function setUrlSettings(URL_Settings $url_settings)
+    {
+        $this->url_settings = $url_settings;
+    }
+
+
+    public function CreateOrderOnPurchase(Operation $operation, $hostname, $port)
+    {
+        $operation->order->setOperationtype('Purchase');
+        $orderdata = new XMLDataOrderPurch($operation);
+        $connector = new Connector($orderdata,$hostname,$port);
+        $response = $connector->send_request();
+        $operation = $connector->process_response($response);//!!!!!!!!!!!!!!!!
+        return $operation;
+    }
+    public function CreateOrderOnP2P(Operation $operation, $hostname, $port)
+    {
+        $operation->order->setOperationtype('P2PTransfer');
+        $orderdata = new XMLDataOrderp2p($operation);
+        $connector = new Connector($orderdata,$hostname,$port);
+        $response = $connector->send_request();
+        $operation = $connector->process_response($response);//!!!!!!!!!!!!!!!!
+        return $operation;
+    }
+    public function CreateOrderOn3DS (Operation $operation, $hostname, $port)
+    {
+        $operation->order->setOperationtype('P2PTransfer');
+        $orderdata = new XMLDataOrder3DS($operation);
+        $connector = new Connector($orderdata,$hostname,$port);
+        $response = $connector->send_request();
+        $operation = $connector->process_response($response);//!!!!!!!!!!!!!!!!
+        return $operation;
+    }
+    public function CreateOrderOnGetStatus (Operation $operation, $hostname, $port)
+    {
+        $orderdata = new XMLDataOrderGetStatus($operation);
+        $connector = new Connector($orderdata,$hostname,$port);
+        $response = $connector->send_request();
+        $operation = $connector->process_response($response);//!!!!!!!!!!!!!!!!
+        return $operation;
+    }
+    public function CreateOrderOnPreAuth (Operation $operation, $hostname, $port)
+    {
+        $orderdata = new XMLDataOrderPreAuth($operation);
+        $connector = new Connector($orderdata,$hostname,$port);
+        $response = $connector->send_request();
+        $operation = $connector->process_response($response);//!!!!!!!!!!!!!!!!
+        return $operation;
+    }
+    public function CreateOrderOnPayment (Operation $operation, $hostname, $port)
+    {
+        $orderdata = new XMLDataOrderPayment($operation);
+        $connector = new Connector($orderdata,$hostname,$port);
+        $response = $connector->send_request();
+        $operation = $connector->process_response($response);//!!!!!!!!!!!!!!!!
+        return $operation;
+    }
+    public function CreateOrderOnQuasiCash (Operation $operation, $hostname, $port)
+    {
+        $orderdata = new XMLDataOrderQuasiCash($operation);
+        $connector = new Connector($orderdata,$hostname,$port);
+        $response = $connector->send_request();
+        $operation = $connector->process_response($response);//!!!!!!!!!!!!!!!!
+        return $operation;
+    }
+    public function CreatePurchase (Operation $operation, $hostname, $port)
+    {
+        $orderdata = new XMLDataPurchase($operation);
+        $connector = new Connector($orderdata,$hostname,$port);
+        $response = $connector->send_request();
+        $operation = $connector->process_response($response);//!!!!!!!!!!!!!!!!
+        return $operation;
+    }
+    public function CreateRefund(Operation $operation, $hostname, $port)
+    {
+        $orderdata = new XMLDataRefund($operation);
+        $connector = new Connector($orderdata,$hostname,$port);
+        $response = $connector->send_request();
+        $operation = $connector->process_response($response);//!!!!!!!!!!!!!!!!
+        return $operation;
+    }
+    public function CreateReverse(Operation $operation, $hostname, $port)
+    {
+        $orderdata = new XMLDataReverse($operation);
+        $connector = new Connector($orderdata,$hostname,$port);
+        $response = $connector->send_request();
+        $operation = $connector->process_response($response);//!!!!!!!!!!!!!!!!
+        return $operation;
+    }
 
 }

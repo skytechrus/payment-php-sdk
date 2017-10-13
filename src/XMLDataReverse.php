@@ -28,6 +28,7 @@ class XMLDataReverse extends DataProvider
     public function getResponseData($xmlresponse)
     {
         $this->getReverseResp($xmlresponse);
+        return $this->operation;
     }
     public function makeXMLCreateReverse()
     {

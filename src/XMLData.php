@@ -65,7 +65,7 @@ class XMLData extends DataProvider
         $xmlRequest->writeElement('OrderID',$this->operation->order->getOrderid());//<OrderID></OrderID>
         $xmlRequest->startElement('AddParams');//<AddParams>
         $xmlRequest->startElement('FA-DATA');//<FA-DATA>
-        $xmlRequest->writeElement('FA-DATA',$this->makeFada_data($this->operation->order));
+        $xmlRequest->writeElement('FA-DATA',$this->makeFada_data($this->operation));
         $xmlRequest->endElement(); //</FA-DATA>
         $xmlRequest->endElement(); //</AddParams>
         $xmlRequest->endElement(); //</Order>
@@ -127,7 +127,7 @@ class XMLData extends DataProvider
         $xml_add_par->setIndent(true);
         switch ($this->operation->order->getOperationtype()){
             case 'Purchase':
-                $xml_add_par->writeElement('FA-DATA',$this->makeFada_data($this->operation->order));
+                $xml_add_par->writeElement('FA-DATA',$this->makeFada_data($this->operation));
                 //$xml_add_par->writeElement('AcctType');
                 //$xml_add_par->writeElement('TranAddendums');
                 $xml_add_par->writeElement('OrderExpirationPeriod',$this->operation->order->getOrderexpperiod());
@@ -169,7 +169,7 @@ class XMLData extends DataProvider
                 $xml_add_par->writeElement('SenderPostalCode',$this->operation->customer->address->getZip());
                 break;
             case 'PreAuth':
-                $xml_add_par->writeElement('FA-DATA',$this->makeFada_data($this->operation->order));
+                $xml_add_par->writeElement('FA-DATA',$this->makeFada_data($this->operation));
                 $xml_add_par->writeElement('SenderPostalCode',$this->operation->customer->address->getZip());
                 //$xml_add_par->writeElement('AcctType');
                 //$xml_add_par->writeElement('TranAddendums');
@@ -288,18 +288,18 @@ class XMLData extends DataProvider
         }
         return $fada_line;
     }
-    public function makeFada_data(Order $order)
+    public function makeFada_data(Operation $operation)
     {
         $fada_data = null;
-        $fada_data .= $this->makeFada_line('ShippingCountry', $order->customer->address->getCountry());
-        $fada_data .= $this->makeFada_line('ShippingCity', $order->customer->address->getCountry());
-        $fada_data .= $this->makeFada_line('ShippingState', $order->customer->address->getRegion());
-        $fada_data .= $this->makeFada_line('ShippingZipCode', $order->customer->address->getZip());
-        $fada_data .= $this->makeFada_line('ShippingAddress', $order->customer->address->addressline );
+        $fada_data .= $this->makeFada_line('ShippingCountry', $operation->customer->address->getCountry());
+        $fada_data .= $this->makeFada_line('ShippingCity', $operation->customer->address->getCountry());
+        $fada_data .= $this->makeFada_line('ShippingState', $operation->customer->address->getRegion());
+        $fada_data .= $this->makeFada_line('ShippingZipCode', $operation->customer->address->getZip());
+        $fada_data .= $this->makeFada_line('ShippingAddress', $operation->customer->address->addressline );
 // $fada_data .= $this->makeFada_line('DeliveryPeriod', null );
-        $fada_data .= $this->makeFada_line('Phone', $order->customer->phone );
-        $fada_data .= $this->makeFada_line('Email', $order->customer->getEmailaddr() );
-        $fada_data .= $this->makeFada_line('MerchantOrderID', $order->getXid());
+        $fada_data .= $this->makeFada_line('Phone', $operation->customer->phone );
+        $fada_data .= $this->makeFada_line('Email', $operation->customer->getEmailaddr() );
+        $fada_data .= $this->makeFada_line('MerchantOrderID', $operation->order->getXid());
         return $fada_data;
     }
     public function getResponseData($xmlresponse)

@@ -14,8 +14,11 @@ class URL_Settings
     private $declineurl;
     private $cancelurl;
     private $approveurl;
-    public function __construct()
+    public function __construct($approveurl,$cancelurl,$declineurl)
     {
+        $this->approveurl = $approveurl;
+        $this->cancelurl = $cancelurl;
+        $this->declineurl = $declineurl;
     }
     /**
      * @param mixed $approveurl

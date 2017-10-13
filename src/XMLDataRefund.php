@@ -29,6 +29,7 @@ class XMLDataRefund extends DataProvider
     public function getResponseData($xmlresponse)
     {
         $this->getRefundResp($xmlresponse);
+        return $this->operation;
     }
     public function makeXMLRefund()
     {

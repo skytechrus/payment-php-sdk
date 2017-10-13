@@ -9,15 +9,14 @@
 namespace Skytech;
 
 
-use function is_int;
 use UnexpectedValueException;
 
 class Card
 {
-    private $pan;
-    private $expmonth;
-    private $expyear;
-    private $brand;
+    private $pan; /** @var  string */
+    private $expmonth; /** @var  string */
+    private $expyear; /** @var  string */
+    private $brand;  /** @var  string */
     private $cardUID;
 
 public function __construct()
@@ -25,7 +24,7 @@ public function __construct()
 }
 
     /**
-     * @param mixed $pan
+     * @param string $pan
      */
     public function setPan($pan)
     {
@@ -49,7 +48,7 @@ public function __construct()
     }
 
     /**
-     * @return string card Brand
+     * @return string
      */
     public function getBrand()
     {
@@ -72,7 +71,7 @@ public function __construct()
         $this->cardUID = $cardUID;
     }
     /**
-     * @param int $expmonth
+     * @param string $expmonth
      */
     public function setExpmonth($expmonth)
     {
@@ -87,7 +86,7 @@ public function __construct()
         return $this->expyear.$this->expmonth;
     }
     /**
-     * @return int card expiration month
+     * @return string
      */
     public function getExpmonth()
     {
@@ -107,7 +106,7 @@ public function __construct()
     }
 
     /**
-     * @return int card expiration year
+     * @return string
      */
     public function getExpyear()
     {
