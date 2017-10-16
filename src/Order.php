@@ -8,10 +8,6 @@
 
 namespace Skytech;
 use function htmlentities;
-use SimpleXMLElement;
-use XMLWriter;
-
-include 'purchase.php';
 
 class Order
 {
@@ -29,26 +25,15 @@ class Order
     private $merchantid;
     private $fee;
     private $url;
-    private $declineurl;
-    private $cancelurl;
-    private $approveurl;
-    public $customer; /** @var Customer info*/
-    public $recipient; /** @var Customer TransData  */
-    public $transdata; /** @var TransData  */
-    public $card;
-    private $status; /** @var  int request status*/
+    private $status; /** @var  int  */
     private $origamount;
     private $origcurrency;
     private $orderexpperiod;
     private $vendorid;
 
-    function __construct(Customer $customer,TransData $transdata,Card $card, Customer $recipient=null)
+    function __construct()
     {
-        $this->orderdate = time();
-        $this->customer = $customer;
-        $this->recipient = $recipient;
-        $this->transdata = $transdata;
-        $this->card = $card;
+
     }
 
     /**
@@ -149,29 +134,6 @@ class Order
     public function getStatus()
     {
         return $this->status;
-    }
-    /**
-     * @param Customer $customer
-     */
-    public function setCustomer(Customer $customer)
-    {
-        $this->customer = $customer;
-       // $this->customer->;
-    }
-    /**
-     * @param mixed $transdata
-     */
-    public function setTransdata(TransData $transdata)
-    {
-        $this->transdata = $transdata;
-    }
-
-    /**
-     * @param Card $card
-     */
-    public function setCard(Card $card)
-    {
-        $this->card = $card;
     }
     /**
      * @param mixed $xid
@@ -328,53 +290,6 @@ class Order
         $this->$orderstatus = $orderstatus;
     }
 
-    /**
-     * @param mixed $approveurl
-     */
-    public function setApproveurl($approveurl)
-    {
-        $this->approveurl = $approveurl;
-    }
-
-    /**
-     * @param mixed $cancelurl
-     */
-    public function setCancelurl($cancelurl)
-    {
-        $this->cancelurl = $cancelurl;
-    }
-
-    /**
-     * @param mixed $declineurl
-     */
-    public function setDeclineurl($declineurl)
-    {
-        $this->declineurl = $declineurl;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getApproveurl()
-    {
-        return $this->approveurl;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDeclineurl()
-    {
-        return $this->declineurl;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCancelurl()
-    {
-        return $this->cancelurl;
-    }
 
     /**
      * @return mixed

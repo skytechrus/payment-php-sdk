@@ -9,41 +9,26 @@
 namespace Skytech;
 
 
-use function is_int;
 use UnexpectedValueException;
 
-/**
- * Class Card
- * @package Skytech
- */
 class Card
 {
-    /**
-     * @var
-     */
-    private $pan;
-    /**
-     * @var
-     */
-    private $expmonth;
-    /**
-     * @var
-     */
-    private $expyear;
-    /**
-     * @var
-     */
-    private $brand;
-    /**
-     * @var
-     */
+    private $pan; /** @var  string */
+    private $expmonth; /** @var  string */
+    private $expyear; /** @var  string */
+    private $brand;  /** @var  string */
     private $cardUID;
 
+public function __construct()
+{
+}
+
     /**
-     * Card constructor.
+     * @param string $pan
      */
-    public function __construct()
+    public function setPan($pan)
     {
+        $this->pan = $pan;
     }
 
     /**
@@ -55,27 +40,19 @@ class Card
     }
 
     /**
-     * @param mixed $pan
-     */
-    public function setPan($pan)
-    {
-        $this->pan = $pan;
-    }
-
-    /**
-     * @return string card Brand
-     */
-    public function getBrand()
-    {
-        return $this->brand;
-    }
-
-    /**
      * @param string $brand
      */
     public function setBrand($brand)
     {
         $this->brand = $brand;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBrand()
+    {
+        return $this->brand;
     }
 
     /**
@@ -93,17 +70,23 @@ class Card
     {
         $this->cardUID = $cardUID;
     }
-
     /**
-     * @return string
+     * @param string $expmonth
      */
+    public function setExpmonth($expmonth)
+    {
+        if ($expmonth >12 or !is_int($expmonth))
+        {
+            throw new UnexpectedValueException('Invalid month');
+        }
+        $this->expmonth = $expmonth;
+    }
     public function getExpDate()
     {
-        return $this->expyear . $this->expmonth;
+        return $this->expyear.$this->expmonth;
     }
-
     /**
-     * @return int card expiration month
+     * @return string
      */
     public function getExpmonth()
     {
@@ -111,32 +94,22 @@ class Card
     }
 
     /**
-     * @param int $expmonth
-     */
-    public function setExpmonth($expmonth)
-    {
-        if ($expmonth > 12 or !is_int($expmonth)) {
-            throw new UnexpectedValueException('Invalid month');
-        }
-        $this->expmonth = $expmonth;
-    }
-
-    /**
-     * @return int card expiration year
-     */
-    public function getExpyear()
-    {
-        return $this->expyear;
-    }
-
-    /**
      * @param integer $expyear
      */
     public function setExpyear($expyear)
     {
-        if (!is_int($expyear)) {
+        if (!is_int($expyear))
+        {
             throw new UnexpectedValueException('Invalid card expiration year');
         }
         $this->expyear = $expyear;
+    }
+
+    /**
+     * @return string
+     */
+    public function getExpyear()
+    {
+        return $this->expyear;
     }
 }
