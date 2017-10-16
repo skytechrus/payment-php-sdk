@@ -9,6 +9,10 @@
 namespace Skytech;
 
 
+use InvalidArgumentException;
+use function is_numeric;
+use LengthException;
+use function strlen;
 use UnexpectedValueException;
 
 class Card
@@ -75,7 +79,7 @@ public function __construct()
      */
     public function setExpmonth($expmonth)
     {
-        if ($expmonth >12 or !is_int($expmonth))
+        if ($expmonth >12 or !is_int($expmonth) or $expmonth ==0 )
         {
             throw new UnexpectedValueException('Invalid month');
         }
@@ -98,10 +102,15 @@ public function __construct()
      */
     public function setExpyear($expyear)
     {
-        if (!is_int($expyear))
+        if (!is_numeric($expyear) or $expyear == 0)
         {
             throw new UnexpectedValueException('Invalid card expiration year');
         }
+        if (  $expyear< date("Y") or  $expyear > (date("Y")+10) )
+        {
+            throw new UnexpectedValueException('Invalid card expiration year');
+        }
+
         $this->expyear = $expyear;
     }
 
@@ -111,5 +120,17 @@ public function __construct()
     public function getExpyear()
     {
         return $this->expyear;
+    }
+    public function validatePan($pan)
+    {
+        if (   strlen($pan) <16 or strlen($pan)>19 )
+        {
+            throw new LengthException ('Invalid pan length');
+        }
+        if (!is_numeric($pan))
+        {
+            throw new InvalidArgumentException('Invalid type');
+        }
+        return true;
     }
 }

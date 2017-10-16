@@ -11,5 +11,8 @@
   ],
   "require": {
     "codeception/codeception": "2.3.6"
+  },
+  "autoload": {
+    "psr-4": {"Skytech\\": "src/"}
   }
 }
