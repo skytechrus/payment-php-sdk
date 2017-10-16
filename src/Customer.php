@@ -30,13 +30,15 @@ class Customer
     {
         $this->address = $address;
     }
+
     /**
      * @param CustAddress $address
      */
     public function setAddress(CustAddress $address)
     {
-        $this->address = htmlentities( $address);
+        $this->address = $address;
     }
+
     /**
      * @return string
      */
@@ -50,6 +52,9 @@ class Customer
      */
     public function setPhone($phone)
     {
+        if (!$this->validatePhone($phone)) {
+            throw new \InvalidArgumentException('Invalid phone number: ' . $phone);
+        }
         $this->phone = $phone;
     }
 
@@ -63,12 +68,12 @@ class Customer
 
     /**
      * @param string $emailaddr
+     * @covers Customer::setEmailaddr()
      */
     public function setEmailaddr($emailaddr)
     {
-        if (!filter_var($emailaddr, FILTER_VALIDATE_EMAIL))
-        {
-            throw new UnexpectedValueException('Invalid email address');
+        if (!filter_var($emailaddr, FILTER_VALIDATE_EMAIL)) {
+            throw new \InvalidArgumentException('Invalid email address');
         }
         $this->emailaddr = $emailaddr;
     }
@@ -78,6 +83,9 @@ class Customer
      */
     public function setIp($ip)
     {
+        if (!$this->validateIp($ip)) {
+            throw new \InvalidArgumentException('Invalid ip address');
+        }
         $this->ip = $ip;
     }
 
@@ -87,5 +95,18 @@ class Customer
     public function getIp()
     {
         return $this->ip;
+    }
+
+    private function validateIp($ip)
+    {
+        if (filter_var($ip, FILTER_VALIDATE_IP)) {
+            return true;
+        }
+        return false;
+    }
+
+    private function validatePhone($phone)
+    {
+        return preg_match('/^((\+7|7|8)+([0-9]){10})$/', $phone);
     }
 }
