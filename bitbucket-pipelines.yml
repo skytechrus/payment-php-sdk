@@ -15,5 +15,5 @@ pipelines:
           - pecl install xdebug && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini
           - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
           - composer install
-          - php -i
-          - vendor/bin/codecept run --coverage --coverage-xml --coverage-html
+          - vendor/bin/codecept run --coverage-clover=coverage.xml
+          - if [ $? -eq 0 ]; then bash <(curl -s https://codecov.io/bash); fi
