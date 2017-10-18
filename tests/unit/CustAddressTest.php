@@ -142,7 +142,8 @@ class CustAddressTest extends \Codeception\Test\Unit
             ['Карла маркса 56',false],
             ['Truda 11,7-a,ofice 7.1',true],
             ['Kulibuta %',false],
-            ['Truda ул',false]
+            ['Truda ул',false],
+            [958585,false]
         ];
     }
 }

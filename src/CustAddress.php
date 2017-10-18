@@ -109,9 +109,7 @@ class CustAddress
      */
     public function setAddressline($addressline)
     {
-        echo $addressline.' '.preg_match("/^[a-z]+[a-z\d\s\-\/]*$/i",$addressline)."\n";
-        echo preg_match("/^[a-z]+[a-z0-9\s\-\/,_]*$/i",$addressline)."\n";
-        if (!preg_match("/^[a-z]+[a-z\d\s\-\/,_.]*$/i",$addressline))   //(!preg_match("/^[a-z0-9\s\-]*[a-z]{1}$/i",$city ))
+       if (!preg_match("/^[a-z]+[a-z\d\s\-\/,_.]*$/i",$addressline))   //(!preg_match("/^[a-z0-9\s\-]*[a-z]{1}$/i",$city ))
         {
             throw new UnexpectedValueException('Only latin letters and numbers can be used in address line');
         }

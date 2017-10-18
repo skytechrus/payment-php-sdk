@@ -100,7 +100,6 @@ public function __construct()
     {
         return $this->expmonth;
     }
-
     /**
      * @param integer $expyear
      */

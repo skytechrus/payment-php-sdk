@@ -50,8 +50,12 @@ class CardTest extends \Codeception\Test\Unit
     /**
      * @dataProvider providerMonth
      */
-     public function testMonthNO($month)
+     public function testMonthNO($alfa,$month)
     {
+        if ($alfa) {
+            $this->expectException(InvalidArgumentException::class);
+            $this->card->setExpmonth($month);
+        }
         $this->expectException(UnexpectedValueException::class);
         $this->card->setExpmonth($month);
     }
@@ -110,9 +114,10 @@ class CardTest extends \Codeception\Test\Unit
     public function providerMonth()
     {
         return [
-          ['13'],
-          ['0'],
-            [77]
+          [false,'13'],
+          [false,'0'],
+            [false,77],
+            [true,'ф']
         ];
     }
     public function providerletters()
