@@ -79,7 +79,11 @@ public function __construct()
      */
     public function setExpmonth($expmonth)
     {
-        if ($expmonth >12 or !is_int($expmonth) or $expmonth ==0 )
+        if ( !is_numeric($expmonth)   )
+        {
+            throw new InvalidArgumentException('Invalid month');
+        }
+        if ($expmonth >12 or  $expmonth ==0 )
         {
             throw new UnexpectedValueException('Invalid month');
         }
@@ -102,9 +106,9 @@ public function __construct()
      */
     public function setExpyear($expyear)
     {
-        if (!is_numeric($expyear) or $expyear == 0)
+        if (!is_numeric($expyear)  )
         {
-            throw new UnexpectedValueException('Invalid card expiration year');
+            throw new InvalidArgumentException('Invalid card expiration year');
         }
         if (  $expyear< date("Y") or  $expyear > (date("Y")+10) )
         {

@@ -9,12 +9,18 @@
 namespace Skytech;
 
 
-use function is_int;
+use InvalidArgumentException;
+use function is_numeric;
+use League\ISO3166\ISO3166;
+use OutOfBoundsException;
+use function preg_match;
 use UnexpectedValueException;
+use League;
+
 
 class CustAddress
 {
-    private $country;
+    private $country; /** @var  mixed */
     private $region;
     private $city;
     public $addressline;
@@ -29,6 +35,10 @@ class CustAddress
      */
     public function setRegion($region)
     {
+        if (!preg_match("/^[a-z]+[a-z\s\-]*$/i",$region ))
+        {
+            throw new UnexpectedValueException('Only latin letters can be used in region name');
+        }
         $this->region = $region;
     }
 
@@ -53,6 +63,16 @@ class CustAddress
      */
     public function setCountry($country)
     {
+        if(!is_numeric($country) )
+        {
+            throw new InvalidArgumentException('Invalid ISO country code');
+        }
+       // $data = (new ISO3166)->numeric((string)$country);
+        $iso = (new ISO3166())->all() ;
+         if ( array_key_exists($country,$iso ))
+        {
+            throw new OutOfBoundsException('Invalid ISO country code ');
+        }
         $this->country = $country;
     }
 
@@ -69,6 +89,10 @@ class CustAddress
      */
     public function setCity($city)
     {
+        if (!preg_match("/^[a-z]+[a-z\d\s\-]*$/i",$city))   //(!preg_match("/^[a-z0-9\s\-]*[a-z]{1}$/i",$city ))
+        {
+            throw new UnexpectedValueException('Only latin letters can be used in city name');
+        }
         $this->city = $city;
     }
 
@@ -81,13 +105,34 @@ class CustAddress
     }
 
     /**
-     * @param int $zip
+     * @param mixed $addressline
+     */
+    public function setAddressline($addressline)
+    {
+        echo $addressline.' '.preg_match("/^[a-z]+[a-z\d\s\-\/]*$/i",$addressline)."\n";
+        echo preg_match("/^[a-z]+[a-z0-9\s\-\/,_]*$/i",$addressline)."\n";
+        if (!preg_match("/^[a-z]+[a-z\d\s\-\/,_.]*$/i",$addressline))   //(!preg_match("/^[a-z0-9\s\-]*[a-z]{1}$/i",$city ))
+        {
+            throw new UnexpectedValueException('Only latin letters and numbers can be used in address line');
+        }
+        $this->addressline = $addressline;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAddressline()
+    {
+        return $this->addressline;
+    }
+    /**
+     * @param mixed $zip
      */
     public function setZip($zip)
     {
-        if(!is_int($zip))
+        if(!is_numeric($zip) )
         {
-            throw new UnexpectedValueException('Invalid postal index');
+            throw new InvalidArgumentException('Invalid postal index argument type');
         }
         $this->zip = $zip;
     }

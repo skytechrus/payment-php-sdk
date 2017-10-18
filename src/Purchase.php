@@ -187,16 +187,6 @@ class Purchase
         $this->merchanttranid = $authresp->xpath('Message/MerchantTranID');
     }
 
-    public function __set($name, $value)
-    {
-        // TODO: Implement __set() method.
-        echo "__set, property - {$name} is not exists \n";
-    }
-    public function __get($name)
-    {
-        // TODO: Implement __get() method.
-        echo "__get, property - {$name} is not exists \n";
-    }
 
 }
 
