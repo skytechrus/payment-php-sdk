@@ -15,4 +15,5 @@ pipelines:
           - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
           - composer install
           - apt-get install -y php-xdebug && docker-php-ext-enable php-xdebug
+          - php -i
           - vendor/bin/codecept run --coverage --coverage-xml --coverage-html
