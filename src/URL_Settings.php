@@ -27,8 +27,12 @@ class URL_Settings
      */
     public function setApproveurl($approveurl)
     {
-        echo $approveurl;
-        if (!filter_var($approveurl, FILTER_VALIDATE_URL))
+        $url = $approveurl;
+        if (!strstr($url,"://"))
+        {
+            $url="http://".$url;
+        }
+        if (!filter_var($url, FILTER_VALIDATE_URL))
         {
             throw new UnexpectedValueException('Invalid url');
         }
@@ -40,7 +44,12 @@ class URL_Settings
      */
     public function setCancelurl($cancelurl)
     {
-        if (filter_var($cancelurl, FILTER_VALIDATE_URL))
+        $url = $cancelurl;
+        if (!strstr($url,"://"))
+        {
+            $url="http://".$url;
+        }
+        if (!filter_var($url, FILTER_VALIDATE_URL))
         {
             throw new UnexpectedValueException('Invalid url');
         }
@@ -52,8 +61,12 @@ class URL_Settings
      */
     public function setDeclineurl($declineurl)
     {
-        echo $declineurl;
-        if (filter_var($declineurl, FILTER_VALIDATE_URL))
+        $url = $declineurl;
+        if (!strstr($url,"://"))
+        {
+            $url="http://".$url;
+        }
+        if (!filter_var($url, FILTER_VALIDATE_URL))
         {
             throw new UnexpectedValueException('Invalid url');
         }

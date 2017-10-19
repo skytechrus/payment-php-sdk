@@ -33,12 +33,38 @@ class URL_SettingsTest extends \Codeception\Test\Unit
       $this->url_settigs->setApproveurl($url);
       $this->assertEquals($url,$this->url_settigs->getApproveurl());
     }
+    /**
+     * @dataProvider  providerUrl
+     */
+    public function testCancelURL($url,$expect)
+    {
+        if (!$expect)
+        {
+            $this->expectException(UnexpectedValueException::class);
+            $this->url_settigs->setCancelurl($url);
+        }
+        $this->url_settigs->setCancelurl($url);
+        $this->assertEquals($url,$this->url_settigs->getCancelurl());
+    }
+    /**
+     * @dataProvider  providerUrl
+     */
+    public function testDeclineURL($url,$expect)
+    {
+        if (!$expect)
+        {
+            $this->expectException(UnexpectedValueException::class);
+            $this->url_settigs->setDeclineurl($url);
+        }
+        $this->url_settigs->setDeclineurl($url);
+        $this->assertEquals($url,$this->url_settigs->getDeclineurl());
+    }
     public function providerUrl()
     {
         return [
             ['load from here',false],
-            ['load_from_here.php',true],
-            ['сайт.рф',true],
+            ['load-from-here.html',true],
+            ['сайт.рф',false],
             ["http:\\site.ru/en/index.html",false],
             ['http://site.ru/en/index.html',true],
             ['183.49.3.983',true]
