@@ -50,8 +50,12 @@ class CardTest extends \Codeception\Test\Unit
     /**
      * @dataProvider providerMonth
      */
-     public function testMonthNO($month)
+     public function testMonthNO($alfa,$month)
     {
+        if ($alfa) {
+            $this->expectException(InvalidArgumentException::class);
+            $this->card->setExpmonth($month);
+        }
         $this->expectException(UnexpectedValueException::class);
         $this->card->setExpmonth($month);
     }
@@ -62,6 +66,22 @@ class CardTest extends \Codeception\Test\Unit
     public function testYearNo($year)
     {
         $this->expectException(UnexpectedValueException::class);
+        $this->card->setExpyear($year);
+    }
+    /**
+     * @dataProvider  providerletters
+     */
+    public function testLettersInMonth($month)
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->card->setExpmonth($month);
+    }
+    /**
+     * @dataProvider  providerletters
+     */
+    public function testLettersInYear($year)
+    {
+        $this->expectException(InvalidArgumentException::class);
         $this->card->setExpyear($year);
     }
     public function providerwrongPanType()
@@ -94,17 +114,23 @@ class CardTest extends \Codeception\Test\Unit
     public function providerMonth()
     {
         return [
-          ['13'],
-          ['h'],
-          ['0'],
-            [77]
+          [false,'13'],
+          [false,'0'],
+            [false,77],
+            [true,'ф']
+        ];
+    }
+    public function providerletters()
+    {
+        return [
+            ['h'],
+            ['t44']
         ];
     }
     public function providerYear()
     {
         return [
             ['2013'],
-            ['h'],
             ['0'],
             [77],
             ['2089']
