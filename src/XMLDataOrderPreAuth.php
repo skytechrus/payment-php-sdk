@@ -36,8 +36,9 @@ class XMLDataOrderPreAuth extends DataProvider
         $xmlRequest->writeElement('Operation','CreateOrder');          //<Operation>CreateOrder</Operation>
         $xmlRequest->writeElement('Language', $this->operation->order->getLanguage());        //<Language></Language>
         $xmlRequest->startElement('Order');                                       //<Order>
-        $xmlRequest->writeElement('OrderType', $this->operation->order->getOperationtype());//<OrderType></OrderType>
-        $xmlRequest->writeElement('Merchant', $this->operation->order->getMerchantid());           //<Merchant></Merchant>
+        $xmlRequest->writeElement('OrderType', $this->operation->order->getOperationType());//<OrderType></OrderType>
+        $xmlRequest->writeElement('Merchant',
+            $this->operation->order->getMerchantId());           //<Merchant></Merchant>
         $xmlRequest->writeElement('Amount',$this->operation->order->getAmount());                 //<Amount></Amount>
         $xmlRequest->writeElement('Currency',$this->operation->order->getCurrency());              //<Currency></Currency>
         $xmlRequest->writeElement('Description', $this->operation->order->getDescription());  //<Description></Description>
@@ -67,9 +68,9 @@ class XMLDataOrderPreAuth extends DataProvider
         $xml_add_par->writeElement('SenderPostalCode',$this->operation->customer->address->getZip());
         //$xml_add_par->writeElement('AcctType');
         //$xml_add_par->writeElement('TranAddendums');
-        $xml_add_par->writeElement('OrderExpirationPeriod',$this->operation->order->getOrderexpperiod());
-        $xml_add_par->writeElement('OrigAmount',$this->operation->order->getOrigamount());
-        $xml_add_par->writeElement('OrigCurrency',$this->operation->order->getOrigcurrency());
+        $xml_add_par->writeElement('OrderExpirationPeriod', $this->operation->order->getOrderExpPeriod());
+        $xml_add_par->writeElement('OrigAmount', $this->operation->order->getOrigAmount());
+        $xml_add_par->writeElement('OrigCurrency', $this->operation->order->getOrigCurrency());
         $xml = $xml_add_par->outputMemory(true);
         return $xml;
     }
@@ -92,7 +93,7 @@ class XMLDataOrderPreAuth extends DataProvider
 // $fada_data .= $this->makeFada_line('DeliveryPeriod', null );
         $fada_data .= $this->makeFada_line('Phone', $operation->customer->phone );
         $fada_data .= $this->makeFada_line('Email', $operation->customer->getEmailaddr() );
-        $fada_data .= $this->makeFada_line('MerchantOrderID', $operation->order->getXid());
+        $fada_data .= $this->makeFada_line('MerchantOrderID', $operation->order->getXId());
         return $fada_data;
     }
     public function getResponseData($xmlresponse)

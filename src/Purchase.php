@@ -74,15 +74,15 @@ class Purchase
     public function __construct(Order $order)
     {
         $this->language = $order->getLanguage();
-        $this->orderid = $order->getOrderid();
-        $this->transdatetime = $order->getOrderdate();
+        $this->orderid = $order->getOrderId();
+        $this->transdatetime = $order->getOrderDate();
         //$this->brand = $order->getbrand;
         $this->purchaseamount = $order->getAmount();
         $this->description = $order->getDescription();
         $this->currency = $order->getCurrency();
-        $this->transactiontype = $order->getOperationtype();
-        $this->xid = $order->getXid();
-        $this->merid = $order->getMerchantid();
+        $this->transactiontype = $order->getOperationType();
+        $this->xid = $order->getXId();
+        $this->merid = $order->getMerchantId();
         $this->fee = $order->getFee();
     }
 
