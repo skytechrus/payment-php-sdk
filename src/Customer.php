@@ -13,15 +13,40 @@ use function filter_var;
 use function htmlentities;
 use UnexpectedValueException;
 
+/**
+ * Class Customer
+ * @package Skytech
+ */
 class Customer
 {
-    public $firstname; /** @var  string */
-    public $lastname;  /** @var  string */
-    public $middlename; /** @var  string */
-    private $emailaddr; /** @var  string */
-    public $phone;  /** @var string */
-    public $address; /** @var  CustAddress */
-    private $ip; /** @var string */
+    /**
+     * @var string
+     */
+    public $firstname;
+    /**
+     * @var string
+     */
+    public $lastname;
+    /**
+     * @var string
+     */
+    public $middlename;
+    /**
+     * @var string
+     */
+    private $emailaddr;
+    /**
+     * @var string
+     */
+    public $phone;
+    /**
+     * @var CustAddress
+     */
+    public $address;
+    /**
+     * @var string
+     */
+    private $ip;
     /**
      * Customer constructor.
      * @param CustAddress $address
@@ -97,6 +122,10 @@ class Customer
         return $this->ip;
     }
 
+    /**
+     * @param $ip
+     * @return bool
+     */
     private function validateIp($ip)
     {
         if (filter_var($ip, FILTER_VALIDATE_IP)) {
@@ -105,6 +134,10 @@ class Customer
         return false;
     }
 
+    /**
+     * @param $phone
+     * @return int
+     */
     private function validatePhone($phone)
     {
         return preg_match('/^((\+7|7|8)+([0-9]){10})$/', $phone);
