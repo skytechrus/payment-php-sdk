@@ -48,6 +48,11 @@ class Customer
      */
     private $ip;
     /**
+     * @var string
+     */
+    private $sessionId;
+
+    /**
      * Customer constructor.
      * @param CustAddress $address
      */
@@ -62,6 +67,22 @@ class Customer
     public function setAddress(CustAddress $address)
     {
         $this->address = $address;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSessionId()
+    {
+        return $this->sessionId;
+    }
+
+    /**
+     * @param mixed $sessionId
+     */
+    public function setSessionId($sessionId)
+    {
+        $this->sessionId = $sessionId;
     }
 
     /**

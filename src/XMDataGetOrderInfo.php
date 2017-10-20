@@ -34,10 +34,10 @@ class XMDataGetOrderInfo extends DataProvider
         $xmlRequest->startElement('Request');//<Request>
         $xmlRequest->writeElement('Operation','GetOrderInformation');          //<Operation>GetOrderInformation</Operation>
         $xmlRequest->startElement('Order');                                       //<Order>
-        $xmlRequest->writeElement('Merchant', $this->operation->order->getMerchantid());     //<Merchant></Merchant>
-        $xmlRequest->writeElement('OrderID',$this->operation->order->getOrderid());          //<OrderID></OrderID>
+        $xmlRequest->writeElement('Merchant', $this->operation->order->getMerchantId());     //<Merchant></Merchant>
+        $xmlRequest->writeElement('OrderID', $this->operation->order->getOrderId());          //<OrderID></OrderID>
         $xmlRequest->endElement();                                                     //</Order>
-        $xmlRequest->writeElement('SessionID',$this->operation->order->getSessionid());     //<SessionID></SessionID>
+        $xmlRequest->writeElement('SessionID', $this->operation->order->getSessionId());     //<SessionID></SessionID>
         $xmlRequest->writeElement('ShowParams','true');    //<ShowParams></ShowParams>
         $xmlRequest->writeElement('ShowOperations','true'); //<ShowOperations></ShowOperations>
         $xmlRequest->writeElement('ClassicView','true');   //<ClassicView></ClassicView>
@@ -51,10 +51,10 @@ class XMDataGetOrderInfo extends DataProvider
         $crordresp = new SimpleXMLElement($xmlresponse);
         $this->operation->order->setOperation($crordresp->xpath('TKKPG/Response/Operation'));
         $this->operation->order->setStatus($crordresp->xpath('TKKPG/Response/Status'));
-        $this->operation->order->setOrderid($crordresp->xpath('Order/row/id'));
-        $this->operation->order->setOperationtype($crordresp->xpath('Order/row/OrderType'));
-        $this->operation->order->setSessionid($crordresp->xpath('Order/row/SessionID'));
-        $this->operation->order->setMerchantid($crordresp->xpath('Order/row/MerchantID'));
+        $this->operation->order->setOrderId($crordresp->xpath('Order/row/id'));
+        $this->operation->order->setOperationType($crordresp->xpath('Order/row/OrderType'));
+        $this->operation->order->setSessionId($crordresp->xpath('Order/row/SessionID'));
+        $this->operation->order->setMerchantId($crordresp->xpath('Order/row/MerchantID'));
         $this->operation->order->setAmount($crordresp->xpath('Order/row/Amount'));
         $this->operation->order->setCurrency($crordresp->xpath('Order/row/Currency'));
         $this->operation->order->setLanguage($crordresp->xpath('Order/row/OrderLanguage'));
@@ -64,7 +64,7 @@ class XMDataGetOrderInfo extends DataProvider
         $this->operation->url_settings->setCancelurl($crordresp->xpath('Order/row/CancelURL'));
         $this->operation->url_settings->setDeclineurl($crordresp->xpath('Order/row/DeclineURL'));
 
-        $this->operation->order->setOrderstatus($crordresp->xpath('Order/row/Orderstatus'));
+        $this->operation->order->setOrderStatus($crordresp->xpath('Order/row/Orderstatus'));
         $this->operation->transaction->transid = $crordresp->xpath('Order/row/twoId');
         $this->operation->order->setFee($crordresp->xpath('Order/row/Fee'));
 
