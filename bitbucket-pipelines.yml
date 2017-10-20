@@ -6,7 +6,8 @@
 image: php:7.1.1
 
 pipelines:
-  default:
+  branches:
+    master:
     - step:
         caches:
           - composer
