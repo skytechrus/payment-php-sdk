@@ -40,12 +40,12 @@ class XMLDataReverse extends DataProvider
         $xmlRequest->writeElement('Operation','Reverse');          //<Operation>Reverse</Operation>
         $xmlRequest->writeElement('Language', $this->operation->order->getLanguage());        //<Language></Language>
         $xmlRequest->startElement('Order');                                       //<Order>
-        $xmlRequest->writeElement('Merchant', $this->operation->order->getMerchantid());     //<Merchant></Merchant>
-        $xmlRequest->writeElement('OrderID',$this->operation->order->getOrderid());          //<OrderID></OrderID>
+        $xmlRequest->writeElement('Merchant', $this->operation->order->getMerchantId());     //<Merchant></Merchant>
+        $xmlRequest->writeElement('OrderID', $this->operation->order->getOrderId());          //<OrderID></OrderID>
         $xmlRequest->endElement();                                                     //</Order>
         $xmlRequest->writeElement('Amount',$this->operation->order->getAmount());     //<Amount></Amount>
         $xmlRequest->writeElement('Description',$this->operation->order->getDescription());//<Description></Description>
-        $xmlRequest->writeElement('SessionID',$this->operation->order->getSessionid());     //<SessionID></SessionID>
+        $xmlRequest->writeElement('SessionID', $this->operation->order->getSessionId());     //<SessionID></SessionID>
         $xmlRequest->writeElement('PAN',$this->operation->card->getPan()); //<PAN></PAN>
         $xmlRequest->writeElement('CardUID', $this->operation->card->getCardUID()); //<CardUID></CardUID>
         $xmlRequest->writeElement('TranId', $this->operation->transaction->transid);//<TranId></TranId>
@@ -59,7 +59,7 @@ class XMLDataReverse extends DataProvider
         $crordresp = new SimpleXMLElement($xmlresponse);
         $this->operation->order->setOperation($crordresp->xpath('TKKPG/Response/Operation'));
         $this->operation->order->setStatus($crordresp->xpath('TKKPG/Response/Status'));
-        $this->operation->order->setOrderid($crordresp->xpath('TKKPG/Response/Order/OrderId'));
+        $this->operation->order->setOrderId($crordresp->xpath('TKKPG/Response/Order/OrderId'));
         $this->operation->transaction->responsecode =  $crordresp->xpath('TKKPG/Response/Reversal/RespCode')   ;
         $this->operation->transaction->responsedescription =   $crordresp->xpath('TKKPG/Response/Reversal/RespMessage');
     }

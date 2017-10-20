@@ -86,7 +86,7 @@ class Operation
 
     public function CreateOrderOnPurchase(Operation $operation, $hostname, $port)
     {
-        $operation->order->setOperationtype('Purchase');
+        $operation->order->setOperationType('Purchase');
         $orderdata = new XMLDataOrderPurch($operation);
         $connector = new Connector($orderdata,$hostname,$port);
         $response = $connector->send_request();
@@ -95,7 +95,7 @@ class Operation
     }
     public function CreateOrderOnP2P(Operation $operation, $hostname, $port)
     {
-        $operation->order->setOperationtype('P2PTransfer');
+        $operation->order->setOperationType('P2PTransfer');
         $orderdata = new XMLDataOrderp2p($operation);
         $connector = new Connector($orderdata,$hostname,$port);
         $response = $connector->send_request();
@@ -104,7 +104,7 @@ class Operation
     }
     public function CreateOrderOn3DS (Operation $operation, $hostname, $port)
     {
-        $operation->order->setOperationtype('P2PTransfer');
+        $operation->order->setOperationType('P2PTransfer');
         $orderdata = new XMLDataOrder3DS($operation);
         $connector = new Connector($orderdata,$hostname,$port);
         $response = $connector->send_request();

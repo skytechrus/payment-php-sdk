@@ -42,15 +42,15 @@ class XMLDataPurchase extends DataProvider
         $xmlRequest->startElement('Request');//<Request>
         $xmlRequest->writeElement('Operation','Purchase');
         $xmlRequest->startElement('Order');  //<Order>
-        $xmlRequest->writeElement('Merchant',$this->operation->order->getMerchantid());//<Merchant></Merchant>
-        $xmlRequest->writeElement('OrderID',$this->operation->order->getOrderid());//<OrderID></OrderID>
+        $xmlRequest->writeElement('Merchant', $this->operation->order->getMerchantId());//<Merchant></Merchant>
+        $xmlRequest->writeElement('OrderID', $this->operation->order->getOrderId());//<OrderID></OrderID>
         $xmlRequest->startElement('AddParams');//<AddParams>
         $xmlRequest->startElement('FA-DATA');//<FA-DATA>
         $xmlRequest->writeElement('FA-DATA',$this->makeFada_data($this->operation));
         $xmlRequest->endElement(); //</FA-DATA>
         $xmlRequest->endElement(); //</AddParams>
         $xmlRequest->endElement(); //</Order>
-        $xmlRequest->writeElement('SessionID',$this->operation->order->getSessionid()); // <SessionID></SessionID>
+        $xmlRequest->writeElement('SessionID', $this->operation->order->getSessionId()); // <SessionID></SessionID>
         $xmlRequest->writeElement('Amount',$this->operation->order->getAmount()); // <Amount></Amount>
         $xmlRequest->writeElement('Currency',$this->operation->order->getCurrency());// <Currency></Currency>
         $xmlRequest->writeElement('PAN',$this->operation->card->getPan()); // <PAN></PAN>
@@ -74,19 +74,19 @@ class XMLDataPurchase extends DataProvider
         $crordresp = new SimpleXMLElement($xmlresponse);
         $this->operation->order->setOperation($crordresp->xpath('TKKPG/Response/Operation'));
         $this->operation->order->setStatus($crordresp->xpath('TKKPG/Response/Status'));
-        $this->operation->order->setOrderid($crordresp->xpath('Message/OrderId'));
-        $this->operation->order->setOperationtype($crordresp->xpath('Message/TransactionType'));
+        $this->operation->order->setOrderId($crordresp->xpath('Message/OrderId'));
+        $this->operation->order->setOperationType($crordresp->xpath('Message/TransactionType'));
         $this->operation->order->setAmount($crordresp->xpath('Message/PurchaseAmount'));
         $this->operation->order->setCurrency($crordresp->xpath('Message/Currency'));
         $this->operation->order->setDescription($crordresp->xpath('Message/OrderDescription'));
         $this->operation->order->setFee($crordresp->xpath('Message/AcqFee'));
         $this->operation->transaction->responsecode = $crordresp->xpath('Message/ResponseCode');
         $this->operation->transaction->responsedescription = $crordresp->xpath('Message/ResponseDescription');
-        $this->operation->order->setOrderstatus($crordresp->xpath('Message/OrderStatus') );
+        $this->operation->order->setOrderStatus($crordresp->xpath('Message/OrderStatus'));
         $this->operation->transaction->approvalcode =$crordresp->xpath('Message/ApprovalCode');
         $this->operation->transaction->approvalcodestr =$crordresp->xpath('Message/ApprovalCodeScr');
         $this->operation->order->setDescription($crordresp->xpath('Message/OrderDescription'));
-        $this->operation->order->setXid($crordresp->xpath('Message/MerchantTranID'));
+        $this->operation->order->setXId($crordresp->xpath('Message/MerchantTranID'));
         //$this->order->transdata->transid = $crordresp->xpath("//f[@name = 't']")['value']; //?
     }
 }

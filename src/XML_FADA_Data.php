@@ -27,7 +27,7 @@ trait XML_FADA_Data{
 // $fada_data .= $this->makeFada_line('DeliveryPeriod', null );
         $fada_data .= $this->makeFada_line('Phone', $operation->customer->getPhone() );
         $fada_data .= $this->makeFada_line('Email', $operation->customer->getEmailaddr() );
-        $fada_data .= $this->makeFada_line('MerchantOrderID', $operation->order->getXid());
+        $fada_data .= $this->makeFada_line('MerchantOrderID', $operation->order->getXId());
         return $fada_data;
     }
 }

@@ -41,12 +41,12 @@ class XMLDataRefund extends DataProvider
         $xmlRequest->writeElement('Operation','Refund');          //<Operation>Refund</Operation>
         $xmlRequest->writeElement('Language', $this->operation->order->getLanguage());        //<Language></Language>)
         $xmlRequest->startElement('Order');                                       //<Order>
-        $xmlRequest->writeElement('Merchant', $this->operation->order->getMerchantid());     //<Merchant></Merchant>
-        $xmlRequest->writeElement('OrderID',$this->operation->order->getOrderid());          //<OrderID></OrderID>
+        $xmlRequest->writeElement('Merchant', $this->operation->order->getMerchantId());     //<Merchant></Merchant>
+        $xmlRequest->writeElement('OrderID', $this->operation->order->getOrderId());          //<OrderID></OrderID>
         $xmlRequest->writeElement('AddParams',null);                        //<AddParams></AddParams>
         $xmlRequest->endElement();                                                     //</Order>
         $xmlRequest->writeElement('Description',$this->operation->order->getDescription()); //<Description></Description>//</Order>
-        $xmlRequest->writeElement('SessionID',$this->operation->order->getSessionid());     //<SessionID></SessionID>
+        $xmlRequest->writeElement('SessionID', $this->operation->order->getSessionId());     //<SessionID></SessionID>
         $xmlRequest->startElement('Refund');                             //<Refund>
         $xmlRequest->writeElement('Amount',$this->operation->order->getAmount());  //<Amount></Amount>
         $xmlRequest->writeElement('Currency',$this->operation->order->getCurrency()); //<Currency></Currency>

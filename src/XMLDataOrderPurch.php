@@ -37,8 +37,9 @@ class XMLDataOrderPurch extends DataProvider
         $xmlRequest->writeElement('Operation','CreateOrder');          //<Operation>CreateOrder</Operation>
         $xmlRequest->writeElement('Language', $this->operation->order->getLanguage());        //<Language></Language>
         $xmlRequest->startElement('Order');                                       //<Order>
-        $xmlRequest->writeElement('OrderType', $this->operation->order->getOperationtype());//<OrderType></OrderType>
-        $xmlRequest->writeElement('Merchant', $this->operation->order->getMerchantid());           //<Merchant></Merchant>
+        $xmlRequest->writeElement('OrderType', $this->operation->order->getOperationType());//<OrderType></OrderType>
+        $xmlRequest->writeElement('Merchant',
+            $this->operation->order->getMerchantId());           //<Merchant></Merchant>
         $xmlRequest->writeElement('Amount',$this->operation->order->getAmount());                 //<Amount></Amount>
         $xmlRequest->writeElement('Currency',$this->operation->order->getCurrency());              //<Currency></Currency>
         $xmlRequest->writeElement('Description', $this->operation->order->getDescription());  //<Description></Description>
@@ -67,9 +68,9 @@ class XMLDataOrderPurch extends DataProvider
         $xml_add_par->writeElement('FA-DATA',$this->makeFada_data($this->operation));
         //$xml_add_par->writeElement('AcctType');
         //$xml_add_par->writeElement('TranAddendums');
-        $xml_add_par->writeElement('OrderExpirationPeriod',$this->operation->order->getOrderexpperiod());
-        $xml_add_par->writeElement('OrigAmount',$this->operation->order->getOrigamount());
-        $xml_add_par->writeElement('OrigCurrency',$this->operation->order->getOrigcurrency());
+        $xml_add_par->writeElement('OrderExpirationPeriod', $this->operation->order->getOrderExpPeriod());
+        $xml_add_par->writeElement('OrigAmount', $this->operation->order->getOrigAmount());
+        $xml_add_par->writeElement('OrigCurrency', $this->operation->order->getOrigCurrency());
         $xml = $xml_add_par->outputMemory(true);
         return $xml;
     }
