@@ -65,9 +65,6 @@ class OrderTest extends \Codeception\Test\Unit
         $this->order->setCurrency($currency);
     }
 
-    /**
-     * @depends testSetCurrency
-     */
     public function testGetCurrency()
     {
         $currency = 643;
