@@ -42,15 +42,13 @@ class XMLDataPurchase extends DataProvider
         $xmlRequest->startElement('Request');//<Request>
         $xmlRequest->writeElement('Operation','Purchase');
         $xmlRequest->startElement('Order');  //<Order>
-        $xmlRequest->writeElement('Merchant', $this->operation->order->getMerchantId());//<Merchant></Merchant>
-        $xmlRequest->writeElement('OrderID', $this->operation->order->getOrderId());//<OrderID></OrderID>
+        $xmlRequest->writeElement('Merchant',$this->operation->order->getMerchantid());//<Merchant></Merchant>
+        $xmlRequest->writeElement('OrderID',$this->operation->order->getOrderid());//<OrderID></OrderID>
         $xmlRequest->startElement('AddParams');//<AddParams>
-        $xmlRequest->startElement('FA-DATA');//<FA-DATA>
         $xmlRequest->writeElement('FA-DATA',$this->makeFada_data($this->operation));
-        $xmlRequest->endElement(); //</FA-DATA>
         $xmlRequest->endElement(); //</AddParams>
         $xmlRequest->endElement(); //</Order>
-        $xmlRequest->writeElement('SessionID', $this->operation->order->getSessionId()); // <SessionID></SessionID>
+        $xmlRequest->writeElement('SessionID',$this->operation->order->getSessionid()); // <SessionID></SessionID>
         $xmlRequest->writeElement('Amount',$this->operation->order->getAmount()); // <Amount></Amount>
         $xmlRequest->writeElement('Currency',$this->operation->order->getCurrency());// <Currency></Currency>
         $xmlRequest->writeElement('PAN',$this->operation->card->getPan()); // <PAN></PAN>
@@ -58,11 +56,13 @@ class XMLDataPurchase extends DataProvider
         $xmlRequest->writeElement('ExpDate',$this->operation->card->getExpDate()); // <ExpDate></ExpDate> //YYMM
         // $xmlRequest->writeElement('CVV2',null);// <CVV2></CVV2>
         // $xmlRequest->writeElement('CAVV',null);//<CAVV></CAVV> //<!-- код подтверждения 3-D Secure протокола -->
-        $xmlRequest->writeElement('eci',null); //<eci></eci> // <!-- код TWEC-индикатора -->
-        $xmlRequest->writeElement('DraftCaptureFlag',null); // <DraftCaptureFlag></DraftCaptureFlag>
-        $xmlRequest->writeElement('IP',$this->operation->customer->getIp()); //<IP></IP>
-        $xmlRequest->writeElement('isMOTO',null); // <isMOTO></isMOTO>
-        $xmlRequest->writeElement('IncreaseOrderAmount',null); // <IncreaseOrderAmount></IncreaseOrderAmount>
+        //$xmlRequest->writeElement('eci',null); //<eci></eci> // <!-- код TWEC-индикатора -->
+        //$xmlRequest->writeElement('DraftCaptureFlag',null); // <DraftCaptureFlag></DraftCaptureFlag>
+        if (!empty($this->operation->customer->getIp())){
+            $xmlRequest->writeElement('IP',$this->operation->customer->getIp());
+        } //<IP></IP>
+        //$xmlRequest->writeElement('isMOTO',null); // <isMOTO></isMOTO>
+        //$xmlRequest->writeElement('IncreaseOrderAmount',null); // <IncreaseOrderAmount></IncreaseOrderAmount>
         $xmlRequest->writeElement('ResponseFormat','TKKPG'); //<ResponseFormat></ResponseFormat>
         $xmlRequest->endElement(); //</Request>
         $xmlRequest->endElement();//</TKKPG>
@@ -72,21 +72,57 @@ class XMLDataPurchase extends DataProvider
     public function getPurchaseResp($xmlresponse)
     {
         $crordresp = new SimpleXMLElement($xmlresponse);
-        $this->operation->order->setOperation($crordresp->xpath('TKKPG/Response/Operation'));
-        $this->operation->order->setStatus($crordresp->xpath('TKKPG/Response/Status'));
-        $this->operation->order->setOrderId($crordresp->xpath('Message/OrderId'));
-        $this->operation->order->setOperationType($crordresp->xpath('Message/TransactionType'));
-        $this->operation->order->setAmount($crordresp->xpath('Message/PurchaseAmount'));
-        $this->operation->order->setCurrency($crordresp->xpath('Message/Currency'));
-        $this->operation->order->setDescription($crordresp->xpath('Message/OrderDescription'));
-        $this->operation->order->setFee($crordresp->xpath('Message/AcqFee'));
-        $this->operation->transaction->responsecode = $crordresp->xpath('Message/ResponseCode');
-        $this->operation->transaction->responsedescription = $crordresp->xpath('Message/ResponseDescription');
-        $this->operation->order->setOrderStatus($crordresp->xpath('Message/OrderStatus'));
-        $this->operation->transaction->approvalcode =$crordresp->xpath('Message/ApprovalCode');
-        $this->operation->transaction->approvalcodestr =$crordresp->xpath('Message/ApprovalCodeScr');
-        $this->operation->order->setDescription($crordresp->xpath('Message/OrderDescription'));
-        $this->operation->order->setXId($crordresp->xpath('Message/MerchantTranID'));
+        $this->operation->order->setOperation($crordresp->xpath("//Operation")[0]);
+        $this->operation->order->setStatus($crordresp->xpath("//Status")[0]);
+        if (!empty($crordresp->xpath("//OrderId")[0])) {
+            $this->operation->order->setOrderid($crordresp->xpath("//OrderId")[0]);
+        }
+        if (!empty($crordresp->xpath("//TransactionType")[0])) {
+            $this->operation->order->setOperationtype($crordresp->xpath("//TransactionType")[0]);
+        }
+        if (!empty($crordresp->xpath("//PurchaseAmount")[0])) {
+            $this->operation->order->setAmount($crordresp->xpath("//PurchaseAmount")[0]);
+        }
+        if (!empty($crordresp->xpath("//Currency")[0])){
+            $this->operation->order->setCurrency($crordresp->xpath("//Currency")[0]);
+        }
+        if (!empty($crordresp->xpath("//OrderDescription")[0])){
+            $this->operation->order->setDescription($crordresp->xpath("//OrderDescription")[0]);
+        }
+        if (!empty($crordresp->xpath("//AcqFee")[0])){
+            $this->operation->order->setFee($crordresp->xpath("//AcqFee")[0]);
+        }
+        if (!empty($crordresp->xpath("//ResponseCode")[0])){
+            $this->operation->transaction->responsecode = $crordresp->xpath("//ResponseCode")[0];
+        }
+        if (!empty( $crordresp->xpath("//ResponseDescription")[0])){
+            $this->operation->transaction->responsedescription = $crordresp->xpath("//ResponseDescription")[0];
+        }
+        if (!empty($crordresp->xpath("//OrderStatus")[0])){
+            $this->operation->order->setOrderstatus($crordresp->xpath("//OrderStatus")[0] );
+        }
+        if (!empty($crordresp->xpath("//ApprovalCode")[0])){
+            $this->operation->transaction->approvalcode =$crordresp->xpath("//ApprovalCode")[0];
+        }
+        if (!empty($crordresp->xpath("//ApprovalCodeScr")[0])){
+            $this->operation->transaction->approvalcodestr =$crordresp->xpath("//ApprovalCodeScr")[0];
+        }
+        if (!empty($crordresp->xpath("//OrderDescription")[0])){
+            $this->operation->order->setDescription($crordresp->xpath("//OrderDescription")[0]);
+        }
+        if (!empty($crordresp->xpath("//PAN")[0])){
+            $this->operation->card->setPan($crordresp->xpath("//PAN")[0]);
+        }
+        if (!empty($crordresp->xpath("//MerchantTranID")[0])){
+            $this->operation->order->setXid($crordresp->xpath("//MerchantTranID")[0]);
+        }
+        //$orderdate
+        if (!empty($crordresp->xpath("//TranDateTime")[0])){
+            $this->operation->order->setOrderdate($crordresp->xpath("//TranDateTime")[0]);
+        }
+        if (!empty($crordresp->xpath("//Brand")[0])){
+            $this->operation->card->setBrand($crordresp->xpath("//Brand")[0]);
+        }
         //$this->order->transdata->transid = $crordresp->xpath("//f[@name = 't']")['value']; //?
     }
 }

@@ -13,10 +13,18 @@ trait XMLOrderGetResponse
     public function getOrderResponseData($xmlresponse,Operation $operation)
     {
         $crordresp = new SimpleXMLElement($xmlresponse);
-        $operation->order->setOperation($crordresp->xpath('TKKPG/Response/Operation'));
-        $operation->order->setStatus( $crordresp->xpath('TKKPG/Response/Status'))  ;
-        $operation->order->setOrderId($crordresp->xpath('TKKPG/Response/Order/OrderId'));
-        $operation->order->setSessionId($crordresp->xpath('TKKPG/Response/Order/SessionID'));
-        $operation->order->setUrl($crordresp->xpath('TKKPG/Response/Order/URL'));
+        $operation->order->setOperation($crordresp->xpath("//Operation")[0]);
+        $operation->order->setStatus( $crordresp->xpath("//Status")[0] );
+        if (!empty($crordresp->xpath("//Order/OrderID")[0])) {
+            $operation->order->setOrderid($crordresp->xpath("//Order/OrderID")[0]);
+        }
+        if (!empty($crordresp->xpath("//Order/SessionID")[0]))
+        {
+            $operation->order->setSessionid( $crordresp->xpath("//Order/SessionID")[0] );
+        }
+        if (!empty($crordresp->xpath("//Order/URL")[0]))
+        {
+            $operation->order->setUrl($crordresp->xpath("//Order/URL")[0]);
+        }
     }
 }
