@@ -19,8 +19,8 @@ class CustomerTest extends \Codeception\Test\Unit
     public function testSetAddress($country, $region, $city, $zip)
     {
 
-        /** @var \Skytech\CustAddress $address */
-        $address = \Codeception\Util\Stub::make(\Skytech\CustAddress::class, [
+        /** @var \Skytech\Address $address */
+        $address = \Codeception\Util\Stub::make(\Skytech\Address::class, [
             'getRegion' => $region,
             'getCountry' => $country,
             'getCity' => $city,
@@ -122,8 +122,8 @@ class CustomerTest extends \Codeception\Test\Unit
      */
     protected function _before()
     {
-        /** @var \Skytech\CustAddress $address */
-        $address = \Codeception\Util\Stub::make(\Skytech\CustAddress::class, []);
+        /** @var \Skytech\Address $address */
+        $address = \Codeception\Util\Stub::make(\Skytech\Address::class, []);
         $this->customer = new \Skytech\Customer($address);
     }
 

@@ -8,10 +8,7 @@
 
 namespace Skytech;
 
-
-use function filter_var;
-use function htmlentities;
-use UnexpectedValueException;
+use Skytech\Customer\Address;
 
 /**
  * Class Customer
@@ -40,7 +37,7 @@ class Customer
      */
     public $phone;
     /**
-     * @var CustAddress
+     * @var Address
      */
     public $address;
     /**
@@ -54,17 +51,18 @@ class Customer
 
     /**
      * Customer constructor.
-     * @param CustAddress $address
+     *
+     * @param Address $address
      */
-    public function __construct(CustAddress $address)
+    public function __construct(Address $address)
     {
         $this->address = $address;
     }
 
     /**
-     * @param CustAddress $address
+     * @param Address $address
      */
-    public function setAddress(CustAddress $address)
+    public function setAddress(Address $address)
     {
         $this->address = $address;
     }

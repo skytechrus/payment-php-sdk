@@ -1,7 +1,7 @@
 <?php
 
 
-use Skytech\CustAddress;
+use Skytech\Address;
 use Skytech\Customer;
 use Skytech\Operation;
 use Skytech\Order;
@@ -19,7 +19,7 @@ class XML_FADA_DataTest extends \Codeception\Test\Unit
     protected function _before()
     {
         $order = new Order();
-        $cusaddress = new CustAddress();
+        $cusaddress = new Address();
         $customer = new Customer($cusaddress);
         $this->operation = new Operation($order);
         $this->operation->setCustomer($customer);

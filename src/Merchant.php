@@ -13,6 +13,9 @@ class Merchant
 {
     private $language;
     private $merchantId;
+    private $urlApprove;
+    private $urlCancel;
+    private $urlDecline;
 
     /**
      * Merchant constructor.
