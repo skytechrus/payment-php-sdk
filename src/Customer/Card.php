@@ -6,7 +6,7 @@
  * Time: 13:21
  */
 
-namespace Skytech;
+namespace Skytech\Customer;
 
 
 use InvalidArgumentException;

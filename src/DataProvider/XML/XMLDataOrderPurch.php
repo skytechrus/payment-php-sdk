@@ -7,6 +7,8 @@
  */
 
 namespace Skytech;
+
+use Skytech\Operation\Operation;
 use XMLWriter;
 
 class XMLDataOrderPurch extends DataProvider
@@ -21,12 +23,15 @@ class XMLDataOrderPurch extends DataProvider
     public function __construct(Operation $operation)
     {
         $this->operation=$operation;
+        return $this->makeXMLCreateOrder();
     }
+
     public function getRequestData()
     {
-       $xmlRequestdata = $this->makeXMLCreateOrder();
-       return $xmlRequestdata;
+        $xmlRequestdata = $this->makeXMLCreateOrder();
+        return $xmlRequestdata;
     }
+
     public function makeXMLCreateOrder()
     {
         $xmlRequest = new XMLWriter(); //= xmlwriter_open_memory;
@@ -43,9 +48,12 @@ class XMLDataOrderPurch extends DataProvider
         $xmlRequest->writeElement('Amount',$this->operation->order->getAmount());                 //<Amount></Amount>
         $xmlRequest->writeElement('Currency',$this->operation->order->getCurrency());              //<Currency></Currency>
         $xmlRequest->writeElement('Description', $this->operation->order->getDescription());  //<Description></Description>
-        $xmlRequest->writeElement('ApproveURL', $this->operation->url_settings->getApproveurl());    //<ApproveURL></ApproveURL>
-        $xmlRequest->writeElement('CancelURL', $this->operation->url_settings->getCancelurl());      //<CancelURL></CancelURL>
-        $xmlRequest->writeElement('DeclineURL', $this->operation->url_settings->getDeclineurl());    //<DeclineURL></DeclineURL>
+        $xmlRequest->writeElement('ApproveURL',
+            $this->operation->merchant->getApproveurl());    //<ApproveURL></ApproveURL>
+        $xmlRequest->writeElement('CancelURL',
+            $this->operation->merchant->getCancelurl());      //<CancelURL></CancelURL>
+        $xmlRequest->writeElement('DeclineURL',
+            $this->operation->merchant->getDeclineurl());    //<DeclineURL></DeclineURL>
         $xmlRequest->writeElement('email', $this->operation->customer->getEmailaddr());          //<email></email>
         $xmlRequest->writeElement('phone', $this->operation->customer->getPhone());              //<phone></phone>');
         $xmlRequest->startElement('AddParams');                        //<AddParams>
@@ -60,6 +68,7 @@ class XMLDataOrderPurch extends DataProvider
         $xml = $xmlRequest->outputMemory(true);
         return $xml;
     }
+
     public function GetAddParams()
     {
         $xml_add_par =  new XMLWriter();
