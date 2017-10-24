@@ -101,32 +101,42 @@ class XMLDataPurchaseTest extends \Codeception\Test\Unit
     public function providerResponse()
     {
         return [
-            ['c:\tmp\xml\ResponsePurch1.xml', 'Purchase'],
-            ['c:\tmp\xml\ResponsePurch2.xml', 'Purchase'],
-            ['c:\tmp\xml\ResponsePurch3.xml', 'Purchase']
+            ['./src/tests/_support/xml/ResponsePurch1.xml', 'Purchase'],
+            ['./src/tests/_support/xml/ResponsePurch2.xml', 'Purchase'],
+            ['./src/tests/_support/xml/ResponsePurch3.xml', 'Purchase']
         ];
     }
 
     public function providerStatus()
     {
         return [
-            ['c:\tmp\xml\ResponsePurch1.xml', '00'],
-            ['c:\tmp\xml\ResponsePurch3.xml', '30']
+            ['./src/tests/_support/xml/ResponsePurch1.xml', '00'],
+            ['./src/tests/_support/ResponsePurch3.xml', '30']
         ];
     }
 
     public function providerApproval()
     {
         return [
-            ['c:\tmp\xml\ResponsePurch1.xml', '473499 A', '473499', 'XXXXXXXXXX1903'],
-            ['c:\tmp\xml\ResponsePurch2.xml', '473494 A', '473494', 'XXXXXXXXXX1905']
+            ['./src/tests/_support/ResponsePurch1.xml', '473499 A', '473499', 'XXXXXXXXXX1903'],
+            ['./src/tests/_support/ResponsePurch2.xml', '473494 A', '473494', 'XXXXXXXXXX1905']
         ];
     }
 
     public function providerforMaker()
     {
         return [
-            ['c:\tmp\xml\MyResponce1.xml', '810', '22333', 'uber', '12344', '9875444', '4321456776541234', '09', '2021']
+            [
+                './src/tests/_support/MyResponce1.xml',
+                '810',
+                '22333',
+                'uber',
+                '12344',
+                '9875444',
+                '4321456776541234',
+                '09',
+                '2021'
+            ]
 
         ];
     }
