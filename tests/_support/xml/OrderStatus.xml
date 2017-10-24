@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TKKPG>
+    <Response>
+        <Operation>GetOrderStatus</Operation>
+        <Status>30</Status>
+        <Order>
+            <OrderID>14</OrderID>
+            <OrderStatus></OrderStatus>
+        </Order>
+        <AdditionalInfo>
+            <Receipt>BASE64-encode-info</Receipt>
+        </AdditionalInfo>
+    </Response>
+</TKKPG>
