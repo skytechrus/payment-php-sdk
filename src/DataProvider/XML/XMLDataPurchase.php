@@ -18,6 +18,7 @@ class XMLDataPurchase extends DataProvider
 {
     use XML_FADA_Data;
 
+
     /**
      * XMLDataPurchase constructor.
      * @param Operation $operation
@@ -45,13 +46,13 @@ class XMLDataPurchase extends DataProvider
         $xmlRequest->startElement('Request');//<Request>
         $xmlRequest->writeElement('Operation','Purchase');
         $xmlRequest->startElement('Order');  //<Order>
-        $xmlRequest->writeElement('Merchant',$this->operation->order->getMerchantid());//<Merchant></Merchant>
+        $xmlRequest->writeElement('Merchant',$this->operation->merchant->getMerchantid());//<Merchant></Merchant>
         $xmlRequest->writeElement('OrderID',$this->operation->order->getOrderid());//<OrderID></OrderID>
         $xmlRequest->startElement('AddParams');//<AddParams>
         $xmlRequest->writeElement('FA-DATA',$this->makeFada_data($this->operation));
         $xmlRequest->endElement(); //</AddParams>
         $xmlRequest->endElement(); //</Order>
-        $xmlRequest->writeElement('SessionID',$this->operation->order->getSessionid()); // <SessionID></SessionID>
+      //  $xmlRequest->writeElement('SessionID',$this->operation->order->getSessionid()); // <SessionID></SessionID>
         $xmlRequest->writeElement('Amount',$this->operation->order->getAmount()); // <Amount></Amount>
         $xmlRequest->writeElement('Currency',$this->operation->order->getCurrency());// <Currency></Currency>
         $xmlRequest->writeElement('PAN',$this->operation->card->getPan()); // <PAN></PAN>
@@ -75,14 +76,12 @@ class XMLDataPurchase extends DataProvider
     public function getPurchaseResp($xmlresponse)
     {
         $crordresp = new SimpleXMLElement($xmlresponse);
-        $this->operation->order->setOperation($crordresp->xpath("//Operation")[0]);
-        $this->operation->order->setStatus($crordresp->xpath("//Status")[0]);
+      //  $this->operation->order->setOperation($crordresp->xpath("//Operation")[0]);
+      //  $this->operation->order->setStatus($crordresp->xpath("//Status")[0]);
         if (!empty($crordresp->xpath("//OrderId")[0])) {
             $this->operation->order->setOrderid($crordresp->xpath("//OrderId")[0]);
         }
-        if (!empty($crordresp->xpath("//TransactionType")[0])) {
-            $this->operation->order->setOperationtype($crordresp->xpath("//TransactionType")[0]);
-        }
+
         if (!empty($crordresp->xpath("//PurchaseAmount")[0])) {
             $this->operation->order->setAmount($crordresp->xpath("//PurchaseAmount")[0]);
         }
@@ -91,9 +90,6 @@ class XMLDataPurchase extends DataProvider
         }
         if (!empty($crordresp->xpath("//OrderDescription")[0])){
             $this->operation->order->setDescription($crordresp->xpath("//OrderDescription")[0]);
-        }
-        if (!empty($crordresp->xpath("//AcqFee")[0])){
-            $this->operation->order->setFee($crordresp->xpath("//AcqFee")[0]);
         }
         if (!empty($crordresp->xpath("//ResponseCode")[0])){
             $this->operation->transaction->responsecode = $crordresp->xpath("//ResponseCode")[0];
@@ -119,10 +115,7 @@ class XMLDataPurchase extends DataProvider
         if (!empty($crordresp->xpath("//MerchantTranID")[0])){
             $this->operation->order->setXid($crordresp->xpath("//MerchantTranID")[0]);
         }
-        //$orderdate
-        if (!empty($crordresp->xpath("//TranDateTime")[0])){
-            $this->operation->order->setOrderdate($crordresp->xpath("//TranDateTime")[0]);
-        }
+
         if (!empty($crordresp->xpath("//Brand")[0])){
             $this->operation->card->setBrand($crordresp->xpath("//Brand")[0]);
         }

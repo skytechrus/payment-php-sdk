@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TKKPG>
+<Response>
+<Operation>Purchase</Operation>
+<Status>00</Status>
+<XMLOut>
+<Message date="29/04/2014 13:26:23">
+<Version>1.0</Version>
+<OrderID>143</OrderID>
+<TransactionType>Purchase</TransactionType>
+<PAN>XXXXXXXXXX1905</PAN>
+<PurchaseAmount>233</PurchaseAmount>
+<PurchaseAmountScr>2,33</PurchaseAmountScr>
+<Currency>810</Currency>
+<TranDateTime>29/04/2014 13:26:23</TranDateTime>
+<ResponseCode>001</ResponseCode>
+<ResponseDescription>Удачное выполнение транзакции</ResponseDescription>
+<Brand>MC</Brand>
+<OrderStatus>APPROVED</OrderStatus>
+<ApprovalCode>473494 A</ApprovalCode>
+<AcqFee>100</AcqFee>
+<MerchantTranID>31343835332233375433373593630303030303030</MerchantTranID>
+<OrderDescription>xxxxxxxx</OrderDescription>
+<ApprovalCodeScr>473494</ApprovalCodeScr>
+<CurrencyScr>Российский рубль</CurrencyScr>
+<OrderStatusScr>Одобрен</OrderStatusScr>
+<RezultOperation></RezultOperation>
+</Message>
+</XMLOut>
+<POSResponse>
+<out>
+<l name="ResponseCode" value="000"></l>
+<f name="F" value="322829 A"></f>
+<f name="J" value="999986559415"></f>
+<f name="R" value="D"></f>
+<f name="a" value="&amp;C810#&amp;R01#"></f>
+<f name="h" value="0010010730"></f>
+<f name="t" value="295629"></f>
+ </out>
+</POSResponse>
+</Response>
+</TKKPG>

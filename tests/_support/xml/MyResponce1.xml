@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TKKPG>
+<Request>
+<Operation>Purchase</Operation>
+<Order>
+<Merchant>uber</Merchant>
+<OrderID>12344</OrderID>
+<AddParams>
+<FA-DATA></FA-DATA>
+</AddParams>
+</Order>
+<SessionID>9875444</SessionID>
+<Amount>22333</Amount>
+<Currency>810</Currency>
+<PAN>4321456776541234</PAN>
+<ExpDate>202109</ExpDate>
+<ResponseFormat>TKKPG</ResponseFormat>
+</Request>
+</TKKPG>
