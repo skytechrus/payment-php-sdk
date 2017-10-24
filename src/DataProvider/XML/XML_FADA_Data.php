@@ -8,19 +8,21 @@
 
 namespace Skytech\DataProvider\XML;
 
+use Skytech\Operation\Operation;
+
 trait XML_FADA_Data{
     public function makeFada_line($collected_line,$name,$value)
     {
         $fada_line =null;
         if(!empty($value)) {
-            if (!empty($collected_line))
-            {
+            if (!empty($collected_line)) {
                 $fada_line ='; ';
             }
             $fada_line .= $name . '=' . $value  ;
         }
         return $fada_line;
     }
+
     public function makeFada_data(Operation $operation)
     {
         $fada_data = null;
