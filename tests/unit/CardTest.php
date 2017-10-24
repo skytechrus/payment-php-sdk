@@ -13,7 +13,7 @@ class CardTest extends \Codeception\Test\Unit
 
     protected function _before()
     {
-        $this->card = new Skytech\Card();
+        $this->card = new Skytech\Customer\Card();
     }
 
     protected function _after()

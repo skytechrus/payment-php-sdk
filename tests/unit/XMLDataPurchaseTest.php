@@ -14,14 +14,14 @@ class XMLDataPurchaseTest extends \Codeception\Test\Unit
     {
         $order = new Skytech\Order();
         $transaction = new Skytech\TransData();
-        $card = new Skytech\Card();
-        $customeradds =new Skytech\CustAddress();
+        $card = new Skytech\Customer\Card();
+        $customeradds = new Skytech\Customer\Address();
         $customer = new Skytech\Customer($customeradds);
-        $this->operation = new Skytech\Operation($order);
+        $this->operation = new Skytech\Operation\Operation($order);
         $this->operation->setTransaction($transaction);
         $this->operation->setCard($card);
         $this->operation->setCustomer($customer);
-        $this->xml_Purchase = new Skytech\XMLDataPurchase($this->operation);
+        $this->xml_Purchase = new Skytech\DataProvider\XML\XMLDataPurchase($this->operation);
 
     }
     protected function _after()

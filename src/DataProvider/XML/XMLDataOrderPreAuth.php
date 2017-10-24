@@ -6,7 +6,7 @@
  * Time: 11:21
  */
 
-namespace Skytech;
+namespace Skytech\DataProvider\XML;
 use XMLWriter;
 
 class XMLDataOrderPreAuth extends DataProvider

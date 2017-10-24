@@ -5,7 +5,8 @@
  * Date: 12.10.2017
  * Time: 10:34
  */
-namespace Skytech;
+
+namespace Skytech\DataProvider\XML;
 use SimpleXMLElement;
 
 trait XMLOrderGetResponse

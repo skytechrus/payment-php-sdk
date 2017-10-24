@@ -1,7 +1,7 @@
 <?php
 
 
-use Skytech\CustAddress;
+use Skytech\Customer\Address;
 
 class CustAddressTest extends \Codeception\Test\Unit
 {
@@ -13,7 +13,7 @@ class CustAddressTest extends \Codeception\Test\Unit
 
     protected function _before()
     {
-        $this->custAddress =new CustAddress();
+        $this->custAddress = new Address();
     }
 
     protected function _after()

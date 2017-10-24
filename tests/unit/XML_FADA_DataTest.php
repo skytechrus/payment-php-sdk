@@ -1,14 +1,14 @@
 <?php
 
 
-use Skytech\Address;
 use Skytech\Customer;
-use Skytech\Operation;
+use Skytech\Customer\Address;
+use Skytech\Operation\Operation;
 use Skytech\Order;
 
 class XML_FADA_DataTest extends \Codeception\Test\Unit
 {
-    use Skytech\XML_FADA_Data;
+    use Skytech\DataProvider\XML\XML_FADA_Data;
     /**
      * @var \UnitTester
      */

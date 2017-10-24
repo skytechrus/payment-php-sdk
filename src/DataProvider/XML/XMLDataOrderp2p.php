@@ -6,7 +6,7 @@
  * Time: 10:30
  */
 
-namespace Skytech;
+namespace Skytech\DataProvider\XML;
 use XMLWriter;
 
 class XMLDataOrderp2p extends DataProvider

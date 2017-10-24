@@ -6,7 +6,7 @@
  * Time: 12:53
  */
 
-namespace Skytech;
+namespace Skytech\DataProvider\XML;
 use SimpleXMLElement;
 use XMLWriter;
 

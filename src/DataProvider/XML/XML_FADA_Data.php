@@ -5,7 +5,8 @@
  * Date: 12.10.2017
  * Time: 15:01
  */
-namespace Skytech;
+
+namespace Skytech\DataProvider\XML;
 
 trait XML_FADA_Data{
     public function makeFada_line($collected_line,$name,$value)

@@ -6,7 +6,7 @@
  * Time: 11:01
  */
 
-namespace Skytech;
+namespace Skytech\DataProvider\XML;
 use XMLWriter;
 
 class XMLDataOrder3DS extends DataProvider

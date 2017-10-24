@@ -6,7 +6,7 @@
  * Time: 10:54
  */
 
-namespace Skytech;
+namespace Skytech\DataProvider\XML;
 use XMLWriter;
 
 class XMLDataOrderQuasiCash extends DataProvider
