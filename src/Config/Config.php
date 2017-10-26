@@ -12,11 +12,8 @@ class Config
 {
     const XMLDATA = 'XML';
     const JSON = 'JSON';
-    const PROD = 'PROD';
-    const TEST = 'TEST';
 
-    public static $environment ='PROD';
-    /**
+     /**
      * @var string
      */
     private static $dataFormat;
@@ -39,18 +36,10 @@ class Config
     }
     public static function getHostName()
     {
-        return  IniFile::get(self::$environment, 'hostname');
+        return  IniFile::get('hostname');
     }
     public static function getPort()
     {
-        return  IniFile::get(self::$environment, 'port');
-    }
-
-    /**
-     * @param string $environment
-     */
-    public static function setEnvironment($environment)
-    {
-        self::$environment = $environment;
+        return  IniFile::get('port');
     }
 }

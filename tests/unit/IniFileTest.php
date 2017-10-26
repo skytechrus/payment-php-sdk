@@ -23,48 +23,44 @@ class IniFileTest extends \Codeception\Test\Unit
      * @param $environment
      * @param $portExp
      */
-    public function testPortFeature($environment, $portExp)
+    public function testPortFeature( $portExp)
     {
-        $port = IniFile::get($environment, 'port');
+        $port = IniFile::get('port');
         $this->assertEquals($portExp, $port);
     }
 
     /**
      * @dataProvider providerHostName
-     * @param $environment
      * @param $hostExp
      */
-    public function testHostName($environment,$hostExp)
+    public function testHostName($hostExp)
     {
-        $hostName = IniFile::get($environment, 'hostname');
+        $hostName = IniFile::get( 'hostname');
         $this->assertEquals($hostExp, $hostName);
     }
 
     /**
      * @dataProvider providerErrHostName
-     * @param $environment
      * @param $value
      * @param $hostExp
      */
-    public function testUnKnownData($environment,$value,$hostExp)
+    public function testUnKnownData($value,$hostExp)
     {
         $this->expectException(UnexpectedValueException::class);
-        $this->assertEquals($hostExp, IniFile::get($environment, $value));
+        $this->assertEquals($hostExp, IniFile::get( $value));
     }
     public function providerData()
     {
-        return [['PROD','1234'],
-            ['TEST','567']];
+        return [[ '567']];
     }
     public function providerHostName()
     {
-        return [['PROD','123.123.12.3'],
-            ['TEST','456.456.45.6']];
+        return [[ '456.456.45.6']];
     }
     public function providerErrHostName()
     {
-        return [['PROD','HostName','123.123.12.3'],
-            ['TEST','Host','456.456.45.6'],
-            ['test','hostname','456.456.45.6']];
+        return [[ 'HostName','123.123.12.3'],
+            [ 'Host','456.456.45.6'],
+            ['hostnae','456.456.45.6']];
     }
 }
