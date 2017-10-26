@@ -8,9 +8,10 @@
 
 namespace Skytech\DataProvider\XML;
 use SimpleXMLElement;
+use Skytech\DataProvider;
 use XMLWriter;
 
-class XMLDataOrderGetStatus  extends DataProvider
+class OrderStatus extends DataProvider
 {
 
     /**
@@ -23,12 +24,13 @@ class XMLDataOrderGetStatus  extends DataProvider
     }
     public function getRequestData()
     {
-        $xmlRequestdata = $this->makeXMLgetOrderStatus();
-        return $xmlRequestdata;
+        $xmlRequestData = $this->makeXMLgetOrderStatus();
+        return $xmlRequestData;
     }
-    public function getResponseData($xmlresponse)
+
+    public function getResponseData($xmlResponse)
     {
-        $this->getOrderStatusResp($xmlresponse);
+        $this->getOrderStatusResp($xmlResponse);
         return $this->operation;
     }
     public function makeXMLgetOrderStatus()

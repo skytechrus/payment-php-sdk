@@ -8,9 +8,10 @@
 
 namespace Skytech\DataProvider\XML;
 use SimpleXMLElement;
+use Skytech\DataProvider;
 use XMLWriter;
 
-class XMDataGetOrderInfo extends DataProvider
+class OrderInfo extends DataProvider
 {
     public function __construct(Operation $operation)
     {

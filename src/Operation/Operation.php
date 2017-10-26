@@ -8,13 +8,17 @@
 
 namespace Skytech\Operation;
 
-
 use Skytech\Customer;
 use Skytech\Customer\Card;
 use Skytech\Merchant;
 use Skytech\Order;
 use Skytech\TransData;
 
+/**
+ * Class Operation
+ *
+ * @package Skytech\Operation
+ */
 class Operation
 {
     /** @var  Order */
@@ -27,7 +31,7 @@ class Operation
     public $recipient;
     /** @var TransData */
     public $transaction;
-    /** @var Merchant */
+    /** @var Merchant $merchant */
     public $merchant;
 
     /**

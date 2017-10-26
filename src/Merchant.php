@@ -1,21 +1,87 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: msvbe
- * Date: 20.10.2017
- * Time: 16:23
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Author: Sergey Ivanov.
+ * Author: Elena Arevkina.
  */
 
 namespace Skytech;
 
-
+/**
+ * Class Merchant
+ *
+ * @package Skytech
+ */
 class Merchant
 {
+    /**
+     * @var
+     */
     private $language;
+    /**
+     * @var
+     */
     private $merchantId;
-    private $urlApprove;
-    private $urlCancel;
-    private $urlDecline;
+    /**
+     * @var
+     */
+    private $approveUrl;
+    /**
+     * @var
+     */
+    private $cancelUrl;
+    /**
+     * @var
+     */
+    private $declineUrl;
+
+    /**
+     * @return mixed
+     */
+    public function getApproveUrl()
+    {
+        return $this->approveUrl;
+    }
+
+    /**
+     * @param mixed $approveUrl
+     */
+    public function setApproveUrl($approveUrl)
+    {
+        $this->approveUrl = $approveUrl;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCancelUrl()
+    {
+        return $this->cancelUrl;
+    }
+
+    /**
+     * @param mixed $cancelUrl
+     */
+    public function setCancelUrl($cancelUrl)
+    {
+        $this->cancelUrl = $cancelUrl;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDeclineUrl()
+    {
+        return $this->declineUrl;
+    }
+
+    /**
+     * @param mixed $declineUrl
+     */
+    public function setDeclineUrl($declineUrl)
+    {
+        $this->declineUrl = $declineUrl;
+    }
 
     /**
      * Merchant constructor.
@@ -43,7 +109,7 @@ class Merchant
     /**
      * @return mixed
      */
-    public function getMerchantId()
+    public function getId()
     {
         return $this->merchantId;
     }

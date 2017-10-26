@@ -11,10 +11,11 @@ use XMLWriter;
 use SimpleXMLElement;
 
 
-class XMLDataRefund extends DataProvider
+class Refund extends DataProvider
 {
     /**
-     * XMLDataRefund constructor.
+     * Refund constructor.
+     *
      * @param Operation $operation
      */
     public function __construct(Operation $operation)

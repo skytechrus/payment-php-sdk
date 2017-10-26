@@ -10,10 +10,11 @@ namespace Skytech\DataProvider\XML;
 use XMLWriter;
 use SimpleXMLElement;
 
-class XMLDataReverse extends DataProvider
+class Reverse extends DataProvider
 {
     /**
-     * XMLDataReverse constructor.
+     * Reverse constructor.
+     *
      * @param Operation $operation
      */
     public function __construct(Operation $operation)

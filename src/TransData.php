@@ -12,7 +12,7 @@ namespace Skytech;
 class TransData
 {
     public $rezultoperation;
-    public $responsecode;
+    public $responseCode;
     public $responsedescription;
     public $response;
     public $approvalcode; /** @var  string transaction approval code */
