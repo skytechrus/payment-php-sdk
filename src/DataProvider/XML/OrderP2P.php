@@ -7,13 +7,15 @@
  */
 
 namespace Skytech\DataProvider\XML;
+
 use XMLWriter;
 
-class XMLDataOrderp2p extends DataProvider
+class OrderP2P extends \Skytech\DataProvider
 {
-    use XMLOrderGetResponse;
+    use OrderResponse;
     /**
-     * XMLDataOrderp2p constructor.
+     * DataOrderp2P constructor.
+     *
      * @param Operation $operation
      */
     public function __construct(Operation $operation)

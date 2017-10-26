@@ -6,8 +6,16 @@ namespace Skytech;
 
 use Skytech\Operation\OperationType;
 
+/**
+ * Class Payment
+ *
+ * @package Skytech
+ */
 class Payment
 {
+    /**
+     * @var Operation\Operation
+     */
     private $operation;
 
     /**
@@ -22,10 +30,15 @@ class Payment
         $this->operation = new Operation\Operation($order, $customer, $merchant);
     }
 
+    /**
+     * @return Response
+     */
     public function purchase()
     {
         $response = $this->send(OperationType::PURCHASE);
-        return new Response((string)$response->getBody());
+//        return new Response((string)$response->getBody());
+//        return $response->getBody();
+        return $response;
     }
 
     /**
@@ -36,13 +49,18 @@ class Payment
     {
         $client = new \GuzzleHttp\Client();
         $data = $this->payload($operationType);
-        $response = $client->request('POST', Config::getHost(), ['body' => $data]);
-        return $response;
+//        $response = $client->request('POST', Config::getHost(), ['body' => $data]);
+//        return $response;
+        return $data;
     }
 
+    /**
+     * @param $operationType
+     * @return mixed
+     */
     private function payload($operationType)
     {
-        $data = new \Skytech\Data($operationType, $this->operation);
+        $data = new \Skytech\DataProvider\DataProviderStrategy($operationType, $this->operation);
         return $data->getPayload();
     }
 }

@@ -8,7 +8,7 @@ use Skytech\Order;
 
 class XML_FADA_DataTest extends \Codeception\Test\Unit
 {
-    use Skytech\DataProvider\XML\XML_FADA_Data;
+    use Skytech\DataProvider\XML\FadaData;
     /**
      * @var \UnitTester
      */
@@ -74,7 +74,7 @@ class XML_FADA_DataTest extends \Codeception\Test\Unit
         {
             $this->operation->order->setXid($tranid);
         }
-        $fada_line = $this->makeFada_data($this->operation);
+        $fada_line = $this->makeFadaData($this->operation);
 
         $this->assertEquals($expect_fada,$fada_line);
 

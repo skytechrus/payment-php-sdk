@@ -9,7 +9,7 @@
 namespace Skytech\DataProvider\XML;
 use SimpleXMLElement;
 
-trait XMLOrderGetResponse
+trait OrderResponse
 {
     public function getOrderResponseData($xmlresponse,Operation $operation)
     {

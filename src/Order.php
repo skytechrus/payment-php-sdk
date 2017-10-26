@@ -1,9 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: arevkina
- * Date: 04.10.2017
- * Time: 15:42
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Author: Sergey Ivanov.
+ * Author: Elena Arevkina.
  */
 
 namespace Skytech;
@@ -165,6 +164,10 @@ class Order
     public function setOrderStatus($orderStatus)
     {
         $this->orderStatus = $orderStatus;
+    }
+
+    public function getOperationType()
+    {
     }
 
 }

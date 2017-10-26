@@ -3,17 +3,19 @@
  * Created by PhpStorm.
  * User: arevkina
  * Date: 12.10.2017
- * Time: 11:01
+ * Time: 10:58
  */
 
 namespace Skytech\DataProvider\XML;
 use XMLWriter;
 
-class XMLDataOrder3DS extends DataProvider
+class OrderPrepaid extends DataProvider
 {
-    use XMLOrderGetResponse;
+    use OrderResponse;
+
     /**
-     * XMLDataOrder3DS constructor.
+     * OrderPrepaid constructor.
+     *
      * @param Operation $operation
      */
     public function __construct(Operation $operation)
@@ -35,8 +37,9 @@ class XMLDataOrder3DS extends DataProvider
         $xmlRequest->writeElement('Operation','CreateOrder');          //<Operation>CreateOrder</Operation>
         $xmlRequest->writeElement('Language', $this->operation->order->getLanguage());        //<Language></Language>
         $xmlRequest->startElement('Order');                                       //<Order>
-        $xmlRequest->writeElement('OrderType', $this->operation->order->getOperationtype());//<OrderType></OrderType>
-        $xmlRequest->writeElement('Merchant', $this->operation->order->getMerchantid());           //<Merchant></Merchant>
+        $xmlRequest->writeElement('OrderType', $this->operation->order->getOperationType());//<OrderType></OrderType>
+        $xmlRequest->writeElement('Merchant',
+            $this->operation->order->getMerchantId());           //<Merchant></Merchant>
         $xmlRequest->writeElement('Amount',$this->operation->order->getAmount());                 //<Amount></Amount>
         $xmlRequest->writeElement('Currency',$this->operation->order->getCurrency());              //<Currency></Currency>
         $xmlRequest->writeElement('Description', $this->operation->order->getDescription());  //<Description></Description>
@@ -62,13 +65,9 @@ class XMLDataOrder3DS extends DataProvider
         $xml_add_par =  new XMLWriter();
         $xml_add_par->openMemory();
         $xml_add_par->setIndent(true);
-        $xml_add_par->writeElement('email',$this->operation->customer->getEmailaddr());
-        $xml_add_par->writeElement('phone',$this->operation->customer->getPhone());
-        $xml_add_par->writeElement('SenderName',$this->operation->customer->firstname);
-        $xml_add_par->writeElement('Address',$this->operation->customer->address->addressline);
-        $xml_add_par->writeElement('ResidentCountry',$this->operation->customer->address->getCountry());
-        $xml_add_par->writeElement('ResidentCityInLatin',$this->operation->customer->address->getCity());
-        $xml_add_par->writeElement('SenderPostalCode',$this->operation->customer->address->getZip());
+        $xml_add_par->writeElement('VendorID', $this->operation->order->getVendorId());
+        $xml_add_par->writeElement('OrigAmount', $this->operation->order->getOrigAmount());
+        $xml_add_par->writeElement('OrigCurrency', $this->operation->order->getOrigCurrency());
         $xml = $xml_add_par->outputMemory(true);
         return $xml;
     }

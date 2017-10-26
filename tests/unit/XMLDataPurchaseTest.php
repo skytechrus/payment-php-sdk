@@ -21,7 +21,7 @@ class XMLDataPurchaseTest extends \Codeception\Test\Unit
         $this->operation->setTransaction($transaction);
         $this->operation->setCard($card);
         $this->operation->setCustomer($customer);
-        $this->xml_Purchase = new Skytech\DataProvider\XML\XMLDataPurchase($this->operation);
+        $this->xml_Purchase = new Skytech\DataProvider\XML\Purchase($this->operation);
 
     }
 
@@ -101,25 +101,25 @@ class XMLDataPurchaseTest extends \Codeception\Test\Unit
     public function providerResponse()
     {
         return [
-            ['./src/tests/_support/xml/ResponsePurch1.xml', 'Purchase'],
-            ['./src/tests/_support/xml/ResponsePurch2.xml', 'Purchase'],
-            ['./src/tests/_support/xml/ResponsePurch3.xml', 'Purchase']
+            ['./tests/_support/xml/ResponsePurch1.xml', 'Purchase'],
+            ['./tests/_support/xml/ResponsePurch2.xml', 'Purchase'],
+            ['./tests/_support/xml/ResponsePurch3.xml', 'Purchase']
         ];
     }
 
     public function providerStatus()
     {
         return [
-            ['./src/tests/_support/xml/ResponsePurch1.xml', '00'],
-            ['./src/tests/_support/ResponsePurch3.xml', '30']
+            ['./tests/_support/xml/ResponsePurch1.xml', '00'],
+            ['./tests/_support/xml/ResponsePurch3.xml', '30']
         ];
     }
 
     public function providerApproval()
     {
         return [
-            ['./src/tests/_support/ResponsePurch1.xml', '473499 A', '473499', 'XXXXXXXXXX1903'],
-            ['./src/tests/_support/ResponsePurch2.xml', '473494 A', '473494', 'XXXXXXXXXX1905']
+            ['./tests/_support/xml/ResponsePurch1.xml', '473499 A', '473499', 'XXXXXXXXXX1903'],
+            ['./tests/_support/xml/ResponsePurch2.xml', '473494 A', '473494', 'XXXXXXXXXX1905']
         ];
     }
 
@@ -127,7 +127,7 @@ class XMLDataPurchaseTest extends \Codeception\Test\Unit
     {
         return [
             [
-                './src/tests/_support/MyResponce1.xml',
+                './tests/_support/xml/MyResponce1.xml',
                 '810',
                 '22333',
                 'uber',

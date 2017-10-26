@@ -3,18 +3,19 @@
  * Created by PhpStorm.
  * User: arevkina
  * Date: 12.10.2017
- * Time: 11:21
+ * Time: 10:54
  */
 
 namespace Skytech\DataProvider\XML;
 use XMLWriter;
 
-class XMLDataOrderPreAuth extends DataProvider
+class OrderQuasiCash extends DataProvider
 {
-    use XMLOrderGetResponse;
+    use OrderResponse;
 
     /**
-     * XMLDataOrderPreAuth constructor.
+     * OrderQuasiCash constructor.
+     *
      * @param Operation $operation
      */
     public function __construct(Operation $operation)
@@ -64,42 +65,14 @@ class XMLDataOrderPreAuth extends DataProvider
         $xml_add_par =  new XMLWriter();
         $xml_add_par->openMemory();
         $xml_add_par->setIndent(true);
-        $xml_add_par->writeElement('FA-DATA',$this->makeFada_data($this->operation));
-        $xml_add_par->writeElement('SenderPostalCode',$this->operation->customer->address->getZip());
-        //$xml_add_par->writeElement('AcctType');
-        //$xml_add_par->writeElement('TranAddendums');
-        $xml_add_par->writeElement('OrderExpirationPeriod', $this->operation->order->getOrderExpPeriod());
         $xml_add_par->writeElement('OrigAmount', $this->operation->order->getOrigAmount());
         $xml_add_par->writeElement('OrigCurrency', $this->operation->order->getOrigCurrency());
         $xml = $xml_add_par->outputMemory(true);
         return $xml;
-    }
-    public function makeFada_line($name,$value)
-    {
-        $fada_line =null;
-        if(!is_null($value)) {
-            $fada_line = $name . '=' . $value . ';';
-        }
-        return $fada_line;
-    }
-    public function makeFada_data(Operation $operation)
-    {
-        $fada_data = null;
-        $fada_data .= $this->makeFada_line('ShippingCountry', $operation->customer->address->getCountry());
-        $fada_data .= $this->makeFada_line('ShippingCity', $operation->customer->address->getCountry());
-        $fada_data .= $this->makeFada_line('ShippingState', $operation->customer->address->getRegion());
-        $fada_data .= $this->makeFada_line('ShippingZipCode', $operation->customer->address->getZip());
-        $fada_data .= $this->makeFada_line('ShippingAddress', $operation->customer->address->addressline );
-// $fada_data .= $this->makeFada_line('DeliveryPeriod', null );
-        $fada_data .= $this->makeFada_line('Phone', $operation->customer->phone );
-        $fada_data .= $this->makeFada_line('Email', $operation->customer->getEmailaddr() );
-        $fada_data .= $this->makeFada_line('MerchantOrderID', $operation->order->getXId());
-        return $fada_data;
     }
     public function getResponseData($xmlresponse)
     {
         $this->getOrderResponseData($xmlresponse,$this->operation);
         return $this->operation;
     }
-
 }
