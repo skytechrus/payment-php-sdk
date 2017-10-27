@@ -7,8 +7,8 @@
 
 namespace Skytech\DataProvider;
 
-use Composer\Config;
-use Skytech\Operation\Operation;
+ use Skytech\Operation\Operation;
+ use Skytech\Config\Config;
 
 /**
  * Class Data
@@ -36,12 +36,13 @@ class DataProviderStrategy
      *
      * @param $operationType
      * @param Operation $operation
+     * @throws \Exception
      */
     public function __construct($operationType, Operation $operation)
     {
         $this->operationType = $operationType;
         $this->operation = $operation;
-        $this->dataFormat = \Skytech\Config::getDataFormat();
+        $this->dataFormat = Config::getDataFormat();
         $this->payload();
     }
 
@@ -51,7 +52,7 @@ class DataProviderStrategy
     private function payload()
     {
         switch ($this->dataFormat) {
-            case \Skytech\Config::XML:
+            case Config::XML:
                 $this->data = new \Skytech\DataProvider\XML\DataOperationStrategy(
                     $this->operationType,
                     $this->operation
@@ -69,5 +70,4 @@ class DataProviderStrategy
     {
         return $this->data->getRequestPayload();
     }
-
 }

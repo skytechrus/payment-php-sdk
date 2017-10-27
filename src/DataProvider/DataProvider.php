@@ -23,10 +23,4 @@ abstract class DataProvider
      * @return mixed
      */
     abstract public function getRequestData();
-
-    /**
-     * @param $response
-     * @return mixed
-     */
-    abstract public function getResponseData($response);
 }

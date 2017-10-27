@@ -29,7 +29,7 @@ class ConfigTest extends \Codeception\Test\Unit
 
     protected function _before()
     {
-        Config::setDataFormat(Config::XMLDATA);
+        Config::setDataFormat(Config::XML);
     }
 
     protected function _after()

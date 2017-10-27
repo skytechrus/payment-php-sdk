@@ -6,9 +6,9 @@
  * Time: 13:13
  */
 
-use Skytech\Address;
+use Skytech\Customer\Address;
 use Skytech\Customer;
-use Skytech\Operation;
+use Skytech\Operation\Operation;
 use Skytech\Order;
 use Skytech\URL_Settings;
 
@@ -17,6 +17,5 @@ $url_list = new URL_Settings('','','');
 $address = new Address();
 $customer = new Customer($address);
 $operation = new Operation($order);
-$operation->setUrlSettings($url_list);
 $operation->customer = $customer;
-$result = $operation->CreateOrderOnPurchase($operation,'',1234);
+//$result = $operation->CreateOrderOnPurchase($operation );

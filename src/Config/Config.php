@@ -10,7 +10,7 @@ namespace Skytech\Config;
 
 class Config
 {
-    const XMLDATA = 'XML';
+    const XML  = 'XML';
     const JSON = 'JSON';
 
      /**

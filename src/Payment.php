@@ -5,6 +5,7 @@ namespace Skytech;
 
 
 use Skytech\Operation\OperationType;
+use Skytech\Response\Response;
 
 /**
  * Class Payment
@@ -31,7 +32,7 @@ class Payment
     }
 
     /**
-     * @return Response
+     * @return  Response
      */
     public function purchase()
     {
@@ -47,7 +48,6 @@ class Payment
      */
     private function send($operationType)
     {
-        $client = new \GuzzleHttp\Client();
         $data = $this->payload($operationType);
 //        $response = $client->request('POST', Config::getHost(), ['body' => $data]);
 //        return $response;
