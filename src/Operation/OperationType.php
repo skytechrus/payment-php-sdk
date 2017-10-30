@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Skytech\Operation;
-
 
 class OperationType
 {

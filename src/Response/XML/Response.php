@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: arevkina
- * Date: 27.10.2017
- * Time: 14:33
- */
 
 namespace Skytech\Response\XML;
 

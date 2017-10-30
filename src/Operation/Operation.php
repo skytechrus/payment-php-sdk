@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: arevkina
- * Date: 12.10.2017
- * Time: 11:35
- */
 
 namespace Skytech\Operation;
 

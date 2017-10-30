@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Skytech\Response;
 
 class Response

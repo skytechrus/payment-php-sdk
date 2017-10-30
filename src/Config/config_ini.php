@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: arevkina
- * Date: 25.10.2017
- * Time: 17:39
- */
 return array(
     'testing' => true,
     'PROD' => array('hostname'=>'123.123.12.3',
