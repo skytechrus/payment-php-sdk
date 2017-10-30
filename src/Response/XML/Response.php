@@ -9,9 +9,9 @@
 namespace Skytech\Response\XML;
 
 use SimpleXMLElement;
-use Skytech\Response\iResponse;
+use Skytech\Response\ResponseInterface;
 
-class Response implements iResponse
+class Response implements ResponseInterface
 {
     /**
      * @var SimpleXMLElement

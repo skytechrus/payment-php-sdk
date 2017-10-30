@@ -65,7 +65,7 @@ class CustomerTest extends \Codeception\Test\Unit
     public function testSetWrongEmailAddress($email)
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->customer->setEmailaddr($email);
+        $this->customer->setEmail($email);
     }
 
     /** @dataProvider dataProviderEmails
@@ -73,7 +73,7 @@ class CustomerTest extends \Codeception\Test\Unit
      */
     public function testSetEmailAddress($email)
     {
-        $this->assertEquals($this->customer->getEmailaddr(), $this->customer->setEmailaddr($email));
+        $this->assertEquals($this->customer->getEmail(), $this->customer->setEmail($email));
     }
 
     public function dataProviderBadEmails()

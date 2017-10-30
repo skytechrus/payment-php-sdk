@@ -60,7 +60,7 @@ class OrderPurchase extends \Skytech\DataProvider\DataProvider
                     "ApproveURL" => $this->operation->merchant->getApproveUrl(),
                     "CancelURL" => $this->operation->merchant->getCancelUrl(),
                     "DeclineURL" => $this->operation->merchant->getDeclineUrl(),
-                    "email" => $this->operation->customer->getEmailaddr(),
+                    "email" => $this->operation->customer->getEmail(),
                     "phone" => $this->operation->customer->getPhone()
                 ]
             ]
