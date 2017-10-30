@@ -1,31 +1,51 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: arevkina
- * Date: 12.10.2017
- * Time: 14:29
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
  */
 
 namespace Skytech\DataProvider\XML;
+
 use SimpleXMLElement;
-use Skytech\DataProvider;
+use Skytech\DataProvider\DataProvider;
 use XMLWriter;
 
+/**
+ * Class OrderInfo
+ *
+ * @package Skytech\DataProvider\XML
+ */
 class OrderInfo extends DataProvider
 {
+    /**
+     * OrderInfo constructor.
+     *
+     * @param Operation $operation
+     */
     public function __construct(Operation $operation)
     {
         $this->operation=$operation;
     }
+
+    /**
+     * @return string
+     */
     public function getRequestData()
     {
         $xmlRequestdata = $this->makeXMLGetOrderInfo();
         return $xmlRequestdata;
     }
+
+    /**
+     * @param $xmlresponse
+     */
     public function getResponseData($xmlresponse)
     {
         $this->getInfoRequestResp($xmlresponse);
     }
+
+    /**
+     * @return string
+     */
     public function makeXMLGetOrderInfo()
     {
         $xmlRequest = new XMLWriter(); //= xmlwriter_open_memory;
@@ -47,6 +67,10 @@ class OrderInfo extends DataProvider
         $xml = $xmlRequest->outputMemory(true);
         return $xml;
     }
+
+    /**
+     * @param $xmlresponse
+     */
     public function getInfoRequestResp($xmlresponse)
     {
         $crordresp = new SimpleXMLElement($xmlresponse);

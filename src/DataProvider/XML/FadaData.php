@@ -1,8 +1,6 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
- * Author: Sergey Ivanov.
- * Author: Elena Arevkina.
  */
 
 namespace Skytech\DataProvider\XML;
@@ -25,14 +23,20 @@ trait FadaData
         $fadaData = null;
         $fadaData .= $this->makeFadaLine($fadaData, 'ShippingZipCode', $operation->customer->address->getZip());
         $fadaData .= $this->makeFadaLine($fadaData, 'ShippingCountry', $operation->customer->address->getCountry());
-        $fadaData .= $this->makeFadaLine($fadaData, 'ShippingState',
-            strtoupper($operation->customer->address->getRegion()));
-        $fadaData .= $this->makeFadaLine($fadaData, 'ShippingCity',
-            strtoupper($operation->customer->address->getCity()));
+        $fadaData .= $this->makeFadaLine(
+            $fadaData,
+            'ShippingState',
+            strtoupper($operation->customer->address->getRegion())
+        );
+        $fadaData .= $this->makeFadaLine(
+            $fadaData,
+            'ShippingCity',
+            strtoupper($operation->customer->address->getCity())
+        );
         $fadaData .= $this->makeFadaLine($fadaData, 'ShippingAddress', $operation->customer->address->addressline);
         $fadaData .= $this->makeFadaLine($fadaData, 'Email', $operation->customer->getEmail());
         $fadaData .= $this->makeFadaLine($fadaData, 'Phone', $operation->customer->getPhone());
-        $fadaData .= $this->makeFadaLine($fadaData, 'MerchantOrderID', $operation->order->getXid());
+        $fadaData .= $this->makeFadaLine($fadaData, 'MerchantOrderID', $operation->order->getXId());
         return $fadaData;
     }
 

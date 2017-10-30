@@ -1,9 +1,17 @@
 <?php
+/**
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ */
 
 namespace Skytech\Response;
 
 use Skytech\Config\Config;
 
+/**
+ * Class ResponseStrategy
+ *
+ * @package Skytech\Response
+ */
 class ResponseStrategy implements ResponseInterface
 {
     /**

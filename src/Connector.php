@@ -1,4 +1,7 @@
 <?php
+/**
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ */
 
 namespace Skytech;
 
@@ -13,6 +16,9 @@ use Skytech\DataProvider\DataProvider;
  */
 class Connector
 {
+    /**
+     * @var DataProvider
+     */
     public $orderdata;
 
     /**

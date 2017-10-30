@@ -1,7 +1,9 @@
 <?php
+/**
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ */
 
 namespace Skytech\Customer;
-
 
 use InvalidArgumentException;
 use function is_numeric;
@@ -9,17 +11,29 @@ use LengthException;
 use function strlen;
 use UnexpectedValueException;
 
+/**
+ * Class Card
+ *
+ * @package Skytech\Customer
+ */
 class Card
 {
+    /**
+     * @var
+     */
     private $pan; /** @var  string */
-    private $expmonth; /** @var  string */
+    private $expireMonth;
+    /** @var  string */
     private $expyear; /** @var  string */
     private $brand;  /** @var  string */
     private $cardUID;
 
-public function __construct()
-{
-}
+    /**
+     * Card constructor.
+     */
+    public function __construct()
+    {
+    }
 
     /**
      * @param string $pan
@@ -69,63 +83,66 @@ public function __construct()
         $this->cardUID = $cardUID;
     }
     /**
-     * @param string $expmonth
+     * @param string $expireMonth
      */
-    public function setExpmonth($expmonth)
+    public function setExpireMonth($expireMonth)
     {
-        if ( !is_numeric($expmonth)   )
-        {
+        if (!is_numeric($expireMonth)) {
             throw new InvalidArgumentException('Invalid month');
         }
-        if ($expmonth >12 or  $expmonth ==0 )
-        {
+        if ($expireMonth > 12 or $expireMonth == 0) {
             throw new UnexpectedValueException('Invalid month');
         }
-        $this->expmonth = $expmonth;
+        $this->expireMonth = $expireMonth;
     }
+
+    /**
+     * @return string
+     */
     public function getExpDate()
     {
-        return $this->expyear.$this->expmonth;
+        return $this->expyear . $this->expireMonth;
     }
     /**
      * @return string
      */
-    public function getExpmonth()
+    public function getExpireMonth()
     {
-        return $this->expmonth;
+        return $this->expireMonth;
     }
     /**
-     * @param integer $expyear
+     * @param integer $expireYear
      */
-    public function setExpyear($expyear)
+    public function setExpireYear($expireYear)
     {
-        if (!is_numeric($expyear)  )
-        {
+        if (!is_numeric($expireYear)) {
             throw new InvalidArgumentException('Invalid card expiration year');
         }
-        if (  $expyear< date("Y") or  $expyear > (date("Y")+10) )
-        {
+        if ($expireYear < date("Y") or $expireYear > (date("Y") + 10)) {
             throw new UnexpectedValueException('Invalid card expiration year');
         }
 
-        $this->expyear = $expyear;
+        $this->expyear = $expireYear;
     }
 
     /**
      * @return string
      */
-    public function getExpyear()
+    public function getExpireYear()
     {
         return $this->expyear;
     }
+
+    /**
+     * @param $pan
+     * @return bool
+     */
     public function validatePan($pan)
     {
-        if (   strlen($pan) <16 or strlen($pan)>19 )
-        {
-            throw new LengthException ('Invalid pan length');
+        if (strlen($pan) < 16 or strlen($pan) > 19) {
+            throw new LengthException('Invalid pan length');
         }
-        if (!is_numeric($pan))
-        {
+        if (!is_numeric($pan)) {
             throw new InvalidArgumentException('Invalid type');
         }
         return true;
