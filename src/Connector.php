@@ -32,7 +32,7 @@ class Connector
         if (!strpos($url, "://")) {
             $url = 'https://' . $url;
         }
-        switch (Config::getDataFormat()){
+        switch (Config::getDataFormat()) {
             case Config::XML:
                 $response = $client->request('POST', $url, ['body' => $this->orderdata, 'allow_redirects' => [
                     'max' => 5,        // allow at most 5 redirects.
@@ -53,6 +53,6 @@ class Connector
                 return new Response\ResponseStrategy($response);
             default:
                 throw new \Exception('Invalid format');
-            }
+        }
     }
 }

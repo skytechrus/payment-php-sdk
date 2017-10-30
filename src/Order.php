@@ -169,5 +169,4 @@ class Order
     public function getOperationType()
     {
     }
-
 }

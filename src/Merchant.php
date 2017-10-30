@@ -121,5 +121,4 @@ class Merchant
     {
         $this->merchantId = $merchantId;
     }
-
 }
