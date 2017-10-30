@@ -30,7 +30,7 @@ trait FadaData
         $fadaData .= $this->makeFadaLine($fadaData, 'ShippingCity',
             strtoupper($operation->customer->address->getCity()));
         $fadaData .= $this->makeFadaLine($fadaData, 'ShippingAddress', $operation->customer->address->addressline);
-        $fadaData .= $this->makeFadaLine($fadaData, 'Email', $operation->customer->getEmailaddr());
+        $fadaData .= $this->makeFadaLine($fadaData, 'Email', $operation->customer->getEmail());
         $fadaData .= $this->makeFadaLine($fadaData, 'Phone', $operation->customer->getPhone());
         $fadaData .= $this->makeFadaLine($fadaData, 'MerchantOrderID', $operation->order->getXid());
         return $fadaData;
