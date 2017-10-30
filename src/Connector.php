@@ -38,14 +38,8 @@ class Connector
     public function sendRequest()
     {
         $url = $this->getUrl();
-        switch (Config::getDataFormat()) {
-            case Config::XML:
-                return $this->getResponse($url, $this->orderdata);
-            case Config::JSON:
-                return $this->getResponse($url, $this->orderdata);
-            default:
-                throw new \Exception('Invalid format');
-        }
+        $body = $this->orderdata;
+        return $this->getResponse($url, $body);
     }
 
     /**
