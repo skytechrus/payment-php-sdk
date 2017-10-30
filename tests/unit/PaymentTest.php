@@ -42,7 +42,7 @@ class PaymentTest extends \Codeception\Test\Unit
         $customer = new \Skytech\Customer($address);
         $customer->setIp("192.168.0.1");
         $customer->setPhone("89269999999");
-        $customer->setEmailaddr("test@test.com");
+        $customer->setEmail("test@test.com");
         $customer->setSessionId("asdf");
 
         $this->payment = new \Skytech\Payment($order, $merchant, $customer);

@@ -19,19 +19,19 @@ class Customer
     /**
      * @var string
      */
-    public $firstname;
+    public $firstName;
     /**
      * @var string
      */
-    public $lastname;
+    public $lastName;
     /**
      * @var string
      */
-    public $middlename;
+    public $middleName;
     /**
      * @var string
      */
-    private $emailaddr;
+    private $email;
     /**
      * @var string
      */
@@ -105,21 +105,21 @@ class Customer
     /**
      * @return string
      */
-    public function getEmailaddr()
+    public function getEmail()
     {
-        return $this->emailaddr;
+        return $this->email;
     }
 
     /**
-     * @param string $emailaddr
-     * @covers Customer::setEmailaddr()
+     * @param string $email
+     * @covers Customer::setEmail()
      */
-    public function setEmailaddr($emailaddr)
+    public function setEmail($email)
     {
-        if (!filter_var($emailaddr, FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             throw new \InvalidArgumentException('Invalid email address');
         }
-        $this->emailaddr = $emailaddr;
+        $this->email = $email;
     }
 
     /**

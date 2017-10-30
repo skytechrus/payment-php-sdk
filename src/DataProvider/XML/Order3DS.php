@@ -64,7 +64,7 @@ class Order3DS extends DataProvider
             $this->operation->urlSettings->getCancelurl());      //<CancelURL></CancelURL>
         $xmlRequest->writeElement('DeclineURL',
             $this->operation->urlSettings->getDeclineurl());    //<DeclineURL></DeclineURL>
-        $xmlRequest->writeElement('email', $this->operation->customer->getEmailaddr());          //<email></email>
+        $xmlRequest->writeElement('email', $this->operation->customer->getEmail());          //<email></email>
         $xmlRequest->writeElement('phone', $this->operation->customer->phone);              //<phone></phone>');
         $xmlRequest->startElement('AddParams');                        //<AddParams>
         $xmlRequest->writeRaw($this->getAddParams());
@@ -84,9 +84,9 @@ class Order3DS extends DataProvider
         $xml_add_par = new XMLWriter();
         $xml_add_par->openMemory();
         $xml_add_par->setIndent(true);
-        $xml_add_par->writeElement('email', $this->operation->customer->getEmailaddr());
+        $xml_add_par->writeElement('email', $this->operation->customer->getEmail());
         $xml_add_par->writeElement('phone', $this->operation->customer->getPhone());
-        $xml_add_par->writeElement('SenderName', $this->operation->customer->firstname);
+        $xml_add_par->writeElement('SenderName', $this->operation->customer->firstName);
         $xml_add_par->writeElement('Address', $this->operation->customer->address->addressline);
         $xml_add_par->writeElement('ResidentCountry', $this->operation->customer->address->getCountry());
         $xml_add_par->writeElement('ResidentCityInLatin', $this->operation->customer->address->getCity());
