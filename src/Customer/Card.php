@@ -1,7 +1,9 @@
 <?php
+/**
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ */
 
 namespace Skytech\Customer;
-
 
 use InvalidArgumentException;
 use function is_numeric;

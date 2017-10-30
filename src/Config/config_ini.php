@@ -1,4 +1,8 @@
 <?php
+/**
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ */
+
 return array(
     'testing' => true,
     'PROD' => array('hostname'=>'123.123.12.3',

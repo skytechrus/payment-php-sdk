@@ -5,7 +5,6 @@
 
 namespace Skytech\DataProvider\XML;
 
-
 interface Response
 {
     public function get($fieldName);
