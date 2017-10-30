@@ -14,8 +14,15 @@ use Skytech\DataProvider\DataProvider;
 
 class Connector
 {
+    /**
+     * @var DataProvider
+     */
     public $orderdata;
 
+    /**
+     * Connector constructor.
+     * @param DataProvider $dataProvider
+     */
     public function __construct(DataProvider $dataProvider)
     {
         $this->orderdata = $dataProvider;
@@ -32,7 +39,7 @@ class Connector
         if (!strpos($url, "://")) {
             $url = 'https://' . $url;
         }
-        switch (Config::getDataFormat()){
+        switch (Config::getDataFormat()) {
             case Config::XML:
                 $response = $client->request('POST', $url, ['body' => $this->orderdata, 'allow_redirects' => [
                     'max' => 5,        // allow at most 5 redirects.
@@ -53,6 +60,6 @@ class Connector
                 return new Response\ResponseStrategy($response);
             default:
                 throw new \Exception('Invalid format');
-            }
+        }
     }
 }

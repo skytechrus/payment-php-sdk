@@ -13,13 +13,24 @@ use Skytech\Response\iResponse;
 
 class Response implements iResponse
 {
+    /**
+     * @var SimpleXMLElement
+     */
     private $xml;
 
+    /**
+     * Response constructor.
+     * @param $responseBody
+     */
     public function __construct($responseBody)
     {
         $this->xml = new SimpleXMLElement($responseBody);
     }
 
+    /**
+     * @param string $fieldName
+     * @return null|string
+     */
     public function get($fieldName)
     {
 

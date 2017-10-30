@@ -8,7 +8,6 @@
 
 namespace Skytech\Customer;
 
-
 use InvalidArgumentException;
 use function is_numeric;
 use LengthException;
@@ -17,15 +16,32 @@ use UnexpectedValueException;
 
 class Card
 {
-    private $pan; /** @var  string */
-    private $expmonth; /** @var  string */
-    private $expyear; /** @var  string */
-    private $brand;  /** @var  string */
+    /**
+     * @var string
+     */
+    private $pan;
+    /**
+     * @var mixed
+     */
+    private $expMonth;
+    /** @var  mixed */
+    private $expYear;
+    /** @var  string */
+    private $brand;
+    /** @var  string */
     private $cardUID;
 
-public function __construct()
-{
-}
+    public function __construct()
+    {
+    }
+
+    /**
+     * @return string
+     */
+    public function getPan()
+    {
+        return $this->pan;
+    }
 
     /**
      * @param string $pan
@@ -36,11 +52,11 @@ public function __construct()
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getPan()
+    public function getBrand()
     {
-        return $this->pan;
+        return $this->brand;
     }
 
     /**
@@ -49,14 +65,6 @@ public function __construct()
     public function setBrand($brand)
     {
         $this->brand = $brand;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBrand()
-    {
-        return $this->brand;
     }
 
     /**
@@ -74,64 +82,70 @@ public function __construct()
     {
         $this->cardUID = $cardUID;
     }
-    /**
-     * @param string $expmonth
-     */
-    public function setExpmonth($expmonth)
-    {
-        if ( !is_numeric($expmonth)   )
-        {
-            throw new InvalidArgumentException('Invalid month');
-        }
-        if ($expmonth >12 or  $expmonth ==0 )
-        {
-            throw new UnexpectedValueException('Invalid month');
-        }
-        $this->expmonth = $expmonth;
-    }
-    public function getExpDate()
-    {
-        return $this->expyear.$this->expmonth;
-    }
+
     /**
      * @return string
      */
-    public function getExpmonth()
+    public function getExpDate()
     {
-        return $this->expmonth;
+        return $this->expYear . $this->expMonth;
     }
+
     /**
-     * @param integer $expyear
+     * @return string
      */
-    public function setExpyear($expyear)
+    public function getExpMonth()
     {
-        if (!is_numeric($expyear)  )
-        {
+        return $this->expMonth;
+    }
+
+    /**
+     * @param string $expMonth
+     */
+    public function setExpMonth($expMonth)
+    {
+        if (!is_numeric($expMonth)) {
+            throw new InvalidArgumentException('Invalid month');
+        }
+        if ($expMonth > 12 or $expMonth == 0) {
+            throw new UnexpectedValueException('Invalid month');
+        }
+        $this->expMonth = $expMonth;
+    }
+
+    /**
+     * @return string
+     */
+    public function getExpYear()
+    {
+        return $this->expYear;
+    }
+
+    /**
+     * @param mixed $expYear
+     */
+    public function setExpYear($expYear)
+    {
+        if (!is_numeric($expYear)) {
             throw new InvalidArgumentException('Invalid card expiration year');
         }
-        if (  $expyear< date("Y") or  $expyear > (date("Y")+10) )
-        {
+        if ($expYear < date("Y") or $expYear > (date("Y") + 10)) {
             throw new UnexpectedValueException('Invalid card expiration year');
         }
 
-        $this->expyear = $expyear;
+        $this->expYear = $expYear;
     }
 
     /**
-     * @return string
+     * @param string $pan
+     * @return bool
      */
-    public function getExpyear()
-    {
-        return $this->expyear;
-    }
     public function validatePan($pan)
     {
-        if (   strlen($pan) <16 or strlen($pan)>19 )
-        {
-            throw new LengthException ('Invalid pan length');
+        if (strlen($pan) < 16 or strlen($pan) > 19) {
+            throw new LengthException('Invalid pan length');
         }
-        if (!is_numeric($pan))
-        {
+        if (!is_numeric($pan)) {
             throw new InvalidArgumentException('Invalid type');
         }
         return true;

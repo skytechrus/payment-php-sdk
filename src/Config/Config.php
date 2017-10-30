@@ -22,6 +22,9 @@ class Config
     {
     }
 
+    /**
+     * @return string
+     */
     public static function getDataFormat()
     {
         return self::$dataFormat;
@@ -34,10 +37,18 @@ class Config
     {
         self::$dataFormat = $dataFormat;
     }
+
+    /**
+     * @return mixed
+     */
     public static function getHostName()
     {
         return  IniFile::get('hostname');
     }
+
+    /**
+     * @return mixed
+     */
     public static function getPort()
     {
         return  IniFile::get('port');

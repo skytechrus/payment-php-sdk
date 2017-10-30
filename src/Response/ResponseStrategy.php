@@ -9,6 +9,7 @@
 namespace Skytech\Response;
 
 use Skytech\Config\Config;
+use Skytech\Response\XML\Response;
 
 class ResponseStrategy implements iResponse
 {
@@ -25,6 +26,21 @@ class ResponseStrategy implements iResponse
     public function __construct(\GuzzleHttp\Psr7\Response $response)
     {
         $this->loadResponse($response);
+    }
+
+    /**
+     * @param \GuzzleHttp\Psr7\Response $response
+     * @throws \Exception
+     */
+    private function loadResponse(\GuzzleHttp\Psr7\Response $response)
+    {
+        switch ($this->getResponseFormat($response)) {
+            case Config::XML:
+                $this->response = new Response($response->getBody());
+                break;
+            default:
+                throw new \Exception('Invalid format');
+        }
     }
 
     /**
@@ -47,22 +63,7 @@ class ResponseStrategy implements iResponse
     }
 
     /**
-     * @param $response
-     * @throws \Exception
-     */
-    private function loadResponse(\GuzzleHttp\Psr7\Response $response)
-    {
-        switch ($this->getResponseFormat($response)) {
-            case Config::XML:
-                $this->response = new \Skytech\Response\XML\Response($response->getBody());
-                break;
-            default:
-                throw new \Exception('Invalid format');
-        }
-    }
-
-    /**
-     * @param $fieldName
+     * @param string $fieldName
      * @return mixed
      */
     public function get($fieldName)
