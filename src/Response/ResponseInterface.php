@@ -9,7 +9,7 @@
 namespace Skytech\Response;
 
 
-interface iResponse
+interface ResponseInterface
 {
     public function get($fieldName);
 }

@@ -10,10 +10,10 @@ namespace Skytech\Response;
 
 use Skytech\Config\Config;
 
-class ResponseStrategy implements iResponse
+class ResponseStrategy implements ResponseInterface
 {
     /**
-     * @var  \Skytech\Response\ResponseStrategy;
+     * @var  \Skytech\Response\ResponseStrategy
      */
     private $response;
 
