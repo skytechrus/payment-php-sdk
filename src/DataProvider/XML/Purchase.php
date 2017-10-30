@@ -50,7 +50,7 @@ class Purchase extends DataProvider implements \Sabre\XML\XmlSerializable
         $xmlRequest->writeElement('Operation', 'Purchase');
         $xmlRequest->startElement('Order');  //<Order>
         $xmlRequest->writeElement('Merchant', $this->operation->merchant->getId());//<Merchant></Merchant>
-        $xmlRequest->writeElement('OrderID', $this->operation->order->getOrderid());//<OrderID></OrderID>
+        $xmlRequest->writeElement('OrderID', $this->operation->order->getOrderId());//<OrderID></OrderID>
         $xmlRequest->startElement('AddParams');//<AddParams>
         $xmlRequest->writeElement('FA-DATA', $this->makeFadaData($this->operation));
         $xmlRequest->endElement(); //</AddParams>
@@ -96,7 +96,7 @@ class Purchase extends DataProvider implements \Sabre\XML\XmlSerializable
         //  $this->operation->order->setOperation($response->xpath("//Operation")[0]);
         //  $this->operation->order->setStatus($response->xpath("//Status")[0]);
         if (!empty($response->xpath("//OrderId")[0])) {
-            $this->operation->order->setOrderid($response->xpath("//OrderId")[0]);
+            $this->operation->order->setOrderId($response->xpath("//OrderId")[0]);
         }
 
         if (!empty($response->xpath("//PurchaseAmount")[0])) {
@@ -118,7 +118,7 @@ class Purchase extends DataProvider implements \Sabre\XML\XmlSerializable
             $this->operation->transaction->responsedescription = $response->xpath("//ResponseDescription")[0];
         }
         if (!empty($response->xpath("//OrderStatus")[0])) {
-            $this->operation->order->setOrderstatus($response->xpath("//OrderStatus")[0]);
+            $this->operation->order->setOrderStatus($response->xpath("//OrderStatus")[0]);
         }
         if (!empty($response->xpath("//ApprovalCode")[0])) {
             $this->operation->transaction->approvalcode = $response->xpath("//ApprovalCode")[0];
@@ -133,7 +133,7 @@ class Purchase extends DataProvider implements \Sabre\XML\XmlSerializable
             $this->operation->card->setPan($response->xpath("//PAN")[0]);
         }
         if (!empty($response->xpath("//MerchantTranID")[0])) {
-            $this->operation->order->setXid($response->xpath("//MerchantTranID")[0]);
+            $this->operation->order->setXId($response->xpath("//MerchantTranID")[0]);
         }
 
         if (!empty($response->xpath("//Brand")[0])) {
@@ -171,7 +171,7 @@ class Purchase extends DataProvider implements \Sabre\XML\XmlSerializable
         $xmlRequest->writeElement('Operation', 'Purchase');
         $xmlRequest->startElement('Order');  //<Order>
         $xmlRequest->writeElement('Merchant', $this->operation->merchant->getId());//<Merchant></Merchant>
-        $xmlRequest->writeElement('OrderID', $this->operation->order->getOrderid());//<OrderID></OrderID>
+        $xmlRequest->writeElement('OrderID', $this->operation->order->getOrderId());//<OrderID></OrderID>
         $xmlRequest->startElement('AddParams');//<AddParams>
         $xmlRequest->writeElement('FA-DATA', $this->makeFadaData($this->operation));
         $xmlRequest->endElement(); //</AddParams>
@@ -196,12 +196,5 @@ class Purchase extends DataProvider implements \Sabre\XML\XmlSerializable
         $xmlRequest->endElement();//</TKKPG>
         $xml = $xmlRequest->outputMemory(true);
         return $xml;
-        // TODO: Implement xmlSerialize() method.
-        $writer->write([
-            "TKKPG" => [
-                "Request"
-            ]
-        ]);
-
     }
 }

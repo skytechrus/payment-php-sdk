@@ -49,7 +49,7 @@ class OrderP2P extends \Skytech\DataProvider\DataProvider
         $xmlRequest->writeElement('Operation','CreateOrder');          //<Operation>CreateOrder</Operation>
         $xmlRequest->writeElement('Language', $this->operation->order->getLanguage());        //<Language></Language>
         $xmlRequest->startElement('Order');                                       //<Order>
-        $xmlRequest->writeElement('OrderType', $this->operation->order->getOperationtype());//<OrderType></OrderType>
+        $xmlRequest->writeElement('OrderType', $this->operation->order->getOperationType());//<OrderType></OrderType>
         $xmlRequest->writeElement('Merchant', $this->operation->order->getMerchantid());           //<Merchant></Merchant>
         $xmlRequest->writeElement('Amount',$this->operation->order->getAmount());                 //<Amount></Amount>
         $xmlRequest->writeElement('Currency',$this->operation->order->getCurrency());              //<Currency></Currency>

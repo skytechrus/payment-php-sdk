@@ -9,7 +9,6 @@ use Skytech\Customer;
 use Skytech\Customer\Card;
 use Skytech\Merchant;
 use Skytech\Order;
-use Skytech\TransData;
 
 /**
  * Class Operation
@@ -26,8 +25,6 @@ class Operation
     public $customer;
     /** @var  Customer */
     public $recipient;
-    /** @var TransData */
-    public $transaction;
     /** @var Merchant $merchant */
     public $merchant;
 
@@ -37,7 +34,6 @@ class Operation
      * @param Order $order
      * @param Customer|null $customer
      * @param Merchant|null $merchant
-     * @param TransData|null $transaction
      * @param Card|null $card
      * @param Customer|null $recipient
      */
@@ -45,7 +41,6 @@ class Operation
         Order $order,
         Customer $customer = null,
         Merchant $merchant = null,
-        TransData $transaction = null,
         Card $card = null,
         Customer $recipient = null
     ) {
@@ -54,7 +49,6 @@ class Operation
         $this->recipient = $recipient;
         $this->customer = $customer;
         $this->merchant = $merchant;
-        $this->transaction = $transaction;
     }
 
     /**
@@ -90,19 +84,10 @@ class Operation
     }
 
     /**
-     * @param TransData $transaction
-     */
-    public function setTransaction(TransData $transaction)
-    {
-        $this->transaction = $transaction;
-    }
-
-    /**
      * @param Merchant $merchant
      */
     public function setMerchant(Merchant $merchant)
     {
         $this->merchant = $merchant;
     }
-
 }

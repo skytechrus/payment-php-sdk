@@ -102,8 +102,7 @@ class Address
      */
     public function setCity($city)
     {
-        if (!preg_match("/^[a-z]+[a-z\d\s\-]*$/i", $city))   //(!preg_match("/^[a-z0-9\s\-]*[a-z]{1}$/i",$city ))
-        {
+        if (!preg_match("/^[a-z]+[a-z\d\s\-]*$/i", $city)) {
             throw new UnexpectedValueException('Only latin letters can be used in city name');
         }
         $this->city = $city;
@@ -141,12 +140,9 @@ class Address
      */
     public function setAddressline($addressline)
     {
-        if (!preg_match("/^[a-z]+[a-z\d\s\-\/,_.]*$/i",
-            $addressline))   //(!preg_match("/^[a-z0-9\s\-]*[a-z]{1}$/i",$city ))
-        {
+        if (!preg_match("/^[a-z]+[a-z\d\s\-\/,_.]*$/i", $addressline)) {
             throw new UnexpectedValueException('Only latin letters and numbers can be used in address line');
         }
         $this->addressline = $addressline;
     }
-
 }

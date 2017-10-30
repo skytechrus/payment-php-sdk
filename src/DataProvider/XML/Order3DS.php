@@ -53,15 +53,23 @@ class Order3DS extends DataProvider
         $xmlRequest->writeElement('OrderType', $this->operation->order->getOperationType());//<OrderType></OrderType>
         $xmlRequest->writeElement('Merchant', $this->operation->merchant->getId());           //<Merchant></Merchant>
         $xmlRequest->writeElement('Amount', $this->operation->order->getAmount());                 //<Amount></Amount>
-        $xmlRequest->writeElement('Currency',
-            $this->operation->order->getCurrency());              //<Currency></Currency>
+        $xmlRequest->writeElement(
+            'Currency',
+            $this->operation->order->getCurrency()
+        );              //<Currency></Currency>
         $xmlRequest->writeElement('Description', $this->operation->order->getDescription());  //<Description></Description>
-        $xmlRequest->writeElement('ApproveURL',
-            $this->operation->urlSettings->getApproveurl());    //<ApproveURL></ApproveURL>
-        $xmlRequest->writeElement('CancelURL',
-            $this->operation->urlSettings->getCancelurl());      //<CancelURL></CancelURL>
-        $xmlRequest->writeElement('DeclineURL',
-            $this->operation->urlSettings->getDeclineurl());    //<DeclineURL></DeclineURL>
+        $xmlRequest->writeElement(
+            'ApproveURL',
+            $this->operation->urlSettings->getApproveurl()
+        );    //<ApproveURL></ApproveURL>
+        $xmlRequest->writeElement(
+            'CancelURL',
+            $this->operation->urlSettings->getCancelurl()
+        );      //<CancelURL></CancelURL>
+        $xmlRequest->writeElement(
+            'DeclineURL',
+            $this->operation->urlSettings->getDeclineurl()
+        );    //<DeclineURL></DeclineURL>
         $xmlRequest->writeElement('email', $this->operation->customer->getEmail());          //<email></email>
         $xmlRequest->writeElement('phone', $this->operation->customer->phone);              //<phone></phone>');
         $xmlRequest->startElement('AddParams');                        //<AddParams>

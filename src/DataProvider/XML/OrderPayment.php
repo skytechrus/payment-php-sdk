@@ -7,6 +7,11 @@ namespace Skytech\DataProvider\XML;
 
 use XMLWriter;
 
+/**
+ * Class OrderPayment
+ *
+ * @package Skytech\DataProvider\XML
+ */
 class OrderPayment extends DataProvider
 {
     use OrderResponse;
@@ -19,11 +24,19 @@ class OrderPayment extends DataProvider
     {
         $this->operation = $operation;
     }
+
+    /**
+     * @return string
+     */
     public function getRequestData()
     {
         $xmlRequestdata = $this->makeXMLCreateOrder();
         return $xmlRequestdata;
     }
+
+    /**
+     * @return string
+     */
     public function makeXMLCreateOrder()
     {
         $xmlRequest = new XMLWriter(); //= xmlwriter_open_memory;
@@ -59,6 +72,9 @@ class OrderPayment extends DataProvider
         return $xml;
     }
 
+    /**
+     * @return string
+     */
     public function getAddParams()
     {
         $xmlAddParameter = new XMLWriter();
@@ -72,6 +88,10 @@ class OrderPayment extends DataProvider
         return $xml;
     }
 
+    /**
+     * @param $xmlResponse
+     * @return Operation
+     */
     public function getResponseData($xmlResponse)
     {
         $this->getOrderResponseData($xmlResponse, $this->operation);
