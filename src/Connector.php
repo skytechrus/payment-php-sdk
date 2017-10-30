@@ -12,10 +12,20 @@ use Skytech\Config\Config;
 use GuzzleHttp\Client;
 use Skytech\DataProvider\DataProvider;
 
+/**
+ * Class Connector
+ *
+ * @package Skytech
+ */
 class Connector
 {
     public $orderdata;
 
+    /**
+     * Connector constructor.
+     *
+     * @param DataProvider $dataProvider
+     */
     public function __construct(DataProvider $dataProvider)
     {
         $this->orderdata = $dataProvider;
