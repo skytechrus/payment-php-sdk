@@ -12,5 +12,8 @@ namespace Skytech\DataProvider\XML;
  */
 interface Request
 {
+    /**
+     * @return mixed
+     */
     public function prepareRequestData();
 }

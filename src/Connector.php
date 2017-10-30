@@ -16,6 +16,9 @@ use Skytech\DataProvider\DataProvider;
  */
 class Connector
 {
+    /**
+     * @var DataProvider
+     */
     public $orderdata;
 
     /**

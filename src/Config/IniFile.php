@@ -7,10 +7,21 @@ namespace Skytech\Config;
 
 use UnexpectedValueException;
 
+/**
+ * Class IniFile
+ *
+ * @package Skytech\Config
+ */
 class IniFile
 {
+    /**
+     * @var string
+     */
     private static $root = 'PROD';
 
+    /**
+     * IniFile constructor.
+     */
     public function __construct()
     {
     }

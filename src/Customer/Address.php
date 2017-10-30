@@ -13,15 +13,35 @@ use function preg_match;
 use UnexpectedValueException;
 use League;
 
+/**
+ * Class Address
+ *
+ * @package Skytech\Customer
+ */
 class Address
 {
+    /**
+     * @var
+     */
     public $addressline;
+    /**
+     * @var
+     */
     private $country;
     /** @var  mixed */
     private $region;
+    /**
+     * @var
+     */
     private $city;
+    /**
+     * @var
+     */
     private $zip;
 
+    /**
+     * Address constructor.
+     */
     public function __construct()
     {
     }

@@ -5,7 +5,7 @@
 
 namespace Skytech\DataProvider\XML;
 
-use Skytech\DataProvider;
+use Skytech\DataProvider\DataProvider;
 use Skytech\Operation\Operation;
 use XMLWriter;
 
@@ -77,6 +77,9 @@ class Order3DS extends DataProvider
         return $xml;
     }
 
+    /**
+     * @return string
+     */
     public function getAddParams()
     {
         $xml_add_par = new XMLWriter();
@@ -93,6 +96,10 @@ class Order3DS extends DataProvider
         return $xml;
     }
 
+    /**
+     * @param $xmlresponse
+     * @return Operation
+     */
     public function getResponseData($xmlresponse)
     {
         $this->getOrderResponseData($xmlresponse, $this->operation);

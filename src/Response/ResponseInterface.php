@@ -5,7 +5,16 @@
 
 namespace Skytech\Response;
 
+/**
+ * Interface ResponseInterface
+ *
+ * @package Skytech\Response
+ */
 interface ResponseInterface
 {
+    /**
+     * @param $fieldName
+     * @return mixed
+     */
     public function get($fieldName);
 }

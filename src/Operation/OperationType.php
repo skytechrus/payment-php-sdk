@@ -5,7 +5,15 @@
 
 namespace Skytech\Operation;
 
+/**
+ * Class OperationType
+ *
+ * @package Skytech\Operation
+ */
 class OperationType
 {
+    /**
+     *
+     */
     const PURCHASE = "Purchase";
 }

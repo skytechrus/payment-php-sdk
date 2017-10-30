@@ -7,6 +7,11 @@ namespace Skytech\Response;
 
 use Skytech\Config\Config;
 
+/**
+ * Class ResponseStrategy
+ *
+ * @package Skytech\Response
+ */
 class ResponseStrategy implements ResponseInterface
 {
     /**

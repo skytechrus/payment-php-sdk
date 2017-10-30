@@ -11,15 +11,26 @@ use LengthException;
 use function strlen;
 use UnexpectedValueException;
 
+/**
+ * Class Card
+ *
+ * @package Skytech\Customer
+ */
 class Card
 {
+    /**
+     * @var
+     */
     private $pan; /** @var  string */
     private $expmonth; /** @var  string */
     private $expyear; /** @var  string */
     private $brand;  /** @var  string */
     private $cardUID;
 
-public function __construct()
+    /**
+     * Card constructor.
+     */
+    public function __construct()
 {
 }
 
@@ -85,6 +96,10 @@ public function __construct()
         }
         $this->expmonth = $expmonth;
     }
+
+    /**
+     * @return string
+     */
     public function getExpDate()
     {
         return $this->expyear.$this->expmonth;
@@ -120,6 +135,11 @@ public function __construct()
     {
         return $this->expyear;
     }
+
+    /**
+     * @param $pan
+     * @return bool
+     */
     public function validatePan($pan)
     {
         if (   strlen($pan) <16 or strlen($pan)>19 )

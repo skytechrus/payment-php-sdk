@@ -16,6 +16,9 @@ use Skytech\Operation\OperationType;
  */
 class DataOperationStrategy extends DataProvider\DataOperationStrategy
 {
+    /**
+     * @var DataProvider\DataProvider
+     */
     private $dataProvider;
 
     /**
