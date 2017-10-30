@@ -3,38 +3,28 @@
 
 namespace Skytech\Response;
 
-use SimpleXMLElement;
-
 class Response
 {
-    /** @var  SimpleXMLElement */
-    private $body;
+    /** @var  ResponseStrategy */
+    private $response;
 
-    public function __construct($responseBody)
+    public function __construct(ResponseStrategy $response)
     {
-        $this->body = new SimpleXMLElement($responseBody);
+        $this->response =$response;
     }
 
-    protected function getInteger($tagName)
+    protected function getInteger($fieldName)
     {
-        $tagValue = null;
-        if (!empty($this->body->xpath("//" . $tagName)[0])) {
-            $tagValue = (int)$this->body->xpath("//" . $tagName)[0];
-        }
-        return $tagValue;
+        return (int)$this->response->get($fieldName);
     }
 
     /**
-     * @param string $tagName
+     * @param string $fieldName
      * @return string
      */
-    protected function getString($tagName)
+    protected function getString($fieldName)
     {
-        $tagValue = '';
-        if (!empty($this->body->xpath("//" . $tagName)[0])) {
-            $tagValue = (string)$this->body->xpath("//" . $tagName)[0];
-        }
-        return $tagValue;
+        return (string)$this->response->get($fieldName);
     }
 
     public function getStatus()

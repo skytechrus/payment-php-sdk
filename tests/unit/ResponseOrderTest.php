@@ -1,7 +1,7 @@
 <?php
 
 
-use Skytech\Response\ResponseOrder;
+use Skytech\Response\Order;
 
 class ResponseOrderTest extends \Codeception\Test\Unit
 {
@@ -10,7 +10,7 @@ class ResponseOrderTest extends \Codeception\Test\Unit
      */
     protected $tester;
     /**
-     * @var ResponseOrder
+     * @var Order
      */
     protected $response;
 
@@ -37,9 +37,10 @@ class ResponseOrderTest extends \Codeception\Test\Unit
      */
     public function testOperationFeature($fileName, $operationName, $status)
     {
-        $response = $this->loadFileData($fileName);
-        $this->response = new ResponseOrder($response);
-        $this->assertEquals($operationName, $this->response->getOperation());
+        $fileText = $this->loadFileData($fileName);
+        $response = new Skytech\Response\XML\Response($fileText);
+        $this->response = $response;
+        $this->assertEquals($operationName, $this->response->get('Operation'));
     }
 
     /**
@@ -51,8 +52,8 @@ class ResponseOrderTest extends \Codeception\Test\Unit
     public function testStatusFeature($fileName, $operationName, $status)
     {
         $response = $this->loadFileData($fileName);
-        $this->response = new ResponseOrder($response);
-        $this->assertEquals($status, $this->response->getStatus());
+        $this->response =  new Skytech\Response\XML\Response($response);
+        $this->assertEquals($status, $this->response->get('Status'));
     }
 
     /**
@@ -63,8 +64,8 @@ class ResponseOrderTest extends \Codeception\Test\Unit
     public function testOrderId($fileName, $orderId)
     {
         $response = $this->loadFileData($fileName);
-        $this->response = new ResponseOrder($response);
-        $this->assertEquals($orderId, $this->response->getOrderId());
+        $this->response =  new Skytech\Response\XML\Response($response);
+        $this->assertEquals($orderId, $this->response->get('OrderId'));
     }
 
     /**
@@ -75,20 +76,8 @@ class ResponseOrderTest extends \Codeception\Test\Unit
     public function testURL($fileName, $url)
     {
         $response = $this->loadFileData($fileName);
-        $this->response = new ResponseOrder($response);
-        $this->assertEquals($url, $this->response->getURL());
-    }
-
-    /**
-     * @dataProvider provideDataSessionId
-     * @param $fileName
-     * @param $sessionId
-     */
-    public function testSessionId($fileName, $sessionId)
-    {
-        $response = $this->loadFileData($fileName);
-        $this->response = new ResponseOrder($response);
-        $this->assertEquals($sessionId, $this->response->getSessionID());
+        $this->response =  new Skytech\Response\XML\Response($response);
+        $this->assertEquals($url, $this->response->get('URL'));
     }
 
     public function provideData()

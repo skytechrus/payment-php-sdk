@@ -1,7 +1,7 @@
 <?php
 
 
-use Skytech\Response\ResponseOrderStatus;
+use Skytech\Response\OrderStatus;
 
 class ResponseOrderStatusTest extends \Codeception\Test\Unit
 {
@@ -10,7 +10,7 @@ class ResponseOrderStatusTest extends \Codeception\Test\Unit
      */
     protected $tester;
     /**
-     * @var ResponseOrderStatus
+     * @var OrderStatus
      */
     protected $response;
 
@@ -23,7 +23,7 @@ class ResponseOrderStatusTest extends \Codeception\Test\Unit
     protected function _before()
     {
         $response = $this->loadFileData('C:\work\Project_php\bitrix\payment-php-sdk\tests\_support\xml\OrderStatus.xml');
-        $this->response = new ResponseOrderStatus($response);
+        $this->response =  new Skytech\Response\XML\Response($response);
     }
 
     protected function _after()
@@ -33,17 +33,17 @@ class ResponseOrderStatusTest extends \Codeception\Test\Unit
     // tests
     public function testOperation()
     {
-        $this->assertEquals('GetOrderStatus', $this->response->getOperation());
+        $this->assertEquals('GetOrderStatus', $this->response->get('Operation'));
     }
 
     public function testStatus()
     {
-        $this->assertEquals('30', $this->response->getStatus());
+        $this->assertEquals('30', $this->response->get('Status'));
     }
 
     public function testOrderId()
     {
-        $this->assertEquals('14', $this->response->getOrderId());
+        $this->assertEquals('14', $this->response->get('OrderId'));
     }
 
     public function testReceipt()

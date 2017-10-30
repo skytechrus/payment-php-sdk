@@ -8,8 +8,7 @@
 
 namespace Skytech\Response;
 
-
-class ResponseOrderStatus extends Response
+class OrderStatus extends Response
 {
     public function getOrderId()
     {

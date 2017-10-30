@@ -8,10 +8,8 @@
 
 namespace Skytech;
 
-use RuntimeException;
 use Skytech\Config\Config;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
 use Skytech\DataProvider\DataProvider;
 
 class Connector
@@ -23,46 +21,38 @@ class Connector
         $this->orderdata = $dataProvider;
     }
 
+    /**
+     * @return Response\ResponseStrategy
+     * @throws \Exception
+     */
     public function sendRequest()
     {
-        //$path = '/Exec';
-        $content = '';
         $client = new Client();
-        $url = Config::getHostName().':'.Config::getPort();
+        $url = Config::getHostName() . ':' . Config::getPort();
         if (!strpos($url, "://")) {
-            $url = 'https://'.$url;
+            $url = 'https://' . $url;
         }
-
-        try {
-            if (Config::getDataFormat() == Config::XMLDATA) {
-                $response = $client->request('POST', $url, ['body' => $this->orderdata,'allow_redirects' => [
-                    'max'             => 5,        // allow at most 5 redirects.
-                    'strict'          => true,      // use "strict" RFC compliant redirects.
-                    'referer'         => false,      // do not add a Referer header
-                    'protocols'       => ['https','http'], // only allow https URLs
+        switch (Config::getDataFormat()){
+            case Config::XML:
+                $response = $client->request('POST', $url, ['body' => $this->orderdata, 'allow_redirects' => [
+                    'max' => 5,        // allow at most 5 redirects.
+                    'strict' => true,      // use "strict" RFC compliant redirects.
+                    'referer' => false,      // do not add a Referer header
+                    'protocols' => ['https', 'http'], // only allow https URLs
                     //'on_redirect'     => $onRedirect,
-                    'track_redirects' => true
-                ] ]);
-                $content = (string)$response->getBody();
-            } elseif (Config::getDataFormat() == Config::JSON) {
-                $response = $client->request('POST', $url, ['json' => $this->orderdata,'allow_redirects' =>[
-                    'max'             => 5,        // allow at most 5 redirects.
-                    'strict'          => true,      // use "strict" RFC compliant redirects.
-                    'referer'         => false,      // do not add a Referer header
-                    'protocols'       => ['https','http'], // only allow https URLs
+                    'track_redirects' => true]]);
+                return new Response\ResponseStrategy($response);
+            case Config::JSON:
+                $response = $client->request('POST', $url, ['json' => $this->orderdata, 'allow_redirects' => [
+                    'max' => 5,        // allow at most 5 redirects.
+                    'strict' => true,      // use "strict" RFC compliant redirects.
+                    'referer' => false,      // do not add a Referer header
+                    'protocols' => ['https', 'http'], // only allow https URLs
                     //'on_redirect'     => $onRedirect,
-                    'track_redirects' => true
-                ]
-                ]);
-                $content = (string)$response->getBody();
+                    'track_redirects' => true]]);
+                return new Response\ResponseStrategy($response);
+            default:
+                throw new \Exception('Invalid format');
             }
-        } catch (RequestException $e) {
-            if ($e->hasResponse()) {
-                throw new RuntimeException('Get Response for Request Exception:' . $e->getMessage());
-            }
-            throw new RuntimeException('Request Exception:' . $e->getMessage());
-        }
-
-        return ($content);
     }
 }

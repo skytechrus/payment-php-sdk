@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Skytech;
-
 
 use Skytech\Operation\OperationType;
 use Skytech\Response\Response;
@@ -39,7 +37,7 @@ class Payment
         $response = $this->send(OperationType::PURCHASE);
 //        return new Response((string)$response->getBody());
 //        return $response->getBody();
-        return $response;
+        return new \Skytech\Response\Order($response);
     }
 
     /**
@@ -49,9 +47,8 @@ class Payment
     private function send($operationType)
     {
         $data = $this->payload($operationType);
-//        $response = $client->request('POST', Config::getHost(), ['body' => $data]);
-//        return $response;
-        return $data;
+        $connector = new \Skytech\Connector($data);
+        return $connector->sendRequest();
     }
 
     /**
