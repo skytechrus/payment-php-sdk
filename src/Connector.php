@@ -24,11 +24,11 @@ class Connector
     /**
      * Connector constructor.
      *
-     * @param DataProvider $dataProvider
+     * @param string $data
      */
-    public function __construct(DataProvider $dataProvider)
+    public function __construct($data)
     {
-        $this->orderdata = $dataProvider;
+        $this->orderdata = $data;
     }
 
     /**

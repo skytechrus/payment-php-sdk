@@ -38,11 +38,12 @@ class Config
      */
     public static function getDataFormat()
     {
-        return self::$dataFormat;
+        return IniFile::get('format');
     }
 
     /**
      * @param string $dataFormat
+     * @deprecated
      */
     public static function setDataFormat($dataFormat)
     {
