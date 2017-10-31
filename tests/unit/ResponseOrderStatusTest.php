@@ -1,8 +1,6 @@
 <?php
 
 
-use Skytech\Response\OrderStatus;
-
 class ResponseOrderStatusTest extends \Codeception\Test\Unit
 {
     /**
@@ -10,27 +8,10 @@ class ResponseOrderStatusTest extends \Codeception\Test\Unit
      */
     protected $tester;
     /**
-     * @var OrderStatus
+     * @var Skytech\Response\XML\Response
      */
     protected $response;
 
-    public function loadFileData($fileName)
-    {
-        $xml = simplexml_load_file($fileName);
-        return $xml->asXML();
-    }
-
-    protected function _before()
-    {
-        $response = $this->loadFileData('C:\work\Project_php\bitrix\payment-php-sdk\tests\_support\xml\OrderStatus.xml');
-        $this->response =  new Skytech\Response\XML\Response($response);
-    }
-
-    protected function _after()
-    {
-    }
-
-    // tests
     public function testOperation()
     {
         $this->assertEquals('GetOrderStatus', $this->response->get('Operation'));
@@ -43,11 +24,30 @@ class ResponseOrderStatusTest extends \Codeception\Test\Unit
 
     public function testOrderId()
     {
-        $this->assertEquals('14', $this->response->get('OrderId'));
+        $this->assertEquals('14', $this->response->get('OrderID'));
     }
+
+    // tests
 
     public function testReceipt()
     {
-        $this->assertEquals('BASE64-encode-info', $this->response->getReceipt());
+        $this->assertEquals('BASE64-encode-info', $this->response->get('Receipt'));
+    }
+
+    protected function _before()
+    {
+        $fileName = 'C:\work\Project_php\bitrix\payment-php-sdk\tests\_support\xml\OrderStatus.xml';
+        $response = $this->loadFileData($fileName);
+        $this->response = new Skytech\Response\XML\Response($response);
+    }
+
+    public function loadFileData($fileName)
+    {
+        $xml = simplexml_load_file($fileName);
+        return $xml->asXML();
+    }
+
+    protected function _after()
+    {
     }
 }
