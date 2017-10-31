@@ -4,6 +4,7 @@
  */
 
 return array(
+    'format' => \Skytech\Config\Config::XML,
     'testing' => true,
     'PROD' => array('hostname'=>'123.123.12.3',
                    'port'=>'1234'),

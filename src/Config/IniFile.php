@@ -33,6 +33,9 @@ class IniFile
     public static function get($value)
     {
         $array = include 'config_ini.php';
+        if (array_key_exists($value, $array) && $value != 'testing') {
+            return $array[$value];
+        }
         if ((bool)$array['testing']) {
             self::$root = 'TEST';
         }
