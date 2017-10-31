@@ -43,6 +43,10 @@ class Order
      * @var string
      */
     private $orderStatus;
+    /**
+     * @var string
+     */
+    private $sessionId;
 
     /**
      * @return mixed
@@ -166,5 +170,21 @@ class Order
 
     public function getOperationType()
     {
+    }
+
+    /**
+     * @param string $sessionId
+     */
+    public function setSessionId($sessionId)
+    {
+        $this->sessionId = $sessionId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSessionId()
+    {
+        return $this->sessionId;
     }
 }

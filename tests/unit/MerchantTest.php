@@ -45,20 +45,20 @@ class MerchantTest extends \Codeception\Test\Unit
 
     public function dataProviderLng()
     {
-        return [[false, 'ru'],
+        return [[true, 'ru'],
             [false, 'USA'],
             [false, 810],
-            [true, 'EN'],
-            [true, 'RU'],
-            [true, 'UK']];
+            [true, 'en'],
+            [true, 'ru'],
+            [true, 'uk']];
     }
 
     public function dataProviderURL()
     {
         return[
-            [true,'123.445.33.4:423'],
+            [true,'http://123.445.33.4:423'],
             [true,'http://php.net/manual/ru/function.stristr.php'],
-            [true,'you-will-pay-for-this.html']];
+            [true,'http://example.com']];
     }
 
     protected function _before()

@@ -105,12 +105,8 @@ class Merchant
     public function setLanguage($language)
     {
         if (!empty($language)) {
-            /*if (!ctype_upper($language)) {
-                throw new \InvalidArgumentException('Language not in RFC 1766 format');
-            }*/
             $language = strtolower($language);
-//            $iso = new ISO639();
-            if (!v::languageCode()->validate($language)) {
+            if (!v::languageCode('alpha-2')->validate($language)) {
                 throw new \InvalidArgumentException('Language not in RFC 1766 format');
             }
         }
@@ -123,10 +119,7 @@ class Merchant
      */
     public function validateURL($url)
     {
-        if (stristr($url, '//')===false) {
-            $url = 'https://'.$url;
-        }
-        if (!filter_var($url, FILTER_VALIDATE_URL)) {
+        if (!v::url()->validate($url)) {
             throw new \InvalidArgumentException('Invalid url');
         }
         return true;
