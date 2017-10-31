@@ -5,10 +5,7 @@
 
 namespace Skytech;
 
-use function ctype_upper;
-use Matriphe\ISO639\ISO639;
-use function stristr;
-use function strtolower;
+use Respect\Validation\Validator as v;
 
 /**
  * Class Merchant
@@ -108,16 +105,22 @@ class Merchant
     public function setLanguage($language)
     {
         if (!empty($language)) {
-            if (!ctype_upper($language)) {
+            /*if (!ctype_upper($language)) {
                 throw new \InvalidArgumentException('Language not in RFC 1766 format');
-            }
-            $iso = new ISO639();
-            if (empty($iso->languageByCode1(strtolower($language)))) {
+            }*/
+            $language = strtolower($language);
+//            $iso = new ISO639();
+            if (!v::languageCode()->validate($language)) {
                 throw new \InvalidArgumentException('Language not in RFC 1766 format');
             }
         }
         $this->language = $language;
     }
+
+    /**
+     * @param $url
+     * @return bool
+     */
     public function validateURL($url)
     {
         if (stristr($url, '//')===false) {
