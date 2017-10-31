@@ -27,7 +27,7 @@ class IniFile
     }
 
     /**
-     * @param $value
+     * @param string $value
      * @return mixed
      */
     public static function get($value)
