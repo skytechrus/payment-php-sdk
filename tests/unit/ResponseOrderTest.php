@@ -16,7 +16,6 @@ class ResponseOrderTest extends \Codeception\Test\Unit
 
     protected function _before()
     {
-
     }
 
     protected function _after()
@@ -32,24 +31,9 @@ class ResponseOrderTest extends \Codeception\Test\Unit
     /**
      * @dataProvider provideData
      * @param $fileName
-     * @param $operationName
      * @param $status
      */
-    public function testOperationFeature($fileName, $operationName, $status)
-    {
-        $fileText = $this->loadFileData($fileName);
-        $response = new Skytech\Response\XML\Response($fileText);
-        $this->response = $response;
-        $this->assertEquals($operationName, $this->response->get('Operation'));
-    }
-
-    /**
-     * @dataProvider provideData
-     * @param $fileName
-     * @param $operationName
-     * @param $status
-     */
-    public function testStatusFeature($fileName, $operationName, $status)
+    public function testStatusFeature($fileName, $status)
     {
         $response = $this->loadFileData($fileName);
         $this->response =  new Skytech\Response\XML\Response($response);
@@ -65,7 +49,7 @@ class ResponseOrderTest extends \Codeception\Test\Unit
     {
         $response = $this->loadFileData($fileName);
         $this->response =  new Skytech\Response\XML\Response($response);
-        $this->assertEquals($orderId, $this->response->get('OrderId'));
+        $this->assertEquals($orderId, $this->response->get('OrderID'));
     }
 
     /**
@@ -83,8 +67,8 @@ class ResponseOrderTest extends \Codeception\Test\Unit
     public function provideData()
     {
         return [
-            ['C:\work\Project_php\bitrix\payment-php-sdk\tests\_support\xml\Response1.xml', 'CreateOrder', '00'],
-            ['C:\work\Project_php\bitrix\payment-php-sdk\tests\_support\xml\Response2.xml', 'CreateOrder', '30']
+            ['C:\work\Project_php\bitrix\payment-php-sdk\tests\_support\xml\Response1.xml',   '00'],
+            ['C:\work\Project_php\bitrix\payment-php-sdk\tests\_support\xml\Response2.xml',   '30']
         ];
     }
 
@@ -107,7 +91,8 @@ class ResponseOrderTest extends \Codeception\Test\Unit
     public function provideDataSessionId()
     {
         return [
-            ['C:\work\Project_php\bitrix\payment-php-sdk\tests\_support\xml\Response1.xml', 'ECDE79578768ECFBF2897A0F44CC0CEF']
+            ['C:\work\Project_php\bitrix\payment-php-sdk\tests\_support\xml\Response1.xml',
+                'ECDE79578768ECFBF2897A0F44CC0CEF']
         ];
     }
 }
