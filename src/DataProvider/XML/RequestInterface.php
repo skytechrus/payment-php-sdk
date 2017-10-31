@@ -6,11 +6,11 @@
 namespace Skytech\DataProvider\XML;
 
 /**
- * Interface Request
+ * Interface RequestInterface
  *
  * @package Skytech\DataProvider\XML
  */
-interface Request
+interface RequestInterface
 {
     /**
      * @return mixed

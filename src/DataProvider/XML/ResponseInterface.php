@@ -6,11 +6,11 @@
 namespace Skytech\DataProvider\XML;
 
 /**
- * Interface Response
+ * Interface ResponseInterface
  *
  * @package Skytech\DataProvider\XML
  */
-interface Response
+interface ResponseInterface
 {
     /**
      * @param $fieldName
