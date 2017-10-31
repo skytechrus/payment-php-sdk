@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: arevkina
- * Date: 10.10.2017
- * Time: 16:27
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
  */
 
 namespace Skytech;
@@ -19,6 +16,9 @@ use Skytech\DataProvider\DataProvider;
  */
 class Connector
 {
+    /**
+     * @var DataProvider
+     */
     public $orderdata;
 
     /**
@@ -38,14 +38,8 @@ class Connector
     public function sendRequest()
     {
         $url = $this->getUrl();
-        switch (Config::getDataFormat()) {
-            case Config::XML:
-                return $this->getResponse($url, $this->orderdata);
-            case Config::JSON:
-                return $this->getResponse($url, $this->orderdata);
-            default:
-                throw new \Exception('Invalid format');
-        }
+        $body = $this->orderdata;
+        return $this->getResponse($url, $body);
     }
 
     /**

@@ -1,8 +1,15 @@
 <?php
-
+/**
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ */
 
 namespace Skytech\Response;
 
+/**
+ * Class Response
+ *
+ * @package Skytech\Response
+ */
 class Response
 {
     /** @var  ResponseStrategy */
@@ -10,6 +17,7 @@ class Response
 
     /**
      * Response constructor.
+     *
      * @param ResponseStrategy $response
      */
     public function __construct(ResponseStrategy $response)
@@ -18,7 +26,7 @@ class Response
     }
 
     /**
-     * @param string $fieldName
+     * @param $fieldName
      * @return int
      */
     protected function getInteger($fieldName)

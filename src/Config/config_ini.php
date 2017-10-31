@@ -1,10 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: arevkina
- * Date: 25.10.2017
- * Time: 17:39
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
  */
+
 return array(
     'testing' => true,
     'PROD' => array('hostname'=>'123.123.12.3',

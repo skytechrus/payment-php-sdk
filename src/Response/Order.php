@@ -1,7 +1,15 @@
 <?php
+/**
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ */
 
 namespace Skytech\Response;
 
+/**
+ * Class Order
+ *
+ * @package Skytech\Response
+ */
 class Order extends Response
 {
     /**

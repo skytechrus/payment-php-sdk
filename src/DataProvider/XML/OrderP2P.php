@@ -1,18 +1,22 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: arevkina
- * Date: 12.10.2017
- * Time: 10:30
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
  */
 
 namespace Skytech\DataProvider\XML;
 
+use Skytech\Operation\Operation;
 use XMLWriter;
 
-class OrderP2P extends \Skytech\DataProvider
+/**
+ * Class OrderP2P
+ *
+ * @package Skytech\DataProvider\XML
+ */
+class OrderP2P extends \Skytech\DataProvider\DataProvider
 {
     use OrderResponse;
+
     /**
      * DataOrderp2P constructor.
      *
@@ -22,11 +26,19 @@ class OrderP2P extends \Skytech\DataProvider
     {
         $this->operation=$operation;
     }
+
+    /**
+     * @return string
+     */
     public function getRequestData()
     {
         $xmlRequestdata = $this->makeXMLCreateOrder();
         return $xmlRequestdata;
     }
+
+    /**
+     * @return string
+     */
     public function makeXMLCreateOrder()
     {
         $xmlRequest = new XMLWriter(); //= xmlwriter_open_memory;
@@ -37,7 +49,7 @@ class OrderP2P extends \Skytech\DataProvider
         $xmlRequest->writeElement('Operation','CreateOrder');          //<Operation>CreateOrder</Operation>
         $xmlRequest->writeElement('Language', $this->operation->order->getLanguage());        //<Language></Language>
         $xmlRequest->startElement('Order');                                       //<Order>
-        $xmlRequest->writeElement('OrderType', $this->operation->order->getOperationtype());//<OrderType></OrderType>
+        $xmlRequest->writeElement('OrderType', $this->operation->order->getOperationType());//<OrderType></OrderType>
         $xmlRequest->writeElement('Merchant', $this->operation->order->getMerchantid());           //<Merchant></Merchant>
         $xmlRequest->writeElement('Amount',$this->operation->order->getAmount());                 //<Amount></Amount>
         $xmlRequest->writeElement('Currency',$this->operation->order->getCurrency());              //<Currency></Currency>
@@ -59,6 +71,10 @@ class OrderP2P extends \Skytech\DataProvider
         $xml = $xmlRequest->outputMemory(true);
         return $xml;
     }
+
+    /**
+     * @return string
+     */
     public function GetAddParams()
     {
         $xml_add_par =  new XMLWriter();
@@ -81,6 +97,11 @@ class OrderP2P extends \Skytech\DataProvider
         $xml = $xml_add_par->outputMemory(true);
         return $xml;
     }
+
+    /**
+     * @param $xmlresponse
+     * @return Operation
+     */
     public function getResponseData($xmlresponse)
     {
         $this->getOrderResponseData($xmlresponse,$this->operation);

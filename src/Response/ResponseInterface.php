@@ -1,15 +1,20 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: arevkina
- * Date: 27.10.2017
- * Time: 14:25
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
  */
 
 namespace Skytech\Response;
 
-
+/**
+ * Interface ResponseInterface
+ *
+ * @package Skytech\Response
+ */
 interface ResponseInterface
 {
+    /**
+     * @param $fieldName
+     * @return mixed
+     */
     public function get($fieldName);
 }

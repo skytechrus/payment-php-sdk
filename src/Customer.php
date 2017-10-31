@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: arevkina
- * Date: 06.10.2017
- * Time: 12:50
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
  */
 
 namespace Skytech;

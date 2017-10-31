@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: arevkina
- * Date: 27.10.2017
- * Time: 14:31
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
  */
 
 namespace Skytech\Response;
@@ -11,6 +8,11 @@ namespace Skytech\Response;
 use Skytech\Config\Config;
 use Skytech\Response\XML\Response;
 
+/**
+ * Class ResponseStrategy
+ *
+ * @package Skytech\Response
+ */
 class ResponseStrategy implements ResponseInterface
 {
     /**

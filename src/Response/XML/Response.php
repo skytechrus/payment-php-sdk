@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: arevkina
- * Date: 27.10.2017
- * Time: 14:33
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
  */
 
 namespace Skytech\Response\XML;
@@ -11,6 +8,11 @@ namespace Skytech\Response\XML;
 use SimpleXMLElement;
 use Skytech\Response\ResponseInterface;
 
+/**
+ * Class Response
+ *
+ * @package Skytech\Response\XML
+ */
 class Response implements ResponseInterface
 {
     /**
@@ -20,6 +22,7 @@ class Response implements ResponseInterface
 
     /**
      * Response constructor.
+     *
      * @param $responseBody
      */
     public function __construct($responseBody)
@@ -28,7 +31,7 @@ class Response implements ResponseInterface
     }
 
     /**
-     * @param string $fieldName
+     * @param $fieldName
      * @return null|string
      */
     public function get($fieldName)

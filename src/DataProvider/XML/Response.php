@@ -1,13 +1,20 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
- * Author: Sergey Ivanov.
- * Author: Elena Arevkina.
  */
 
 namespace Skytech\DataProvider\XML;
 
+/**
+ * Interface Response
+ *
+ * @package Skytech\DataProvider\XML
+ */
 interface Response
 {
+    /**
+     * @param $fieldName
+     * @return mixed
+     */
     public function get($fieldName);
 }

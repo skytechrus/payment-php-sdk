@@ -1,13 +1,15 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: arevkina
- * Date: 24.10.2017
- * Time: 16:24
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
  */
 
 namespace Skytech\Response;
 
+/**
+ * Class OrderStatus
+ *
+ * @package Skytech\Response
+ */
 class OrderStatus extends Response
 {
     /**

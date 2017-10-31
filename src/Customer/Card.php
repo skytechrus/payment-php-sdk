@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: arevkina
- * Date: 06.10.2017
- * Time: 13:21
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
  */
 
 namespace Skytech\Customer;
@@ -14,33 +11,28 @@ use LengthException;
 use function strlen;
 use UnexpectedValueException;
 
+/**
+ * Class Card
+ *
+ * @package Skytech\Customer
+ */
 class Card
 {
     /**
-     * @var string
+     * @var
      */
-    private $pan;
-    /**
-     * @var mixed
-     */
-    private $expMonth;
-    /** @var  mixed */
-    private $expYear;
+    private $pan; /** @var  string */
+    private $expireMonth;
     /** @var  string */
-    private $brand;
-    /** @var  string */
+    private $expyear; /** @var  string */
+    private $brand;  /** @var  string */
     private $cardUID;
 
+    /**
+     * Card constructor.
+     */
     public function __construct()
     {
-    }
-
-    /**
-     * @return string
-     */
-    public function getPan()
-    {
-        return $this->pan;
     }
 
     /**
@@ -52,11 +44,11 @@ class Card
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getBrand()
+    public function getPan()
     {
-        return $this->brand;
+        return $this->pan;
     }
 
     /**
@@ -65,6 +57,14 @@ class Card
     public function setBrand($brand)
     {
         $this->brand = $brand;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBrand()
+    {
+        return $this->brand;
     }
 
     /**
@@ -82,62 +82,59 @@ class Card
     {
         $this->cardUID = $cardUID;
     }
+    /**
+     * @param string $expireMonth
+     */
+    public function setExpireMonth($expireMonth)
+    {
+        if (!is_numeric($expireMonth)) {
+            throw new InvalidArgumentException('Invalid month');
+        }
+        if ($expireMonth > 12 or $expireMonth == 0) {
+            throw new UnexpectedValueException('Invalid month');
+        }
+        $this->expireMonth = $expireMonth;
+    }
 
     /**
      * @return string
      */
     public function getExpDate()
     {
-        return $this->expYear . $this->expMonth;
+        return $this->expyear . $this->expireMonth;
     }
-
     /**
      * @return string
      */
-    public function getExpMonth()
+    public function getExpireMonth()
     {
-        return $this->expMonth;
+        return $this->expireMonth;
     }
-
     /**
-     * @param string $expMonth
+     * @param integer $expireYear
      */
-    public function setExpMonth($expMonth)
+    public function setExpireYear($expireYear)
     {
-        if (!is_numeric($expMonth)) {
-            throw new InvalidArgumentException('Invalid month');
-        }
-        if ($expMonth > 12 or $expMonth == 0) {
-            throw new UnexpectedValueException('Invalid month');
-        }
-        $this->expMonth = $expMonth;
-    }
-
-    /**
-     * @return string
-     */
-    public function getExpYear()
-    {
-        return $this->expYear;
-    }
-
-    /**
-     * @param mixed $expYear
-     */
-    public function setExpYear($expYear)
-    {
-        if (!is_numeric($expYear)) {
+        if (!is_numeric($expireYear)) {
             throw new InvalidArgumentException('Invalid card expiration year');
         }
-        if ($expYear < date("Y") or $expYear > (date("Y") + 10)) {
+        if ($expireYear < date("Y") or $expireYear > (date("Y") + 10)) {
             throw new UnexpectedValueException('Invalid card expiration year');
         }
 
-        $this->expYear = $expYear;
+        $this->expyear = $expireYear;
     }
 
     /**
-     * @param string $pan
+     * @return string
+     */
+    public function getExpireYear()
+    {
+        return $this->expyear;
+    }
+
+    /**
+     * @param $pan
      * @return bool
      */
     public function validatePan($pan)

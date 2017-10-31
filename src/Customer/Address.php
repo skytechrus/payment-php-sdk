@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: arevkina
- * Date: 06.10.2017
- * Time: 13:00
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
  */
 
 namespace Skytech\Customer;
@@ -16,29 +13,35 @@ use function preg_match;
 use UnexpectedValueException;
 use League;
 
+/**
+ * Class Address
+ *
+ * @package Skytech\Customer
+ */
 class Address
 {
     /**
-     * @var string
+     * @var
      */
     public $addressline;
     /**
-     * @var int
+     * @var
      */
     private $country;
-    /**
-     * @var  string
-     */
+    /** @var  mixed */
     private $region;
     /**
-     * @var string
+     * @var
      */
     private $city;
     /**
-     * @var mixed
+     * @var
      */
     private $zip;
 
+    /**
+     * Address constructor.
+     */
     public function __construct()
     {
     }
@@ -93,8 +96,9 @@ class Address
     {
         return $this->city;
     }
+
     /**
-     * @param string $city
+     * @param mixed $city
      */
     public function setCity($city)
     {
@@ -103,6 +107,7 @@ class Address
         }
         $this->city = $city;
     }
+
     /**
      * @return mixed
      */
@@ -123,7 +128,7 @@ class Address
     }
 
     /**
-     * @return string
+     * @return mixed
      */
     public function getAddressline()
     {
@@ -131,7 +136,7 @@ class Address
     }
 
     /**
-     * @param string $addressline
+     * @param mixed $addressline
      */
     public function setAddressline($addressline)
     {
