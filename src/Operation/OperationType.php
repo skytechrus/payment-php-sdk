@@ -16,4 +16,7 @@ class OperationType
      *
      */
     const PURCHASE = "Purchase";
+    const REVERSE = "Reverse";
+    const REFUND = "Refund";
+    const ORDERSTATUS = "OrderStatus";
 }
