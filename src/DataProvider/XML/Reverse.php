@@ -5,7 +5,7 @@
 
 namespace Skytech\DataProvider\XML;
 
-use Sabre\Xml\Service;
+use Skytech\Service;
 use Skytech\DataProvider\DataProvider;
 use Skytech\Operation\Operation;
 
