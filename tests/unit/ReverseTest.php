@@ -41,27 +41,28 @@ class ReverseTest extends \Codeception\Test\Unit
     protected function _after()
     {
     }
-
+//TODO
     // tests
     public function testSomeFeature()
     {
-        $xmlExpect = '<?xml version=”1.0” encoding=”UTF-8”?>
+        $xmlExpect = '<?xml version="1.0" encoding="UTF-8"?>
 <TKKPG>
-<Request>
-<Operation>Reverse</Operation>
-<Language>RU</Language>
-<Order>
-<Merchant>1</Merchant>
-<OrderID>1</OrderID>
-</Order>
-<Amount>100</Amount>
-<Description>a</Description>
-<SessionID></SessionID>
-<PAN></PAN>
-<CardUID></CardUID>
-<TranId></TranId>
-</Request>
-</TKKPG>';
+ <Request>
+  <Operation>Reverse</Operation>
+  <Language>ru</Language>
+  <Order>
+   <Merchant>1</Merchant>
+   <OrderID>1</OrderID>
+  </Order>
+  <Amount>100</Amount>
+  <Description>a</Description>
+  <SessionID></SessionID>
+  <PAN></PAN>
+  <CardUID></CardUID>
+  <TranId></TranId>
+ </Request>
+</TKKPG>
+';
         $reverseOperation = new Reverse($this->operation);
         $xml = $reverseOperation->getRequestData();
         $this->assertEquals($xmlExpect, $xml);

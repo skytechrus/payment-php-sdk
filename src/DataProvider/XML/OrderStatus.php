@@ -5,9 +5,9 @@
 
 namespace Skytech\DataProvider\XML;
 
-use SimpleXMLElement;
-use Skytech\DataProvider;
-use XMLWriter;
+use Skytech\Operation\Operation;
+use Skytech\Service;
+use Skytech\DataProvider\DataProvider;
 
 class OrderStatus extends DataProvider
 {
@@ -20,43 +20,39 @@ class OrderStatus extends DataProvider
     {
         $this->operation=$operation;
     }
+
+    /**
+     * @return string
+     */
     public function getRequestData()
     {
-        $xmlRequestData = $this->makeXMLgetOrderStatus();
+        $xmlRequestData = $this->orderStatusRequest();
         return $xmlRequestData;
     }
 
-    public function getResponseData($xmlResponse)
+    /**
+     * @return string
+     */
+    public function orderStatusRequest()
     {
-        $this->getOrderStatusResp($xmlResponse);
-        return $this->operation;
-    }
-    public function makeXMLgetOrderStatus()
-    {
-        $xmlRequest = new XMLWriter(); //= xmlwriter_open_memory;
-        $xmlRequest->openMemory();
-        $xmlRequest->startDocument('1.0', 'UTF-8');
-        $xmlRequest->startElement('TKKPG'); //<TKKPG>
-        $xmlRequest->startElement('Request');//<Request>
-        $xmlRequest->writeElement('Operation','GetOrderStatus');          //<Operation>GetOrderStatus</Operation>
-        $xmlRequest->writeElement('Language', $this->operation->order->getLanguage());        //<Language></Language>
-        $xmlRequest->startElement('Order');                                       //<Order>
-        $xmlRequest->writeElement('Merchant', $this->operation->order->getMerchantId());     //<Merchant></Merchant>
-        $xmlRequest->writeElement('OrderID', $this->operation->order->getOrderId());          //<OrderID></OrderID>
-        $xmlRequest->endElement();                                                     //</Order>
-        $xmlRequest->writeElement('SessionID', $this->operation->order->getSessionId());     //<SessionID></SessionID>
-        $xmlRequest->endElement(); //</Request>
-        $xmlRequest->endElement();//</TKKPG>
-        $xml = $xmlRequest->outputMemory(true);
-        return $xml;
-    }
-    public function getOrderStatusResp($xmlresponse)
-    {
-        $crordresp = new SimpleXMLElement($xmlresponse);
-        $this->operation->order->SetOperation($crordresp->xpath('TKKPG/Response/Operation'));
-        $this->operation->order->setStatus($crordresp->xpath('TKKPG/Response/Status'));
-        $this->operation->order->setOrderId($crordresp->xpath('TKKPG/Response/Order/OrderId'));
-        $this->operation->order->setOrderStatus($crordresp->xpath('TKKPG/Response/Order/OrderStatus'));
-        ;
+        $service = new Service();
+
+        $xml = $service->write("TKKPG", [
+            "Request" => [
+                "Operation" => "GetOrderStatus",
+                "Language" => $this->operation->merchant->getLanguage(),
+                "Order" => [
+                    "Merchant" => $this->operation->merchant->getId(),
+                    "OrderID" => $this->operation->order->getOrderId()
+                ],
+                "SessionID" => $this->operation->order->getSessionId()
+            ]
+        ]);
+
+        if ($xml) {
+            return $xml;
+        } else {
+            throw new \UnexpectedValueException("XML is not generated");
+        }
     }
 }

@@ -47,6 +47,9 @@ class DataOperationStrategy extends DataProvider\DataOperationStrategy
             case OperationType::REVERSE:
                 $dataProvider = new Reverse($operation);
                 break;
+            case OperationType::ORDERSTATUS:
+                $dataProvider = new OrderStatus($operation);
+                break;
             default:
                 throw new \InvalidArgumentException("Unknown operation type");
         }
