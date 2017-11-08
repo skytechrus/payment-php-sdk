@@ -9,6 +9,7 @@ use Skytech\Customer;
 use Skytech\Customer\Card;
 use Skytech\Merchant;
 use Skytech\Order;
+use Respect\Validation\Validator as v;
 
 /**
  * Class Operation
@@ -27,6 +28,8 @@ class Operation
     public $recipient;
     /** @var Merchant $merchant */
     public $merchant;
+    private $refundAmount;
+    private $refundCurrency;
 
     /**
      * Operation constructor.
@@ -89,5 +92,38 @@ class Operation
     public function setMerchant(Merchant $merchant)
     {
         $this->merchant = $merchant;
+    }
+
+    /**
+     * @param $amount
+     */
+    public function setRefundAmount($amount)
+    {
+        if (!v::numeric()->positive()->validate($amount)) {
+            throw new \InvalidArgumentException("Amount is not numeric");
+        }
+        $amount *= 100;
+        $this->refundAmount = $amount;
+    }
+
+    /**
+     * @param $currency
+     */
+    public function setRefundCurrency($currency)
+    {
+        if (!v::numeric()->length(3, 3)->positive()->validate($currency)) {
+            throw new \InvalidArgumentException('Currency not in ISO 4217 numeric-3 format');
+        }
+        $this->refundCurrency = (int)$currency;
+    }
+
+    public function getRefundAmount()
+    {
+        return $this->refundAmount;
+    }
+
+    public function getRefundCurrency()
+    {
+        return $this->refundCurrency;
     }
 }
