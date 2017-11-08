@@ -7,7 +7,7 @@ class ResponseOrderInformationTest extends \Codeception\Test\Unit
      */
     protected $tester;
     /**
-     * @var Skytech\Response\XML\Response
+     * @var Skytech\Response\XML\Provider
      */
     private $response;
 
@@ -20,7 +20,7 @@ class ResponseOrderInformationTest extends \Codeception\Test\Unit
     {
         $filePath = 'C:\work\Project_php\bitrix\payment-php-sdk\tests\_support\xml\OrderInformation.xml';
         $fileData = $this->loadFile($filePath);
-        $this->response = new Skytech\Response\XML\Response($fileData);
+        $this->response = new Skytech\Response\XML\Provider($fileData);
     }
 
     protected function _after()

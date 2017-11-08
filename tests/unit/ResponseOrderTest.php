@@ -36,7 +36,7 @@ class ResponseOrderTest extends \Codeception\Test\Unit
     public function testStatusFeature($fileName, $status)
     {
         $response = $this->loadFileData($fileName);
-        $this->response =  new Skytech\Response\XML\Response($response);
+        $this->response =  new Skytech\Response\XML\Provider($response);
         $this->assertEquals($status, $this->response->get('Status'));
     }
 
@@ -48,7 +48,7 @@ class ResponseOrderTest extends \Codeception\Test\Unit
     public function testOrderId($fileName, $orderId)
     {
         $response = $this->loadFileData($fileName);
-        $this->response =  new Skytech\Response\XML\Response($response);
+        $this->response =  new Skytech\Response\XML\Provider($response);
         $this->assertEquals($orderId, $this->response->get('OrderID'));
     }
 
@@ -60,7 +60,7 @@ class ResponseOrderTest extends \Codeception\Test\Unit
     public function testURL($fileName, $url)
     {
         $response = $this->loadFileData($fileName);
-        $this->response =  new Skytech\Response\XML\Response($response);
+        $this->response =  new Skytech\Response\XML\Provider($response);
         $this->assertEquals($url, $this->response->get('URL'));
     }
 
