@@ -31,18 +31,9 @@ class OrderPurchase extends \Skytech\DataProvider\DataProvider
     }
 
     /**
-     * @return string
-     */
-    public function getRequestData()
-    {
-        $xmlRequestData = $this->getRequestPayload();
-        return $xmlRequestData;
-    }
-
-    /**
      * @return string Get request xml string for purchase
      */
-    public function getRequestPayload()
+    public function getRequestData()
     {
         $service = new \Sabre\Xml\Service();
         $xml = $service->write("TKKPG", [
