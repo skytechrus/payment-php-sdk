@@ -53,6 +53,9 @@ class DataOperationStrategy extends DataProvider\DataOperationStrategy
             case OperationType::ORDER_INFORMATION:
                 $dataProvider = new OrderInformation($operation);
                 break;
+            case OperationType::REFUND:
+                $dataProvider = new Refund($operation);
+                break;
             default:
                 throw new \InvalidArgumentException("Unknown operation type");
         }
