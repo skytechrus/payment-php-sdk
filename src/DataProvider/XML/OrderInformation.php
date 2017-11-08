@@ -5,25 +5,25 @@
 
 namespace Skytech\DataProvider\XML;
 
+use Skytech\DataProvider\DataProvider;
 use Skytech\Operation\Operation;
 use Skytech\Service;
-use Skytech\DataProvider\DataProvider;
 
 /**
- * Class OrderStatus
+ * Class OrderInformation
  *
  * @package Skytech\DataProvider\XML
  */
-class OrderStatus extends DataProvider
+class OrderInformation extends DataProvider
 {
-
     /**
-    * XMLDataGetOrderStatus constructor.
-    * @param Operation $operation
-    */
+     * OrderInfo constructor.
+     *
+     * @param Operation $operation
+     */
     public function __construct(Operation $operation)
     {
-        $this->operation=$operation;
+        $this->operation = $operation;
     }
 
     /**
@@ -31,26 +31,28 @@ class OrderStatus extends DataProvider
      */
     public function getRequestData()
     {
-        $xmlRequestData = $this->getOrderStatusRequest();
+        $xmlRequestData = $this->getOrderInformation();
         return $xmlRequestData;
     }
 
     /**
      * @return string
      */
-    public function getOrderStatusRequest()
+    protected function getOrderInformation()
     {
         $service = new Service();
-
         $xml = $service->write("TKKPG", [
             "Request" => [
-                "Operation" => "GetOrderStatus",
+                "Operation" => "GetOrderInformation",
                 "Language" => $this->operation->merchant->getLanguage(),
                 "Order" => [
                     "Merchant" => $this->operation->merchant->getId(),
                     "OrderID" => $this->operation->order->getOrderId()
                 ],
-                "SessionID" => $this->operation->order->getSessionId()
+                "SessionID" => $this->operation->order->getSessionId(),
+                "ShowParams" => "true",
+                "ShowOperations" => "true",
+                "ClassicView" => "true"
             ]
         ]);
 

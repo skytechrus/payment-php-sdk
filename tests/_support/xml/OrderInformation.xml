@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TKKPG>
+    <Response>
+        <Operation>GetOrderInformation</Operation>
+        <Status>00</Status>
+        <Order>
+            <row>
+                <id>9074</id>
+                <SessionID>B5EF753375C69B3A30700A82A43811E8</SessionID>
+                <createDate>2014-02-14 14:15:37</createDate>
+                <lastUpdateDate>2014-02-14 14:33:26</lastUpdateDate>
+                <payDate>null</payDate>
+                <MerchantID>POS_1</MerchantID>
+                <Amount>2500</Amount>
+                <Currency>840</Currency>
+                <OrderLanguage>RU</OrderLanguage>
+                <Description>Purchase</Description>
+                <ApproveURL>/testshopPageApprove.jsp</ApproveURL>
+                <CancelURL>/testshopPageCancel.jsp</CancelURL>
+                <DeclineURL>/testshopPageReturn.jsp</DeclineURL>
+                <Orderstatus>EXPIRED</Orderstatus>
+                <Receipt>4</Receipt>
+                <twoId>7014</twoId>
+                <RefundAmount>0</RefundAmount>
+                <RefundCurrency>null</RefundCurrency>
+                <ExtSystemProcess>0</ExtSystemProcess>
+                <OrderType>Purchase</OrderType>
+                <Fee>0</Fee>
+                <RefundDate>0000-00-00 00:00:00</RefundDate>
+                <TWODate>null</TWODate>
+                <TWOTime>null</TWOTime>
+                <OrderParams>
+                    <row>
+                        <PARAMNAME>TranAddendums</PARAMNAME>
+                        <VAL>PFRyYW5BZGRlbmR1bXM+DQogIDxFeHQ+dGV4dDwvRXh0Pg0KPC9UcmFuQWRkZW5kdW1zPg0K</VAL>
+                    </row>
+                </OrderParams>
+                <OrderOperations>
+                    <row>
+                        <id>11721</id>
+                        <PackageId>1</PackageId>
+                        <createDate>2014-02-14 14:15:37</createDate>
+                        <MerchantID>POS_1</MerchantID>
+                        <TERMINALID>POS_1</TERMINALID>
+                        <OperType>0</OperType>
+                        <OperName>CreateOrder</OperName>
+                        <OrderId>9074</OrderId>
+                        <Amount>0</Amount>
+                        <Currency></Currency>
+                        <Approval></Approval>
+                        <twoId></twoId>
+                    </row>
+                </OrderOperations>
+            </row>
+        </Order>
+    </Response>
+</TKKPG>

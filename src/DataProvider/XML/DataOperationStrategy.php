@@ -50,6 +50,9 @@ class DataOperationStrategy extends DataProvider\DataOperationStrategy
             case OperationType::ORDERSTATUS:
                 $dataProvider = new OrderStatus($operation);
                 break;
+            case OperationType::ORDER_INFORMATION:
+                $dataProvider = new OrderInformation($operation);
+                break;
             default:
                 throw new \InvalidArgumentException("Unknown operation type");
         }

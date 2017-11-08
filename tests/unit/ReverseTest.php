@@ -23,6 +23,7 @@ class ReverseTest extends \Codeception\Test\Unit
         $order->setAmount(100);
         $order->setOrderDate($date);
         $order->setDescription('a');
+        $order->setSessionId('8768767656747456A5D0D');
 
         $merchant = new \Skytech\Merchant();
         $merchant->setMerchantId(1);
@@ -56,15 +57,12 @@ class ReverseTest extends \Codeception\Test\Unit
   </Order>
   <Amount>100</Amount>
   <Description>a</Description>
-  <SessionID></SessionID>
-  <PAN></PAN>
-  <CardUID></CardUID>
-  <TranId></TranId>
+  <SessionID>8768767656747456A5D0D</SessionID>
  </Request>
 </TKKPG>
 ';
         $reverseOperation = new Reverse($this->operation);
-        $xml = $reverseOperation->getRequestData();
-        $this->assertEquals($xmlExpect, $xml);
+        $xmlActual = $reverseOperation->getRequestData();
+        $this->assertEquals($xmlExpect, $xmlActual);
     }
 }

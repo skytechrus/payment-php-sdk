@@ -37,9 +37,9 @@ class OrderStatusTest extends \Codeception\Test\Unit
     protected function _before()
     {
         $order = new \Skytech\Order();
-        $date = new DateTime();
         $order->setOrderId(1);
         $order->setSessionId('05460005547444');
+
         $merchant = new \Skytech\Merchant();
         $merchant->setMerchantId('POS_IKEA_2');
         $merchant->setLanguage("ru");

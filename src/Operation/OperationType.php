@@ -19,4 +19,5 @@ class OperationType
     const REVERSE = "Reverse";
     const REFUND = "Refund";
     const ORDERSTATUS = "OrderStatus";
+    const ORDER_INFORMATION = "OrderInformation";
 }

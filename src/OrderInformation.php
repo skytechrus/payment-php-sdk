@@ -2,20 +2,21 @@
 /**
  * Created by PhpStorm.
  * User: arevkina
- * Date: 02.11.2017
- * Time: 16:51
+ * Date: 07.11.2017
+ * Time: 14:31
  */
 
 namespace Skytech;
 
+use Skytech\DataProvider\DataProviderStrategy;
 use Skytech\Operation\OperationType;
 
 /**
- * Class OrderStatus
+ * Class OrderInformation
  *
  * @package Skytech
  */
-class OrderStatus
+class OrderInformation
 {
     /**
      * @var Operation\Operation
@@ -23,7 +24,7 @@ class OrderStatus
     private $operation;
 
     /**
-     * OrderStatus constructor.
+     * OrderInformation constructor.
      * @param Order $order
      * @param Merchant $merchant
      * @param Customer $customer
@@ -34,34 +35,34 @@ class OrderStatus
     }
 
     /**
-     * @return Response\OrderStatus
+     * @return Response\OrderInformation
      * @throws \Exception
      */
     public function perform()
     {
-        $response = $this->send(OperationType::ORDERSTATUS);
-        return new Response\OrderStatus($response);
+        $response = $this->send(OperationType::ORDER_INFORMATION);
+        return new Response\OrderInformation($response);
     }
 
     /**
-     * @param $operationType
+     * @param string $operationType
      * @return Response\ResponseStrategy
      * @throws \Exception
      */
     private function send($operationType)
     {
-        $data = $this->loadOrderStatus($operationType);
+        $data = $this->loadOrderInformation($operationType);
         $connector = new Connector($data);
         return $connector->sendRequest();
     }
 
     /**
-     * @param $operationType
-     * @return mixed
+     * @param string $operationType
+     * @return DataProviderStrategy
      */
-    private function loadOrderStatus($operationType)
+    private function loadOrderInformation($operationType)
     {
-        $data = new DataProvider\DataProviderStrategy($operationType, $this->operation);
+        $data = new DataProviderStrategy($operationType, $this->operation);
         return $data->getPayload();
     }
 }
