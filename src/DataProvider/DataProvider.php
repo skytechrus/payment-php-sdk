@@ -18,6 +18,16 @@ abstract class DataProvider
     protected $operation;
 
     /**
+     * DataProvider constructor.
+     *
+     * @param \Skytech\Operation\Operation $operation
+     */
+    public function __construct(\Skytech\Operation\Operation $operation)
+    {
+        $this->operation = $operation;
+    }
+
+    /**
      * @return mixed
      */
     abstract public function getRequestData();
