@@ -1,4 +1,7 @@
 <?php
+/**
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ */
 
 class ResponseOrderInformationTest extends \Codeception\Test\Unit
 {
@@ -18,7 +21,7 @@ class ResponseOrderInformationTest extends \Codeception\Test\Unit
     }
     protected function _before()
     {
-        $filePath = 'C:\work\Project_php\bitrix\payment-php-sdk\tests\_support\xml\OrderInformation.xml';
+        $filePath = '.\tests\_support\xml\OrderInformation.xml';
         $fileData = $this->loadFile($filePath);
         $this->response = new Skytech\Response\XML\Response($fileData);
     }

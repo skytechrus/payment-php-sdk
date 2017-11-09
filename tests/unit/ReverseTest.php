@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ */
 
 use Skytech\DataProvider\XML\Reverse;
 use Skytech\Operation\Operation;
@@ -46,7 +48,8 @@ class ReverseTest extends \Codeception\Test\Unit
     // tests
     public function testSomeFeature()
     {
-        $xmlExpect = '<?xml version="1.0" encoding="UTF-8"?>
+        $xmlExpect = <<< XML
+<?xml version="1.0" encoding="UTF-8"?>
 <TKKPG>
  <Request>
   <Operation>Reverse</Operation>
@@ -60,7 +63,8 @@ class ReverseTest extends \Codeception\Test\Unit
   <SessionID>8768767656747456A5D0D</SessionID>
  </Request>
 </TKKPG>
-';
+
+XML;
         $reverseOperation = new Reverse($this->operation);
         $xmlActual = $reverseOperation->getRequestData();
         $this->assertEquals($xmlExpect, $xmlActual);

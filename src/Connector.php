@@ -26,9 +26,8 @@ class Connector
      *
      * @param string $data
      */
-    public function __construct($data)
+    public function __construct()
     {
-        $this->orderdata = $data;
     }
 
     /**

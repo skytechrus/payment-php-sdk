@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ */
 
 use Skytech\Response\Order;
 
@@ -67,31 +69,32 @@ class ResponseOrderTest extends \Codeception\Test\Unit
     public function provideData()
     {
         return [
-            ['C:\work\Project_php\bitrix\payment-php-sdk\tests\_support\xml\Response1.xml',   '00'],
-            ['C:\work\Project_php\bitrix\payment-php-sdk\tests\_support\xml\Response2.xml',   '30']
+            ['./tests/_support/xml/Response1.xml', '00'],
+            ['./tests/_support/xml/Response2.xml', '30']
         ];
     }
 
     public function provideDataOrderId()
     {
         return [
-            ['C:\work\Project_php\bitrix\payment-php-sdk\tests\_support\xml\Response1.xml', '828'],
-            ['C:\work\Project_php\bitrix\payment-php-sdk\tests\_support\xml\Response3.xml', '999']
+            ['./tests/_support/xml/Response1.xml', '828'],
+            ['./tests/_support/xml/Response3.xml', '999']
         ];
     }
 
     public function provideDataURL()
     {
         return [
-            ['C:\work\Project_php\bitrix\payment-php-sdk\tests\_support\xml\Response1.xml', 'PayGateURL'],
-            ['C:\work\Project_php\bitrix\payment-php-sdk\tests\_support\xml\Response3.xml', 'PayGateURL2']
+            ['./tests/_support/xml/Response1.xml', 'PayGateURL'],
+            ['./tests/_support/xml/Response3.xml', 'PayGateURL2']
         ];
     }
 
     public function provideDataSessionId()
     {
         return [
-            ['C:\work\Project_php\bitrix\payment-php-sdk\tests\_support\xml\Response1.xml',
+            [
+                './tests/_support/xml/Response1.xml',
                 'ECDE79578768ECFBF2897A0F44CC0CEF']
         ];
     }

@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ */
 
 use Skytech\DataProvider\XML\OrderInformation;
 
@@ -36,7 +38,8 @@ class OrderInformationTest extends \Codeception\Test\Unit
     // tests
     public function testSomeFeature()
     {
-        $expectedRequest ='<?xml version="1.0" encoding="UTF-8"?>
+        $expectedRequest = <<< XML
+<?xml version="1.0" encoding="UTF-8"?>
 <TKKPG>
  <Request>
   <Operation>GetOrderInformation</Operation>
@@ -51,7 +54,8 @@ class OrderInformationTest extends \Codeception\Test\Unit
   <ClassicView>true</ClassicView>
  </Request>
 </TKKPG>
-';
+
+XML;
         $actualRequest = $this->request->getRequestData();
         $this->assertEquals($expectedRequest, $actualRequest);
     }

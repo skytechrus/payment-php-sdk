@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ */
 
 class ResponseOrderStatusTest extends \Codeception\Test\Unit
 {
@@ -36,7 +38,7 @@ class ResponseOrderStatusTest extends \Codeception\Test\Unit
 
     protected function _before()
     {
-        $fileName = 'C:\work\Project_php\bitrix\payment-php-sdk\tests\_support\xml\OrderStatus.xml';
+        $fileName = './tests/_support/xml/OrderStatus.xml';
         $response = $this->loadFileData($fileName);
         $this->response = new Skytech\Response\XML\Response($response);
     }

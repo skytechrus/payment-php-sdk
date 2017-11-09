@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ */
 
 class PaymentTest extends \Codeception\Test\Unit
 {
@@ -14,7 +16,7 @@ class PaymentTest extends \Codeception\Test\Unit
 
     public function testSomeFeature()
     {
-        $this->assertEquals("доделать", $this->payment->purchase());
+        $this->assertEquals("828", $this->payment->purchase()->getOrderId());
     }
 
     protected function _before()
@@ -45,7 +47,33 @@ class PaymentTest extends \Codeception\Test\Unit
         $customer->setEmail("test@test.com");
         $customer->setSessionId("asdf");
 
-        $this->payment = new \Skytech\Payment($order, $merchant, $customer);
+        $response = \Codeception\Util\Stub::make('\GuzzleHttp\Psr7\Response', array(
+            'getHeaderLine' => function () {
+                return 'application/xml';
+            },
+            'getBody' => function () {
+                return <<< XML
+<?xml version='1.0' encoding='UTF-8'?>
+<TKKPG>
+<Response>
+<Operation>CreateOrder</Operation>
+<Status>00</Status>
+<Order>
+<OrderID>828</OrderID>
+<SessionID>ECDE79578768ECFBF2897A0F44CC0CEF</SessionID>
+<URL>PayGateURL</URL>
+</Order>
+</Response>
+</TKKPG>
+XML;
+            }
+        ));
+        $connector = \Codeception\Util\Stub::make('Skytech\Connector', array(
+            'sendRequest' => function () use ($response) {
+                return new \Skytech\Response\ResponseStrategy($response);
+            }
+        ));
+        $this->payment = new \Skytech\Payment($order, $merchant, $customer, $connector);
     }
 
     // tests

@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ */
 
 use Skytech\Operation\Operation;
 
@@ -13,10 +15,11 @@ class OrderStatusTest extends \Codeception\Test\Unit
      * @var Operation
      */
     private $operation;
-    //TODO
+
     public function testSomeFeature()
     {
-        $xmlExpect = '<?xml version="1.0" encoding="UTF-8"?>
+        $xmlExpect = <<< XML
+<?xml version="1.0" encoding="UTF-8"?>
 <TKKPG>
  <Request>
   <Operation>GetOrderStatus</Operation>
@@ -28,7 +31,8 @@ class OrderStatusTest extends \Codeception\Test\Unit
   <SessionID>05460005547444</SessionID>
  </Request>
 </TKKPG>
-';
+
+XML;
         $orderStat = new \Skytech\DataProvider\XML\OrderStatus($this->operation);
         $requestLine = $orderStat->getRequestData();
         $this->assertEquals($xmlExpect, $requestLine);

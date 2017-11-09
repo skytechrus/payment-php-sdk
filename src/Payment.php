@@ -6,6 +6,7 @@
 namespace Skytech;
 
 use Skytech\Operation\OperationType;
+use Skytech\Response\Refund;
 use Skytech\Response\Response;
 
 /**
@@ -19,27 +20,28 @@ class Payment
      * @var Operation\Operation
      */
     private $operation;
+    private $connector;
 
     /**
      * Payment constructor.
      *
-     * @param $order
-     * @param $merchant
-     * @param $customer
+     * @param Order $order
+     * @param Merchant $merchant
+     * @param Customer $customer
+     * @param Connector $connector
      */
-    public function __construct(Order $order, Merchant $merchant, Customer $customer)
+    public function __construct(Order $order, Merchant $merchant, Customer $customer, Connector $connector)
     {
         $this->operation = new Operation\Operation($order, $customer, $merchant);
+        $this->connector = $connector;
     }
 
     /**
-     * @return  Response
+     * @return \Skytech\Response\Order
      */
     public function purchase()
     {
         $response = $this->send(OperationType::PURCHASE);
-//        return new Response((string)$response->getBody());
-//        return $response->getBody();
         return new \Skytech\Response\Order($response);
     }
 
@@ -50,8 +52,8 @@ class Payment
     private function send($operationType)
     {
         $data = $this->payload($operationType);
-        $connector = new \Skytech\Connector($data);
-        return $connector->sendRequest();
+        $this->connector->orderdata = $data;
+        return $this->connector->sendRequest();
     }
 
     /**
@@ -62,5 +64,18 @@ class Payment
     {
         $data = new \Skytech\DataProvider\DataProviderStrategy($operationType, $this->operation);
         return $data->getPayload();
+    }
+
+    /**
+     * @param $amount
+     * @param $currency
+     * @return Refund
+     */
+    public function refund($amount, $currency)
+    {
+        $this->operation->setRefundAmount($amount);
+        $this->operation->setRefundCurrency($currency);
+        $response = $this->send(OperationType::REFUND);
+        return new Refund($response);
     }
 }
