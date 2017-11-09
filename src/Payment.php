@@ -6,7 +6,10 @@
 namespace Skytech;
 
 use Skytech\Operation\OperationType;
+use Skytech\Response\OrderInformation;
+use Skytech\Response\OrderStatus;
 use Skytech\Response\Response;
+use Skytech\Response\Reverse;
 
 /**
  * Class Payment
@@ -41,6 +44,35 @@ class Payment
 //        return new Response((string)$response->getBody());
 //        return $response->getBody();
         return new \Skytech\Response\Order($response);
+    }
+
+    /**
+     * @return Reverse
+     * @throws \Exception
+     */
+    public function reverse()
+    {
+        $response = $this->send(OperationType::REVERSE);
+        return new Reverse($response);
+    }
+
+    /**
+     * @return OrderStatus
+     * @throws \Exception
+     */
+    public function orderStatus()
+    {
+        $response = $this->send(OperationType::ORDERSTATUS);
+        return new OrderStatus($response);
+    }
+
+    /**
+     * @return OrderInformation
+     */
+    public function orderInformation()
+    {
+        $response = $this->send(OperationType::ORDER_INFORMATION);
+        return new OrderInformation($response);
     }
 
     /**

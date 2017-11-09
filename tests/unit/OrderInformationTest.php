@@ -53,6 +53,7 @@ class OrderInformationTest extends \Codeception\Test\Unit
 </TKKPG>
 ';
         $actualRequest = $this->request->getRequestData();
-        $this->assertEquals($expectedRequest, $actualRequest);
+        $this->assertXmlStringEqualsXmlString($expectedRequest, $actualRequest);
+        //$this->assertXmlStringEqualsXmlString()
     }
 }

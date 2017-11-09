@@ -63,6 +63,6 @@ class ReverseTest extends \Codeception\Test\Unit
 ';
         $reverseOperation = new Reverse($this->operation);
         $xmlActual = $reverseOperation->getRequestData();
-        $this->assertEquals($xmlExpect, $xmlActual);
+        $this->assertXmlStringEqualsXmlString($xmlExpect, $xmlActual);
     }
 }
