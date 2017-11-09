@@ -6,8 +6,6 @@
 namespace Skytech;
 
 use Skytech\Operation\OperationType;
-use Skytech\Response\Refund;
-use Skytech\Response\Response;
 
 /**
  * Class Payment
@@ -46,32 +44,30 @@ class Payment
     }
 
     /**
-     * @return Reverse
-     * @throws \Exception
+     * @return \Skytech\Response\Reverse
      */
     public function reverse()
     {
         $response = $this->send(OperationType::REVERSE);
-        return new Reverse($response);
+        return new \Skytech\Response\Reverse($response);
     }
 
     /**
-     * @return OrderStatus
-     * @throws \Exception
+     * @return \Skytech\Response\OrderStatus
      */
     public function orderStatus()
     {
         $response = $this->send(OperationType::ORDERSTATUS);
-        return new OrderStatus($response);
+        return new \Skytech\Response\OrderStatus($response);
     }
 
     /**
-     * @return OrderInformation
+     * @return \Skytech\Response\OrderInformation
      */
     public function orderInformation()
     {
         $response = $this->send(OperationType::ORDER_INFORMATION);
-        return new OrderInformation($response);
+        return new \Skytech\Response\OrderInformation($response);
     }
 
     /**
@@ -98,13 +94,13 @@ class Payment
     /**
      * @param $amount
      * @param $currency
-     * @return Refund
+     * @return \Skytech\Response\Refund
      */
     public function refund($amount, $currency)
     {
         $this->operation->setRefundAmount($amount);
         $this->operation->setRefundCurrency($currency);
         $response = $this->send(OperationType::REFUND);
-        return new Refund($response);
+        return new \Skytech\Response\Refund($response);
     }
 }
