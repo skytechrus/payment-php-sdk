@@ -6,6 +6,7 @@
 namespace Skytech\Response;
 
 use Skytech\Config\Config;
+use Skytech\Response\XML\Provider;
 
 /**
  * Class ResponseStrategy
@@ -37,7 +38,7 @@ class ResponseStrategy implements ResponseInterface
     {
         switch ($this->getResponseFormat($response)) {
             case Config::XML:
-                $this->response = new XML\Response($response->getBody());
+                $this->response = new Provider($response->getBody());
                 break;
             default:
                 throw new \Exception('Invalid format');

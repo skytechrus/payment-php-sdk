@@ -10,7 +10,7 @@ class ResponseOrderStatusTest extends \Codeception\Test\Unit
      */
     protected $tester;
     /**
-     * @var Skytech\Response\XML\Response
+     * @var Skytech\Response\XML\Provider
      */
     protected $response;
 
@@ -40,7 +40,7 @@ class ResponseOrderStatusTest extends \Codeception\Test\Unit
     {
         $fileName = './tests/_support/xml/OrderStatus.xml';
         $response = $this->loadFileData($fileName);
-        $this->response = new Skytech\Response\XML\Response($response);
+        $this->response = new Skytech\Response\XML\Provider($response);
     }
 
     public function loadFileData($fileName)

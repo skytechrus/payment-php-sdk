@@ -13,7 +13,7 @@ use Skytech\Response\ResponseInterface;
  *
  * @package Skytech\Response\XML
  */
-class Response implements ResponseInterface
+class Provider implements ResponseInterface
 {
     /**
      * @var SimpleXMLElement
