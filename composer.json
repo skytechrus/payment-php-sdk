@@ -27,7 +27,8 @@
     "sebastian/phpdcd": "^1.0",
     "phploc/phploc": "^4.0",
     "sebastian/phpcpd": "^3.0",
-    "consolidation/robo": "^1.0.0"
+    "consolidation/robo": "^1.0.0",
+    "apigen/apigen": "dev-master"
   },
   "autoload": {
     "psr-4": {"Skytech\\": "src/"}
