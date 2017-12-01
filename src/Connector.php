@@ -54,13 +54,13 @@ class Connector
             'allow_redirects' => [
                 'max' => 5,        // allow at most 5 redirects.
                 'strict' => true,      // use "strict" RFC compliant redirects.
-                'referer' => false,      // do not add a Referer header
+                'referer' => true,      // do not add a Referer header
                 'protocols' => ['https', 'http'], // only allow https URLs
                 //'on_redirect'     => $onRedirect,
-                'track_redirects' => true
+//                'track_redirects' => true
             ]
         ]);
-        return new Response\ResponseStrategy($response);
+        return new Response\ResponseStrategy($response->getBody());
     }
 
     /**
