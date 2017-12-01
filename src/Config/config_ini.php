@@ -8,5 +8,6 @@ return array(
     'testing' => true,
     'PROD' => array('hostname'=>'123.123.12.3',
                    'port'=>'1234'),
-    'TEST' => array('hostname'=>'https://mpi.skytecrussia.com')
+    'TEST' => array('hostname'=>'mpi.skytecrussia.com',
+                    'port'=>'443')
 );
