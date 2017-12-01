@@ -16,7 +16,7 @@ class RoboFile extends \Robo\Tasks
             ->suite('unit')
             ->xml()
             ->html()
-            ->run();
+        ->run();
     }
 
     public function version()
@@ -26,15 +26,16 @@ class RoboFile extends \Robo\Tasks
             ->run();
     }
 
-    public function repoDev()
+    /*
+     * @calls test:all*/
+    public function publishDev()
     {
         $this->taskGitStack()
-            ->stopOnFail()
-            ->push('origin', 'develop')
-            ->run();
+                ->stopOnFail()
+                ->push('origin', 'develop')->run();
     }
 
-    public function repoProd()
+    public function publishProd()
     {
         $this->taskGitStack()
             ->stopOnFail()
