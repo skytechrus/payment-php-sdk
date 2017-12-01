@@ -28,7 +28,7 @@ class Provider implements ResponseInterface
     public function __construct($responseBody)
     {
         try {
-            $this->xml = new SimpleXMLElement($responseBody);
+            $this->xml = new SimpleXMLElement($responseBody->xml());
         } catch (\Exception $e) {
             var_dump($responseBody);
         }
