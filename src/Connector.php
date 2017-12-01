@@ -49,7 +49,7 @@ class Connector
     private function getResponse($url, $body)
     {
         $client = new Client();
-        $response = $client->request('POST', $url, [
+        $response = $client->post($url, [
             'body' => $body,
             'allow_redirects' => [
                 'max' => 5,        // allow at most 5 redirects.

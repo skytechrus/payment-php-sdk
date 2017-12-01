@@ -25,7 +25,7 @@ class ResponseStrategy implements ResponseInterface
      * @param $response
      * @throws \Exception
      */
-    public function __construct(\GuzzleHttp\Psr7\Response $response)
+    public function __construct($response)
     {
         $this->loadResponse($response);
     }
@@ -34,15 +34,15 @@ class ResponseStrategy implements ResponseInterface
      * @param \GuzzleHttp\Psr7\Response $response
      * @throws \Exception
      */
-    private function loadResponse(\GuzzleHttp\Psr7\Response $response)
+    private function loadResponse($response)
     {
-        switch ($this->getResponseFormat($response)) {
-            case Config::XML:
+//        switch ($this->getResponseFormat($response)) {
+//            case Config::XML:
                 $this->response = new Provider($response->getBody());
-                break;
-            default:
-                throw new \Exception('Invalid format');
-        }
+//                break;
+//            default:
+//                throw new \Exception('Invalid format');
+//        }
     }
 
     /**
@@ -50,18 +50,18 @@ class ResponseStrategy implements ResponseInterface
      * @return string
      * @throws \Exception
      */
-    private function getResponseFormat(\GuzzleHttp\Psr7\Response $response)
+    private function getResponseFormat($response)
     {
-        switch ($response->getHeaderLine('Content-Type')) {
-            case 'application/json':
-                return Config::JSON;
-                break;
-            case 'application/xml':
+//        switch ($response->getHeaderLine('Content-Type')) {
+//            case 'application/json':
+//                return Config::JSON;
+//                break;
+//            case 'application/xml':
                 return Config::XML;
-                break;
-            default:
-                throw new \Exception('Invalid format');
-        }
+//                break;
+//            default:
+//                throw new \Exception('Invalid format');
+//        }
     }
 
     /**
