@@ -6,6 +6,7 @@
 namespace Skytech\DataProvider\XML;
 
 use Skytech\DataProvider\DataProvider;
+use Skytech\Service;
 
 /**
  * Class Refund
@@ -20,7 +21,7 @@ class Refund extends DataProvider
      */
     public function getRequestData()
     {
-        $service = new \Sabre\Xml\Service();
+        $service = new Service();
         $xml = $service->write("TKKPG", [
             "Request" => [
                 "Operation" => "Refund",
