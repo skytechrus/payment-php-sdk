@@ -5,9 +5,11 @@
 
 namespace Skytech;
 
+use Psr\Log\InvalidArgumentException;
 use Skytech\Config\Config;
 use GuzzleHttp\Client;
 use Skytech\DataProvider\DataProvider;
+use SplFileInfo;
 
 /**
  * Class Connector
@@ -20,6 +22,8 @@ class Connector
      * @var DataProvider
      */
     public $orderdata;
+    private $pathToCertFile;
+    private $certPassword;
 
     /**
      * Connector constructor.
@@ -49,7 +53,7 @@ class Connector
     private function getResponse($url, $body)
     {
         $client = new Client();
-        $response = $client->post($url, [
+        $options = [
             'body' => $body,
             'allow_redirects' => [
                 'max' => 5,        // allow at most 5 redirects.
@@ -59,8 +63,31 @@ class Connector
                 //'on_redirect'     => $onRedirect,
 //                'track_redirects' => true
             ]
-        ]);
+        ];
+
+        if($this->pathToCertFile) {
+            $options['cert'] = [$this->pathToCertFile, $this->certPassword];
+        }
+
+        $response = $client->post($url, $options);
         return new Response\ResponseStrategy($response);
+    }
+
+    /**
+     * @param $pathToCert
+     * @throws \Exception
+     */
+    public function setCert($pathToCert, $password)
+    {
+        $info = new SplFileInfo($pathToCert);
+        if(!$info->isFile()){
+            throw new \InvalidArgumentException('File not found');
+        }
+        if(!$info->isReadable()){
+            throw new \Exception('File not readable');
+        }
+        $this->pathToCertFile = $info->getRealPath();
+        $this->certPassword = $password;
     }
 
     /**
