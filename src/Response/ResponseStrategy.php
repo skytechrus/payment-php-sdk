@@ -52,7 +52,7 @@ class ResponseStrategy implements ResponseInterface
      */
     private function getResponseFormat($response)
     {
-        switch ($response->getHeaderLine('Content-Type')) {
+        switch ($response->getHeader('Content-Type')) {
             case 'application/json':
                 return Config::JSON;
                 break;
