@@ -24,6 +24,7 @@ class Connector
     public $orderdata;
     private $pathToCertFile;
     private $certPassword;
+    private $secureConnectionOnly = true;
 
     /**
      * Connector constructor.
@@ -57,11 +58,15 @@ class Connector
                 'max' => 5,        // allow at most 5 redirects.
                 'strict' => true,      // use "strict" RFC compliant redirects.
                 'referer' => true,      // do not add a Referer header
-                'protocols' => ['https', 'http'], // only allow https URLs
+                'protocols' => ['https'], // only allow https URLs
                 //'on_redirect'     => $onRedirect,
 //                'track_redirects' => true
             ]
         ];
+
+        if (!$this->secureConnectionOnly){
+            $options['protocols'] = ['https', 'http'];
+        }
 
         if($this->pathToCertFile) {
             $options['cert'] = [$this->pathToCertFile, $this->certPassword];
@@ -69,6 +74,11 @@ class Connector
 
         $response = $client->post($url, $options);
         return new Response\ResponseStrategy($response);
+    }
+
+    public function setUnsecuredConnection()
+    {
+        $this->secureConnectionOnly = false;
     }
 
     /**
