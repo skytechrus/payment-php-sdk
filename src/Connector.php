@@ -69,6 +69,8 @@ class Connector
             $options['cert'] = [$this->pathToCertFile, $this->certPassword];
         }
 
+        var_dump($options);
+
         $response = $client->post($url, $options);
         return new Response\ResponseStrategy($response);
     }
