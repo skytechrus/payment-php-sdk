@@ -18,7 +18,8 @@
     "respect/validation": "1.1.14",
     "guzzlehttp/guzzle": "~5.1",
     "sabre/xml": "^1.5",
-    "matriphe/iso-639": "^1.2"
+    "matriphe/iso-639": "^1.2",
+    "monolog/monolog": "^1.23"
   },
   "require-dev": {
     "codeception/codeception": "2.3.6",

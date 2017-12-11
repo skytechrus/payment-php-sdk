@@ -35,7 +35,7 @@ class OrderPurchase extends \Skytech\DataProvider\DataProvider
      */
     public function getRequestData()
     {
-        $service = new \Sabre\Xml\Service();
+        $service = new \Skytech\Service();
         $xml = $service->write("TKKPG", [
             "Request" => [
                 "Operation" => "CreateOrder",

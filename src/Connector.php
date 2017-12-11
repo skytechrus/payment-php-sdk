@@ -8,6 +8,7 @@ namespace Skytech;
 use Skytech\Config\Config;
 use GuzzleHttp\Client;
 use Skytech\DataProvider\DataProvider;
+use SplFileInfo;
 
 /**
  * Class Connector
@@ -20,11 +21,12 @@ class Connector
      * @var DataProvider
      */
     public $orderdata;
+    private $pathToCertFile;
+    private $certPassword;
+    private $secureConnectionOnly = true;
 
     /**
      * Connector constructor.
-     *
-     * @param string $data
      */
     public function __construct()
     {
@@ -49,18 +51,48 @@ class Connector
     private function getResponse($url, $body)
     {
         $client = new Client();
-        $response = $client->post($url, [
+        $options = [
             'body' => $body,
             'allow_redirects' => [
-                'max' => 5,        // allow at most 5 redirects.
-                'strict' => true,      // use "strict" RFC compliant redirects.
-                'referer' => true,      // do not add a Referer header
-                'protocols' => ['https', 'http'], // only allow https URLs
-                //'on_redirect'     => $onRedirect,
-//                'track_redirects' => true
+                'max' => 5,
+                'strict' => true,
+                'referer' => true,
+                'protocols' => ['https'],
             ]
-        ]);
-        return new Response\ResponseStrategy($response->getBody());
+        ];
+
+        if (!$this->secureConnectionOnly){
+            $options['protocols'] = ['https', 'http'];
+        }
+
+        if($this->pathToCertFile) {
+            $options['cert'] = [$this->pathToCertFile, $this->certPassword];
+        }
+
+        $response = $client->post($url, $options);
+        return new Response\ResponseStrategy($response);
+    }
+
+    public function setUnsecuredConnection()
+    {
+        $this->secureConnectionOnly = false;
+    }
+
+    /**
+     * @param $pathToCert
+     * @throws \Exception
+     */
+    public function setCert($pathToCert, $password)
+    {
+        $info = new SplFileInfo($pathToCert);
+        if(!$info->isFile()){
+            throw new \InvalidArgumentException('Cert file not found');
+        }
+        if(!$info->isReadable()){
+            throw new \Exception('Cert file not readable');
+        }
+        $this->pathToCertFile = $info->getRealPath();
+        $this->certPassword = $password;
     }
 
     /**

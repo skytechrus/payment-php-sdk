@@ -36,13 +36,13 @@ class ResponseStrategy implements ResponseInterface
      */
     private function loadResponse($response)
     {
-//        switch ($this->getResponseFormat($response)) {
-//            case Config::XML:
+        switch ($this->getResponseFormat($response)) {
+            case Config::XML:
                 $this->response = new Provider($response->getBody());
-//                break;
-//            default:
-//                throw new \Exception('Invalid format');
-//        }
+                break;
+            default:
+                throw new \Exception('Invalid format ' . $this->getResponseFormat($response));
+        }
     }
 
     /**
@@ -52,16 +52,16 @@ class ResponseStrategy implements ResponseInterface
      */
     private function getResponseFormat($response)
     {
-//        switch ($response->getHeaderLine('Content-Type')) {
-//            case 'application/json':
-//                return Config::JSON;
-//                break;
-//            case 'application/xml':
+        switch ($response->getHeader('Content-Type')) {
+            case 'application/json':
+                return Config::JSON;
+                break;
+            case 'application/xml':
                 return Config::XML;
-//                break;
-//            default:
-//                throw new \Exception('Invalid format');
-//        }
+                break;
+            default:
+                throw new \Exception('Invalid format ' . $response->getHeader('Content-Type'));
+        }
     }
 
     /**
