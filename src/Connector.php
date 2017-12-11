@@ -5,7 +5,6 @@
 
 namespace Skytech;
 
-use Psr\Log\InvalidArgumentException;
 use Skytech\Config\Config;
 use GuzzleHttp\Client;
 use Skytech\DataProvider\DataProvider;
@@ -55,12 +54,10 @@ class Connector
         $options = [
             'body' => $body,
             'allow_redirects' => [
-                'max' => 5,        // allow at most 5 redirects.
-                'strict' => true,      // use "strict" RFC compliant redirects.
-                'referer' => true,      // do not add a Referer header
-                'protocols' => ['https'], // only allow https URLs
-                //'on_redirect'     => $onRedirect,
-//                'track_redirects' => true
+                'max' => 5,
+                'strict' => true,
+                'referer' => true,
+                'protocols' => ['https'],
             ]
         ];
 
@@ -89,10 +86,10 @@ class Connector
     {
         $info = new SplFileInfo($pathToCert);
         if(!$info->isFile()){
-            throw new \InvalidArgumentException('File not found');
+            throw new \InvalidArgumentException('Cert file not found');
         }
         if(!$info->isReadable()){
-            throw new \Exception('File not readable');
+            throw new \Exception('Cert file not readable');
         }
         $this->pathToCertFile = $info->getRealPath();
         $this->certPassword = $password;

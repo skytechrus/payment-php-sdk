@@ -60,7 +60,7 @@ class ResponseStrategy implements ResponseInterface
                 return Config::XML;
                 break;
             default:
-                throw new \Exception('Invalid format');
+                throw new \Exception('Invalid format ' . $this->getResponseFormat($response));
         }
     }
 
