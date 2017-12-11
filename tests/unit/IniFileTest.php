@@ -23,7 +23,7 @@ class IniFileTest extends \Codeception\Test\Unit
      * @param $environment
      * @param $portExp
      */
-    public function testPortFeature( $portExp)
+    public function testPortFeature($portExp)
     {
         $port = IniFile::get('port');
         $this->assertEquals($portExp, $port);
@@ -35,7 +35,7 @@ class IniFileTest extends \Codeception\Test\Unit
      */
     public function testHostName($hostExp)
     {
-        $hostName = IniFile::get( 'hostname');
+        $hostName = IniFile::get('hostname');
         $this->assertEquals($hostExp, $hostName);
     }
 
@@ -51,11 +51,11 @@ class IniFileTest extends \Codeception\Test\Unit
     }
     public function providerData()
     {
-        return [[ '567']];
+        return [[ '443']];
     }
     public function providerHostName()
     {
-        return [[ '456.456.45.6']];
+        return [[ 'mpi.skytecrussia.com']];
     }
     public function providerErrHostName()
     {

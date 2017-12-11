@@ -36,6 +36,7 @@ class Payment
 
     /**
      * @return \Skytech\Response\Order
+     * @throws \Exception
      */
     public function purchase()
     {
@@ -45,6 +46,7 @@ class Payment
 
     /**
      * @return \Skytech\Response\Reverse
+     * @throws \Exception
      */
     public function reverse()
     {
@@ -54,6 +56,7 @@ class Payment
 
     /**
      * @return \Skytech\Response\OrderStatus
+     * @throws \Exception
      */
     public function orderStatus()
     {
@@ -73,6 +76,7 @@ class Payment
     /**
      * @param $operationType
      * @return mixed|\Psr\Http\Message\ResponseInterface
+     * @throws \Exception
      */
     private function send($operationType)
     {
@@ -95,6 +99,7 @@ class Payment
      * @param $amount
      * @param $currency
      * @return \Skytech\Response\Refund
+     * @throws \Exception
      */
     public function refund($amount, $currency)
     {

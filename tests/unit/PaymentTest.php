@@ -14,6 +14,9 @@ class PaymentTest extends \Codeception\Test\Unit
      */
     private $payment;
 
+    /**
+     * @throws Exception
+     */
     public function testSomeFeature()
     {
         $this->assertEquals("828", $this->payment->purchase()->getOrderId());

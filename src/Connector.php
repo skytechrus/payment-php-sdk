@@ -60,7 +60,7 @@ class Connector
 //                'track_redirects' => true
             ]
         ]);
-        return new Response\ResponseStrategy($response->getBody());
+        return new Response\ResponseStrategy($response);
     }
 
     /**
