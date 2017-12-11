@@ -41,7 +41,7 @@ class ResponseStrategy implements ResponseInterface
                 $this->response = new Provider($response->getBody());
                 break;
             default:
-                throw new \Exception('Invalid format');
+                throw new \Exception('Invalid format ' . $this->getResponseFormat($response));
         }
     }
 
