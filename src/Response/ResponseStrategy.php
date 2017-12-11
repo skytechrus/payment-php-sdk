@@ -72,4 +72,15 @@ class ResponseStrategy implements ResponseInterface
     {
         return $this->response->get($fieldName);
     }
+
+    /**
+     * @param $parentNode
+     * @param $fieldName
+     * @param $attributeValue
+     * @return mixed
+     */
+    public function getAttributeName($parentNode, $fieldName, $attributeValue)
+    {
+        return $this->response->getAttributeName($parentNode, $fieldName, $attributeValue);
+    }
 }

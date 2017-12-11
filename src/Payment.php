@@ -71,6 +71,24 @@ class Payment
     }
 
     /**
+     * @return Response\Order
+     */
+    public function preAuthorisation()
+    {
+        $response = $this->send(OperationType::ORDER_PREAUTHORISATION);
+        return new \Skytech\Response\Order($response);
+    }
+
+    /**
+     * @return Response\Completion
+     */
+    public function completion()
+    {
+        $response = $this->send(OperationType::COMPLETION);
+        return new \Skytech\Response\Completion($response);
+    }
+
+    /**
      * @param $operationType
      * @return mixed|\Psr\Http\Message\ResponseInterface
      */

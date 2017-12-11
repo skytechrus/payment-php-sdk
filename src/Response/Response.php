@@ -58,4 +58,15 @@ class Response
     {
         return $this->getString('Operation');
     }
+
+    /**
+     * @param $parentNode
+     * @param $fieldName
+     * @param $attributeValue
+     * @return string
+     */
+    public function getAttributeName($parentNode, $fieldName, $attributeValue)
+    {
+        return (string)$this->response->getAttributeName($parentNode, $fieldName, $attributeValue);
+    }
 }

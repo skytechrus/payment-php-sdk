@@ -47,4 +47,17 @@ class Provider implements ResponseInterface
         }
         return null;
     }
+
+    /**
+     * @param $parentNode
+     * @param $fieldName
+     * @param $attributeValue
+     * @return null
+     */
+    public function getAttributeName($parentNode, $fieldName, $attributeValue)
+    {
+        $path =  $parentNode . "/" . $fieldName . "[@name ='" .$attributeValue . "']" ."/@value";
+        $attribute = (string) $this->xml->xpath("//" . $path)[0];
+        return $attribute;
+    }
 }

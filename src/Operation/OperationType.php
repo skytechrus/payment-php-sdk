@@ -20,4 +20,6 @@ class OperationType
     const REFUND = "Refund";
     const ORDERSTATUS = "OrderStatus";
     const ORDER_INFORMATION = "OrderInformation";
+    const ORDER_PREAUTHORISATION = "PreAuthorisation";
+    const COMPLETION = "Completion";
 }
