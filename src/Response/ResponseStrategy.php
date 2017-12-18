@@ -52,11 +52,16 @@ class ResponseStrategy implements ResponseInterface
      */
     private function getResponseFormat($response)
     {
-        switch ($response->getHeader('Content-Type')) {
+        $header = $response->getHeader('Content-Type');
+        $header = stristr($header, ';', true);
+        switch ($header) {
             case 'application/json':
                 return Config::JSON;
                 break;
             case 'application/xml':
+                return Config::XML;
+                break;
+            case 'text/xml':
                 return Config::XML;
                 break;
             default:

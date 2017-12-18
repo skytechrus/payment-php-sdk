@@ -10,4 +10,6 @@ return array(
                    'port'=>'1234'),
     'TEST' => array('hostname'=>'mpi.skytecrussia.com',
                     'port'=>'443')
+   /* 'TEST' => array('hostname'=>'93.158.194.85',
+                    'port'=>'9009')*/
 );
