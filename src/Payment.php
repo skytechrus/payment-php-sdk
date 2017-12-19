@@ -5,6 +5,7 @@
 
 namespace Skytech;
 
+use GuzzleHttp\Client;
 use Skytech\Operation\OperationType;
 
 /**
@@ -40,8 +41,25 @@ class Payment
      */
     public function purchase()
     {
-        $response = $this->send(OperationType::PURCHASE);
-        return new \Skytech\Response\Order($response);
+        try {
+            $response = $this->send(OperationType::PURCHASE);
+        } catch (\Exception $e) {
+            print_r('response 1 error ' . $e);
+        }
+        $response = new \Skytech\Response\Order($response);
+//        $body = [];
+//        $body['SESSIONID'] = $response->getSessionID();
+//        $body['ORDERID'] = $response->getOrderId();
+//        var_dump($response->getURL());
+//        var_dump($body);
+//        try {
+//            $response_2 = $this->connector->send($response->getURL(), '', $body, 'get', true);
+//        } catch (\Exception $e) {
+//            var_dump('response 2 error ' . $e);
+//        }
+//        var_dump($response_2);
+        return $response;
+//        return $body;
     }
 
     /**

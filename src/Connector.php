@@ -52,6 +52,66 @@ class Connector
         return $this->getResponse($url, $body);
     }
 
+    public function send($url, $body, $query = null, $method = 'post', $cert = true)
+    {
+        $client = new Client();
+        $verbose = fopen('php://temp', 'w+');
+        $options = [
+            'body' => $body,
+            'config' => [
+                'curl' => [
+                    CURLOPT_STDERR => $verbose
+                ]
+            ],
+            'allow_redirects' => [
+                'max' => 5,
+                'strict' => true,
+                'referer' => true,
+                'protocols' => ['https', 'http'],
+            ]
+        ];
+
+        if($cert) {
+            $options['config']['curl'] = [
+                CURLOPT_SSL_VERIFYHOST => 2,
+                CURLOPT_SSL_VERIFYPEER => true,
+                CURLOPT_CAINFO, 'E:\Payment_plugins\Opencart\dist\CA.crt'
+            ];
+            $options['verify'] = 'E:\Payment_plugins\Opencart\dist\CA.crt';
+        }
+
+        if($query){
+            $options['query'] = $query;
+        }
+
+        if (!$this->secureConnectionOnly){
+            $options['protocols'] = ['https', 'http'];
+        }
+
+        if($this->pathToCertFile && $cert) {
+            var_dump('PAAAAAAAAAAAAAAAAAAAAAAAAATH');
+            $options['cert'] = [$this->pathToCertFile, $this->certPassword];
+        }
+
+
+        if (strtolower($method) == 'get') {
+//            $response = $client->get($url, $options);
+            var_dump($options);
+//            var_dump(get_resources());
+            $options['query'] = $query;
+            $response = $client->get($url, $options);
+        } else {
+            $response = $client->post($url, $options);
+        }
+//        var_dump($verbose); //TODO delete
+
+//        var_dump($response->getBody()->getContents()); // TODO delete
+
+//        return new Response\ResponseStrategy($response);
+        return $response;
+
+    }
+
     /**
      * @param $url
      * @param $body
@@ -59,40 +119,7 @@ class Connector
      */
     private function getResponse($url, $body)
     {
-        $client = new Client();
-        $verbose = fopen('php://temp', 'w+');
-        $options = [
-            'body' => $body,
-            'verify' => 'E:\Payment_plugins\Opencart\dist\CA.crt',
-            'config' => [
-                'curl' => [
-                    CURLOPT_SSL_VERIFYHOST => 2,
-                    CURLOPT_SSL_VERIFYPEER => true,
-                    CURLOPT_CAINFO, 'E:\Payment_plugins\Opencart\dist\CA.crt'
-                ]
-            ],
-            'allow_redirects' => [
-                'max' => 5,
-                'strict' => true,
-                'referer' => true,
-                'protocols' => ['https'],
-            ]
-        ];
-
-        if (!$this->secureConnectionOnly){
-            $options['protocols'] = ['https', 'http'];
-        }
-
-        if($this->pathToCertFile) {
-            $options['cert'] = [$this->pathToCertFile, $this->certPassword];
-        }
-
-        var_dump($verbose); //TODO delete
-
-        $response = $client->post($url, $options);
-
-//        var_dump($response->getBody()->getContents()); // TODO delete
-
+        $response = $this->send($url, $body);
         return new Response\ResponseStrategy($response);
     }
 
@@ -126,8 +153,8 @@ class Connector
      */
     private function getUrl()
     {
-//        $url = Config::getHostName().':'. Config::getPort().'/exec';
-        $url = Config::getHostName().'/exec';
+        $url = Config::getHostName().':'. Config::getPort().'/exec';
+//        $url = Config::getHostName().'/exec';
         if (!strpos($url, "://")) {
             $url = 'https://' . $url;
         }

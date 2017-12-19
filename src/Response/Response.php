@@ -22,7 +22,7 @@ class Response
      */
     public function __construct(ResponseStrategy $response)
     {
-        $this->response =$response;
+        $this->response = $response;
     }
 
     /**
@@ -31,7 +31,7 @@ class Response
      */
     protected function getInteger($fieldName)
     {
-        return (int)$this->response->get($fieldName);
+        return $this->response->get($fieldName);
     }
 
     /**
@@ -40,7 +40,7 @@ class Response
      */
     protected function getString($fieldName)
     {
-        return (string)$this->response->get($fieldName);
+        return $this->response->get($fieldName);
     }
 
     /**
