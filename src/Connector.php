@@ -7,7 +7,7 @@ namespace Skytech;
 
 use Skytech\Config\Config;
 use GuzzleHttp\Client;
-use Skytech\DataProvider\DataProvider;
+use Skytech\Request\DataProvider;
 use SplFileInfo;
 
 /**
@@ -52,15 +52,24 @@ class Connector
         return $this->getResponse($url, $body);
     }
 
-    public function send($url, $body, $query = null, $method = 'post', $cert = true)
+    /**
+     * @param $url
+     * @param $body
+     * @return \GuzzleHttp\Message\FutureResponse|\GuzzleHttp\Message\ResponseInterface|\GuzzleHttp\Ring\Future\FutureInterface|null
+     */
+    private function send($url, $body)
     {
+        $caCertFileName = 'CA.crt';
         $client = new Client();
-        $verbose = fopen('php://temp', 'w+');
         $options = [
             'body' => $body,
+            'verify' => dirname(__DIR__) . DIRECTORY_SEPARATOR . $caCertFileName,
+            'cert' => [$this->pathToCertFile, $this->certPassword],
             'config' => [
                 'curl' => [
-                    CURLOPT_STDERR => $verbose
+                    CURLOPT_SSL_VERIFYHOST => 2,
+                    CURLOPT_SSL_VERIFYPEER => true,
+                    CURLOPT_CAINFO =>dirname(__DIR__) . DIRECTORY_SEPARATOR . $caCertFileName
                 ]
             ],
             'allow_redirects' => [
@@ -71,45 +80,13 @@ class Connector
             ]
         ];
 
-        if($cert) {
-            $options['config']['curl'] = [
-                CURLOPT_SSL_VERIFYHOST => 2,
-                CURLOPT_SSL_VERIFYPEER => true,
-                CURLOPT_CAINFO, 'E:\Payment_plugins\Opencart\dist\CA.crt'
-            ];
-            $options['verify'] = 'E:\Payment_plugins\Opencart\dist\CA.crt';
-        }
-
-        if($query){
-            $options['query'] = $query;
-        }
-
-        if (!$this->secureConnectionOnly){
+        if (!$this->secureConnectionOnly) {
             $options['protocols'] = ['https', 'http'];
         }
 
-        if($this->pathToCertFile && $cert) {
-            var_dump('PAAAAAAAAAAAAAAAAAAAAAAAAATH');
-            $options['cert'] = [$this->pathToCertFile, $this->certPassword];
-        }
+        $response = $client->post($url, $options);
 
-
-        if (strtolower($method) == 'get') {
-//            $response = $client->get($url, $options);
-            var_dump($options);
-//            var_dump(get_resources());
-            $options['query'] = $query;
-            $response = $client->get($url, $options);
-        } else {
-            $response = $client->post($url, $options);
-        }
-//        var_dump($verbose); //TODO delete
-
-//        var_dump($response->getBody()->getContents()); // TODO delete
-
-//        return new Response\ResponseStrategy($response);
         return $response;
-
     }
 
     /**
@@ -132,7 +109,9 @@ class Connector
     }
 
     /**
-     * @param $pathToCert
+     * Set client pem certificate file
+     * @param string $pathToCert
+     * @param string $password Password for cert file
      * @throws \Exception
      */
     public function setCert($pathToCert, $password)
@@ -141,23 +120,28 @@ class Connector
         if(!$info->isFile()){
             throw new \InvalidArgumentException('Cert file not found');
         }
-        if(!$info->isReadable()){
+        if (!$info->isReadable()) {
             throw new \Exception('Cert file not readable');
         }
-        $this->pathToCertFile = $info->getRealPath();
+        $this->pathToCertFile = $info->getRealPath(); // ???
         $this->certPassword = $password;
     }
 
     /**
-     * @return string
+     * @return string TWPG server url
      */
     private function getUrl()
     {
-        $url = Config::getHostName().':'. Config::getPort().'/exec';
-//        $url = Config::getHostName().'/exec';
+        if (Config::getPort()) {
+            $url = Config::getHostName() . ':' . Config::getPort() . '/exec';
+        } else {
+            $url = Config::getHostName() . '/exec';
+        }
+
         if (!strpos($url, "://")) {
             $url = 'https://' . $url;
         }
+
         return $url;
     }
 }

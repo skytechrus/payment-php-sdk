@@ -8,6 +8,10 @@
 
 namespace Skytech\Response;
 
+/**
+ * Class Reverse
+ * @package Skytech\Response
+ */
 class Reverse extends Response
 {
     /**
@@ -17,10 +21,18 @@ class Reverse extends Response
     {
         return $this->getInteger('OrderID');
     }
+
+    /**
+     * @return int
+     */
     public function getRespCode()
     {
         return $this->getInteger('RespCode');
     }
+
+    /**
+     * @return string
+     */
     public function getRespMessage()
     {
         return $this->getString('RespMessage');

@@ -12,7 +12,7 @@ class ConfigTest extends \Codeception\Test\Unit
 
     public function testPortFeature()
     {
-        $this->assertEquals('443', Config::getPort());
+        $this->assertEquals('9009', Config::getPort());
     }
 
     public function testHostNameFeature()

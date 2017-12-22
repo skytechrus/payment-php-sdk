@@ -64,7 +64,7 @@ class Order
         if (!v::numeric()->positive()->validate($amount)) {
             throw new \InvalidArgumentException('Amount is not numeric');
         }
-        $this->amount = $amount;
+        $this->amount = $amount * 100;
     }
 
     /**

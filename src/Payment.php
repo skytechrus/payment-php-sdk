@@ -41,25 +41,9 @@ class Payment
      */
     public function purchase()
     {
-        try {
-            $response = $this->send(OperationType::PURCHASE);
-        } catch (\Exception $e) {
-            print_r('response 1 error ' . $e);
-        }
+        $response = $this->send(OperationType::PURCHASE);
         $response = new \Skytech\Response\Order($response);
-//        $body = [];
-//        $body['SESSIONID'] = $response->getSessionID();
-//        $body['ORDERID'] = $response->getOrderId();
-//        var_dump($response->getURL());
-//        var_dump($body);
-//        try {
-//            $response_2 = $this->connector->send($response->getURL(), '', $body, 'get', true);
-//        } catch (\Exception $e) {
-//            var_dump('response 2 error ' . $e);
-//        }
-//        var_dump($response_2);
         return $response;
-//        return $body;
     }
 
     /**
@@ -84,6 +68,7 @@ class Payment
 
     /**
      * @return \Skytech\Response\OrderInformation
+     * @throws \Exception
      */
     public function orderInformation()
     {
@@ -92,6 +77,7 @@ class Payment
     }
 
     /**
+     * Send request
      * @param $operationType
      * @return mixed|\Psr\Http\Message\ResponseInterface
      * @throws \Exception
@@ -104,12 +90,13 @@ class Payment
     }
 
     /**
+     * Prepare request body
      * @param $operationType
      * @return mixed
      */
     private function payload($operationType)
     {
-        $data = new \Skytech\DataProvider\DataProviderStrategy($operationType, $this->operation);
+        $data = new \Skytech\Request\DataProviderStrategy($operationType, $this->operation);
         return $data->getPayload();
     }
 

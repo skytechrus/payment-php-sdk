@@ -3,7 +3,7 @@
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
  */
 
-use Skytech\DataProvider\XML\Reverse;
+use Skytech\Request\XML\Reverse;
 use Skytech\Operation\Operation;
 
 class ReverseTest extends \Codeception\Test\Unit
@@ -58,7 +58,7 @@ class ReverseTest extends \Codeception\Test\Unit
    <Merchant>1</Merchant>
    <OrderID>1</OrderID>
   </Order>
-  <Amount>100</Amount>
+  <Amount>10000</Amount>
   <Description>a</Description>
   <SessionID>8768767656747456A5D0D</SessionID>
  </Request>

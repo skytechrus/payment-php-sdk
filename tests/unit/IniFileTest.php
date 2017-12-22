@@ -1,6 +1,7 @@
 <?php
 
 
+use Skytech\Config\Config;
 use Skytech\Config\IniFile;
 
 class IniFileTest extends \Codeception\Test\Unit
@@ -25,7 +26,7 @@ class IniFileTest extends \Codeception\Test\Unit
      */
     public function testPortFeature($portExp)
     {
-        $port = IniFile::get('port');
+        $port = Config::get('port');
         $this->assertEquals($portExp, $port);
     }
 
@@ -35,7 +36,7 @@ class IniFileTest extends \Codeception\Test\Unit
      */
     public function testHostName($hostExp)
     {
-        $hostName = IniFile::get('hostname');
+        $hostName = Config::get('hostname');
         $this->assertEquals($hostExp, $hostName);
     }
 
@@ -47,11 +48,11 @@ class IniFileTest extends \Codeception\Test\Unit
     public function testUnKnownData($value,$hostExp)
     {
         $this->expectException(UnexpectedValueException::class);
-        $this->assertEquals($hostExp, IniFile::get( $value));
+        $this->assertEquals($hostExp, Config::get($value));
     }
     public function providerData()
     {
-        return [[ '443']];
+        return [[ '9009']];
     }
     public function providerHostName()
     {

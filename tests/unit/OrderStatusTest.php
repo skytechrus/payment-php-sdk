@@ -33,7 +33,7 @@ class OrderStatusTest extends \Codeception\Test\Unit
 </TKKPG>
 
 XML;
-        $orderStat = new \Skytech\DataProvider\XML\OrderStatus($this->operation);
+        $orderStat = new \Skytech\Request\XML\OrderStatus($this->operation);
         $requestLine = $orderStat->getRequestData();
         $this->assertXmlStringEqualsXmlString($xmlExpect, $requestLine);
     }

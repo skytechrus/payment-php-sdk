@@ -5,6 +5,8 @@
 
 namespace Skytech\Config;
 
+use UnexpectedValueException;
+
 /**
  * Class Config
  *
@@ -20,6 +22,10 @@ class Config
      * @const JSON Json format constant
      */
     const JSON = 'JSON';
+    /**
+     * @var string
+     */
+    public static $root = 'PROD';
 
     /**
      * @var string
@@ -38,7 +44,7 @@ class Config
      */
     public static function getDataFormat()
     {
-        return IniFile::get('format');
+        return self::get('format');
     }
 
     /**
@@ -55,7 +61,7 @@ class Config
      */
     public static function getHostName()
     {
-        return  IniFile::get('hostname');
+        return self::get('hostname');
     }
 
     /**
@@ -63,6 +69,25 @@ class Config
      */
     public static function getPort()
     {
-        return  IniFile::get('port');
+        return self::get('port');
+    }
+
+    /**
+     * @param string $value
+     * @return mixed
+     */
+    public static function get($value)
+    {
+        $array = include 'config_ini.php';
+        if (array_key_exists($value, $array) && $value != 'testing') {
+            return $array[$value];
+        }
+        if ((bool)$array['testing']) {
+            self::$root = 'TEST';
+        }
+        if (empty($array[self::$root][$value])) {
+            throw new UnexpectedValueException('Unknown settings');
+        }
+        return $array[self::$root][$value];
     }
 }

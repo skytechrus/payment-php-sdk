@@ -22,6 +22,9 @@ class PaymentTest extends \Codeception\Test\Unit
         $this->assertEquals("828", $this->payment->purchase()->getOrderId());
     }
 
+    /**
+     *
+     */
     protected function _before()
     {
         $order = new \Skytech\Order();
@@ -50,8 +53,9 @@ class PaymentTest extends \Codeception\Test\Unit
         $customer->setEmail("test@test.com");
         $customer->setSessionId("asdf");
 
-        $response = \Codeception\Util\Stub::make('\GuzzleHttp\Psr7\Response', array(
-            'getHeaderLine' => function () {
+        /** @var GuzzleHttp\Psr7\Response $response */
+        $response = \Codeception\Util\Stub::make('\\GuzzleHttp\\Psr7\\Response', array(
+            'getHeader' => function () {
                 return 'application/xml';
             },
             'getBody' => function () {
@@ -71,6 +75,7 @@ class PaymentTest extends \Codeception\Test\Unit
 XML;
             }
         ));
+        /** @var Skytech\Connector $connector */
         $connector = \Codeception\Util\Stub::make('Skytech\Connector', array(
             'sendRequest' => function () use ($response) {
                 return new \Skytech\Response\ResponseStrategy($response);

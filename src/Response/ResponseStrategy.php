@@ -5,6 +5,8 @@
 
 namespace Skytech\Response;
 
+use function GuzzleHttp\Psr7\stream_for;
+use GuzzleHttp\Stream\Stream;
 use Skytech\Config\Config;
 use Skytech\Response\XML\Provider;
 
@@ -22,7 +24,7 @@ class ResponseStrategy implements ResponseInterface
 
     /**
      * ResponseStrategy constructor.
-     * @param $response
+     * @param \GuzzleHttp\Message\Response|null|string $response
      * @throws \Exception
      */
     public function __construct($response)
@@ -31,11 +33,23 @@ class ResponseStrategy implements ResponseInterface
     }
 
     /**
-     * @param \GuzzleHttp\Psr7\Response $response
+     * @param \GuzzleHttp\Message\Response|null|string $response
      * @throws \Exception
      */
     private function loadResponse($response)
     {
+//        var_dump($response);
+        if(is_string($response)){
+//            var_dump('STRINGGGGGG');
+            $response_temp = new \GuzzleHttp\Message\Response(200);
+            $response_temp->setHeader('Content-Type', 'text/xml');
+//            $response_temp->setHeader('Content-Language', 'en-US');
+            $response_temp->setBody(Stream::factory($response));
+//            var_dump($response_temp);
+            $response = $response_temp;
+        } else {
+//            var_dump('NOTSTRING');
+        }
         switch ($this->getResponseFormat($response)) {
             case Config::XML:
                 $this->response = new Provider($response->getBody());
@@ -46,14 +60,16 @@ class ResponseStrategy implements ResponseInterface
     }
 
     /**
-     * @param \GuzzleHttp\Psr7\Response $response
+     * @param \GuzzleHttp\Message\Response|null|string $response
      * @return string
      * @throws \Exception
      */
     private function getResponseFormat($response)
     {
         $header = $response->getHeader('Content-Type');
-        $header = stristr($header, ';', true);
+        if (strpos($header, ";")) {
+            $header = stristr($header, ';', true);
+        }
         switch ($header) {
             case 'application/json':
                 return Config::JSON;

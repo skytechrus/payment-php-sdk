@@ -29,6 +29,7 @@ class Service extends \Sabre\Xml\Service
      * @param string $rootElementName
      * @param string|array|XmlSerializable $value
      * @param string|null $contextUri
+     * @return string
      */
     public function write($rootElementName, $value, $contextUri = null)
     {

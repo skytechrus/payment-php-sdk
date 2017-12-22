@@ -29,6 +29,14 @@ class OrderStatus extends Response
     }
 
     /**
+     * Get ApprovalCodeSrc
+     */
+    public function getApprovalCode()
+    {
+        return $this->getString('ApprovalCodeScr');
+    }
+
+    /**
      * @return string
      */
     public function getReceipt()

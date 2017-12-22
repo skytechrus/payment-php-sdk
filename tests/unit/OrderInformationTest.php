@@ -3,7 +3,7 @@
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
  */
 
-use Skytech\DataProvider\XML\OrderInformation;
+use Skytech\Request\XML\OrderInformation;
 
 class OrderInformationTest extends \Codeception\Test\Unit
 {

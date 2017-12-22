@@ -29,6 +29,9 @@ class Refund extends Response
         $this->operation = $operation;
     }
 
+    /**
+     * @param $amount
+     */
     private function setAmount($amount)
     {
     }

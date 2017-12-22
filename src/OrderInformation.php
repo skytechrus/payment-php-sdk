@@ -8,7 +8,7 @@
 
 namespace Skytech;
 
-use Skytech\DataProvider\DataProviderStrategy;
+use Skytech\Request\DataProviderStrategy;
 use Skytech\Operation\OperationType;
 
 /**

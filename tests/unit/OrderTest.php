@@ -17,15 +17,15 @@ class OrderTest extends \Codeception\Test\Unit
     {
         $amount = 123;
         $this->order->setAmount($amount);
-        $this->assertEquals($amount, $this->order->getAmount(), 'Set amount as integer success');
+        $this->assertEquals($amount*100, $this->order->getAmount(), 'Set amount as integer success');
     }
 
     public function testSetNumericAmountAsString()
     {
         $amount = '123';
         $this->order->setAmount($amount);
-        $this->assertEquals($amount, $this->order->getAmount(), 'Set amount as string success');
-        $this->assertEquals((int)$amount, $this->order->getAmount(), 'Set amount as string success #2');
+        $this->assertEquals($amount*100, $this->order->getAmount(), 'Set amount as string success');
+        $this->assertEquals((int)$amount*100, $this->order->getAmount(), 'Set amount as string success #2');
     }
 
     public function testSetAmountNotNumeric()

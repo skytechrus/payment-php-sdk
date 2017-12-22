@@ -61,7 +61,7 @@ class OrderStatus
      */
     private function loadOrderStatus($operationType)
     {
-        $data = new DataProvider\DataProviderStrategy($operationType, $this->operation);
+        $data = new Request\DataProviderStrategy($operationType, $this->operation);
         return $data->getPayload();
     }
 }

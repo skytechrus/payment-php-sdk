@@ -6,10 +6,8 @@
 return array(
     'format' => \Skytech\Config\Config::XML,
     'testing' => true,
-    'PROD' => array('hostname'=>'123.123.12.3',
-                   'port'=>'1234'),
-    /*'TEST' => array('hostname'=>'mpi.skytecrussia.com',
-                    'port'=>'443')*/
+    'PROD' => array('hostname'=>'mpi.skytecrussia.com',
+                   'port'=>'9009'),
     'TEST' => array('hostname'=>'mpi.skytecrussia.com',
                     'port'=>'9009')
 );
