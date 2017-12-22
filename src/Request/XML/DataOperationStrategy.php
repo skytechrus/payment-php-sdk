@@ -3,9 +3,9 @@
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
  */
 
-namespace Skytech\DataProvider\XML;
+namespace Skytech\Request\XML;
 
-use Skytech\DataProvider;
+use Skytech\Request;
 use Skytech\Operation\Operation;
 use Skytech\Operation\OperationType;
 
@@ -14,10 +14,10 @@ use Skytech\Operation\OperationType;
  *
  * @package Skytech\DataProvider\XML
  */
-class DataOperationStrategy extends DataProvider\DataOperationStrategy
+class DataOperationStrategy extends Request\DataOperationStrategy
 {
     /**
-     * @var DataProvider\DataProvider
+     * @var Request\DataProvider
      */
     private $dataProvider;
 
@@ -35,14 +35,14 @@ class DataOperationStrategy extends DataProvider\DataOperationStrategy
     /**
      * @param $operationType
      * @param Operation $operation
-     * @return \Skytech\DataProvider\DataProvider
+     * @return \Skytech\Request\DataProvider
      */
     protected function loadOperationProvider($operationType, Operation $operation)
     {
         $dataProvider = null;
         switch ($operationType) {
             case OperationType::PURCHASE:
-                $dataProvider = new OrderPurchase($operation);
+                $dataProvider = new Purchase($operation);
                 break;
             case OperationType::REVERSE:
                 $dataProvider = new Reverse($operation);

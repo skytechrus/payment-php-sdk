@@ -3,7 +3,7 @@
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
  */
 
-namespace Skytech\DataProvider\XML;
+namespace Skytech\Request\XML;
 
 use Skytech\DataProvider\DataProvider;
 use Skytech\Service;
