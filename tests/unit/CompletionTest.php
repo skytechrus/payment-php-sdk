@@ -62,14 +62,14 @@ class CompletionTest extends \Codeception\Test\Unit
    <OrderID>1</OrderID>
   </Order>
   <SessionID>8768767656747456A5D0D</SessionID>
-  <Amount>100</Amount>
+  <Amount>10000</Amount>
   <Currency>840</Currency>
   <Description>auff</Description>  
  </Request>
 </TKKPG>
 
 XML;
-        $compileOperation = new \Skytech\DataProvider\XML\Completion($operation);
+        $compileOperation = new \Skytech\Request\XML\Completion($operation);
         $xmlActual = $compileOperation->getRequestData();
         $this->assertXmlStringEqualsXmlString($xmlExpect, $xmlActual);
     }
@@ -95,7 +95,7 @@ XML;
 </TKKPG>  
 
 XML;
-        $compileOperation = new \Skytech\DataProvider\XML\Completion($operation);
+        $compileOperation = new \Skytech\Request\XML\Completion($operation);
         $xmlActual = $compileOperation->getRequestData();
         $this->assertXmlStringEqualsXmlString($xmlExpect, $xmlActual);
     }

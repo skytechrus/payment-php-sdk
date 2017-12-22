@@ -1,8 +1,11 @@
 <?php
 
-use Skytech\DataProvider\XML\OrderPreAuthorization;
+use Skytech\Request\XML\OrderPreAuthorization;
 use Skytech\Operation\Operation;
 
+/**
+ * Class OrderPreAuthorizationTest
+ */
 class OrderPreAuthorizationTest extends \Codeception\Test\Unit
 {
     /**
@@ -57,7 +60,7 @@ class OrderPreAuthorizationTest extends \Codeception\Test\Unit
   <OrderType>PreAuth</OrderType>
   <OrderID>5</OrderID>
   <Merchant>1</Merchant>
-  <Amount>100</Amount>
+  <Amount>10000</Amount>
   <Currency>840</Currency>
   <Description>a</Description>
   <ApproveURL></ApproveURL>

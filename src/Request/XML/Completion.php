@@ -1,14 +1,18 @@
 <?php
 /**
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ */
+
+/**
  * Created by PhpStorm.
  * User: arevkina
  * Date: 06.12.2017
  * Time: 14:34
  */
 
-namespace Skytech\DataProvider\XML;
+namespace Skytech\Request\XML;
 
-use Skytech\DataProvider\DataProvider;
+use Skytech\Request\DataProvider;
 use Skytech\Service;
 
 /**
