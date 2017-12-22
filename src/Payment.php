@@ -42,8 +42,7 @@ class Payment
     public function purchase()
     {
         $response = $this->send(OperationType::PURCHASE);
-        $response = new \Skytech\Response\Order($response);
-        return $response;
+        return new \Skytech\Response\Order($response);
     }
 
     /**
@@ -68,12 +67,29 @@ class Payment
 
     /**
      * @return \Skytech\Response\OrderInformation
-     * @throws \Exception
      */
     public function orderInformation()
     {
         $response = $this->send(OperationType::ORDER_INFORMATION);
         return new \Skytech\Response\OrderInformation($response);
+    }
+
+    /**
+     * @return Response\Order
+     */
+    public function preAuthorisation()
+    {
+        $response = $this->send(OperationType::ORDER_PREAUTHORISATION);
+        return new \Skytech\Response\Order($response);
+    }
+
+    /**
+     * @return Response\Completion
+     */
+    public function completion()
+    {
+        $response = $this->send(OperationType::COMPLETION);
+        return new \Skytech\Response\Completion($response);
     }
 
     /**
