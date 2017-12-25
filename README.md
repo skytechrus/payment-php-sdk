@@ -4,22 +4,8 @@
 
 ## Install
 Via Composer
-* Add to ```composer.json```
-```json
-{
-"require": {
-        "skytech/payment-php-sdk": "dev-develop"
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url":  "https://github.com/skytechrus/payment-php-sdk.git"
-        }
-    ]
-}
-```
 ```bash
-$ composer install
+composer require skytech/payment-php-sdk
 ```
 
 ## Usage
