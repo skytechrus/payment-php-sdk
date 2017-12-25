@@ -62,6 +62,9 @@ class DataOperationStrategy extends Request\DataOperationStrategy
             case OperationType::COMPLETION:
                 $dataProvider = new Completion($operation);
                 break;
+            case OperationType::PAYMENT:
+                $dataProvider = new Payment($operation);
+                break;
             default:
                 throw new \InvalidArgumentException("Unknown operation type");
         }
