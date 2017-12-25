@@ -11,7 +11,7 @@ class ResponseOrderInformationTest extends \Codeception\Test\Unit
      */
     protected $tester;
     /**
-     * @var Skytech\Response\XML\Provider
+     * @var Skytech\Sdk\Response\XML\Provider
      */
     private $response;
 
@@ -26,7 +26,7 @@ class ResponseOrderInformationTest extends \Codeception\Test\Unit
     }
     protected function _before()
     {
-        $filePath = '.\tests\_support\xml\OrderInformation.xml';
+        $filePath = 'tests\_support\xml\OrderInformation.xml';
         $fileData = $this->loadFile($filePath);
         $this->response = new Skytech\Sdk\Response\XML\Provider($fileData);
     }
