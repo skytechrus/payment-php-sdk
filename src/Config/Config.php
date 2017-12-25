@@ -1,9 +1,10 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
-namespace Skytech\Config;
+namespace Skytech\Sdk\Config;
 
 use UnexpectedValueException;
 
@@ -17,7 +18,7 @@ class Config
     /**
      * @const XML Xml format constant
      */
-    const XML  = 'XML';
+    const XML = 'XML';
     /**
      * @const JSON Json format constant
      */
@@ -57,22 +58,6 @@ class Config
     }
 
     /**
-     * @return mixed
-     */
-    public static function getHostName()
-    {
-        return self::get('hostname');
-    }
-
-    /**
-     * @return mixed
-     */
-    public static function getPort()
-    {
-        return self::get('port');
-    }
-
-    /**
      * @param string $value
      * @return mixed
      */
@@ -89,5 +74,21 @@ class Config
             throw new UnexpectedValueException('Unknown settings');
         }
         return $array[self::$root][$value];
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function getHostName()
+    {
+        return self::get('hostname');
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function getPort()
+    {
+        return self::get('port');
     }
 }

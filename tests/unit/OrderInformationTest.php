@@ -1,10 +1,14 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
-use Skytech\Request\XML\OrderInformation;
+use Skytech\Sdk\Request\XML\OrderInformation;
 
+/**
+ * Class OrderInformationTest
+ */
 class OrderInformationTest extends \Codeception\Test\Unit
 {
     /**
@@ -19,15 +23,15 @@ class OrderInformationTest extends \Codeception\Test\Unit
 
     protected function _before()
     {
-        $order = new \Skytech\Order();
+        $order = new \Skytech\Sdk\Order();
         $order->setOrderId(69110);
         $order->setSessionId('3C4ABA5872192DD82D33D7A870A3AD8E');
-        $merchant = new \Skytech\Merchant();
+        $merchant = new \Skytech\Sdk\Merchant();
         $merchant->setLanguage('ru');
         $merchant->setMerchantId('POS_IKEA_2');
-        $address = new \Skytech\Customer\Address();
-        $customer = new \Skytech\Customer($address);
-        $operation = new \Skytech\Operation\Operation($order, $customer, $merchant);
+        $address = new \Skytech\Sdk\Customer\Address();
+        $customer = new \Skytech\Sdk\Customer($address);
+        $operation = new \Skytech\Sdk\Operation\Operation($order, $customer, $merchant);
         $this->request = new OrderInformation($operation);
     }
 

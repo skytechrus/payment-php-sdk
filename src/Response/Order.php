@@ -1,9 +1,10 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
-namespace Skytech\Response;
+namespace Skytech\Sdk\Response;
 
 /**
  * Class Order
@@ -13,11 +14,19 @@ namespace Skytech\Response;
 class Order extends Response
 {
     /**
-     * @return int
+     * @return string
      */
-    public function getOrderId()
+    public function getPaymentUrl()
     {
-        return $this->getInteger('OrderID');
+        return $this->getURL() . '/?SESSIONID=' . $this->getSessionID() . '&ORDERID=' . $this->getOrderId();
+    }
+
+    /**
+     * @return string
+     */
+    public function getURL()
+    {
+        return $this->getString('URL');
     }
 
     /**
@@ -29,10 +38,10 @@ class Order extends Response
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getURL()
+    public function getOrderId()
     {
-        return $this->getString('URL');
+        return $this->getInteger('OrderID');
     }
 }

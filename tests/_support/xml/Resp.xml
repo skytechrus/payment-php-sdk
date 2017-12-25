@@ -1,4 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2017 Skytech LLC. All rights reserved.
+  -->
+
 <out>
 <l name="ResponseCode" value="000"/>
 <f name="F" value="322829 A"/>

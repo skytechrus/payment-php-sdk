@@ -1,12 +1,13 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
-namespace Skytech\Request;
+namespace Skytech\Sdk\Request;
 
- use Skytech\Operation\Operation;
- use Skytech\Config\Config;
+use Skytech\Sdk\Config\Config;
+use Skytech\Sdk\Operation\Operation;
 
 /**
  * Class Data
@@ -51,7 +52,7 @@ class DataProviderStrategy
     {
         switch ($this->dataFormat) {
             case Config::XML:
-                $this->data = new \Skytech\Request\XML\DataOperationStrategy(
+                $this->data = new \Skytech\Sdk\Request\XML\DataOperationStrategy(
                     $this->operationType,
                     $this->operation
                 );

@@ -1,11 +1,15 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
-use Skytech\Request\XML\Reverse;
-use Skytech\Operation\Operation;
+use Skytech\Sdk\Request\XML\Reverse;
+use Skytech\Sdk\Operation\Operation;
 
+/**
+ * Class ReverseTest
+ */
 class ReverseTest extends \Codeception\Test\Unit
 {
     /**
@@ -18,7 +22,7 @@ class ReverseTest extends \Codeception\Test\Unit
     protected $operation;
     protected function _before()
     {
-        $order = new \Skytech\Order();
+        $order = new \Skytech\Sdk\Order();
         $date = new DateTime();
         $order->setOrderId(1);
         $order->setCurrency(840);
@@ -27,15 +31,15 @@ class ReverseTest extends \Codeception\Test\Unit
         $order->setDescription('a');
         $order->setSessionId('8768767656747456A5D0D');
 
-        $merchant = new \Skytech\Merchant();
+        $merchant = new \Skytech\Sdk\Merchant();
         $merchant->setMerchantId(1);
         $merchant->setLanguage("RU");
 
-        $address = new \Skytech\Customer\Address();
+        $address = new \Skytech\Sdk\Customer\Address();
         $address->setCity("Moscow");
         $address->setRegion("MO");
 
-        $customer = new \Skytech\Customer($address);
+        $customer = new \Skytech\Sdk\Customer($address);
         $customer->setPhone("89269999999");
 
         $this->operation = new Operation($order, $customer, $merchant);

@@ -1,17 +1,18 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
-namespace Skytech\Customer;
+namespace Skytech\Sdk\Customer;
 
 use InvalidArgumentException;
-use function is_numeric;
+use League;
 use League\ISO3166\ISO3166;
 use OutOfBoundsException;
-use function preg_match;
 use UnexpectedValueException;
-use League;
+use function is_numeric;
+use function preg_match;
 
 /**
  * Class Address

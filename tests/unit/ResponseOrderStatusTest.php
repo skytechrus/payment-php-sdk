@@ -1,6 +1,7 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
 class ResponseOrderStatusTest extends \Codeception\Test\Unit
@@ -40,9 +41,13 @@ class ResponseOrderStatusTest extends \Codeception\Test\Unit
     {
         $fileName = './tests/_support/xml/OrderStatus.xml';
         $response = $this->loadFileData($fileName);
-        $this->response = new Skytech\Response\XML\Provider($response);
+        $this->response = new Skytech\Sdk\Response\XML\Provider($response);
     }
 
+    /**
+     * @param $fileName
+     * @return mixed
+     */
     public function loadFileData($fileName)
     {
         $xml = simplexml_load_file($fileName);

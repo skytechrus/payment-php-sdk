@@ -1,6 +1,7 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
 /**
@@ -19,10 +20,31 @@ class RoboFile extends \Robo\Tasks
         ->run();
     }
 
-    public function version()
+    public function versionPatch()
     {
         $this->taskSemVer('.semver')
             ->increment()
+            ->run();
+    }
+
+    public function versionMinor()
+    {
+        $this->taskSemVer('.semver')
+            ->increment('minor')
+            ->run();
+    }
+
+    public function versionMajor()
+    {
+        $this->taskSemVer('.semver')
+            ->increment('major')
+            ->run();
+    }
+
+    public function versionPrerelease()
+    {
+        $this->taskSemVer('.semver')
+            ->prerelease()
             ->run();
     }
 

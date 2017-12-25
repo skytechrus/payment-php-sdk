@@ -1,9 +1,10 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
-namespace Skytech\Operation;
+namespace Skytech\Sdk\Operation;
 
 /**
  * Class OperationType

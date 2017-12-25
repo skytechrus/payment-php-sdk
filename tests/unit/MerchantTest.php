@@ -1,7 +1,14 @@
 <?php
+/**
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
+ */
 
-use Skytech\Merchant;
+use Skytech\Sdk\Merchant;
 
+/**
+ * Class MerchantTest
+ */
 class MerchantTest extends \Codeception\Test\Unit
 {
     /**
@@ -43,6 +50,9 @@ class MerchantTest extends \Codeception\Test\Unit
         }
     }
 
+    /**
+     * @return array
+     */
     public function dataProviderLng()
     {
         return [[true, 'ru'],
@@ -53,6 +63,9 @@ class MerchantTest extends \Codeception\Test\Unit
             [true, 'uk']];
     }
 
+    /**
+     * @return array
+     */
     public function dataProviderURL()
     {
         return[

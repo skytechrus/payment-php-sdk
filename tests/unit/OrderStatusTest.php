@@ -1,10 +1,14 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
-use Skytech\Operation\Operation;
+use Skytech\Sdk\Operation\Operation;
 
+/**
+ * Class OrderStatusTest
+ */
 class OrderStatusTest extends \Codeception\Test\Unit
 {
     /**
@@ -33,24 +37,24 @@ class OrderStatusTest extends \Codeception\Test\Unit
 </TKKPG>
 
 XML;
-        $orderStat = new \Skytech\Request\XML\OrderStatus($this->operation);
+        $orderStat = new \Skytech\Sdk\Request\XML\OrderStatus($this->operation);
         $requestLine = $orderStat->getRequestData();
         $this->assertXmlStringEqualsXmlString($xmlExpect, $requestLine);
     }
 
     protected function _before()
     {
-        $order = new \Skytech\Order();
+        $order = new \Skytech\Sdk\Order();
         $order->setOrderId(1);
         $order->setSessionId('05460005547444');
 
-        $merchant = new \Skytech\Merchant();
+        $merchant = new \Skytech\Sdk\Merchant();
         $merchant->setMerchantId('POS_IKEA_2');
         $merchant->setLanguage("ru");
 
-        $address = new \Skytech\Customer\Address();
+        $address = new \Skytech\Sdk\Customer\Address();
 
-        $customer = new \Skytech\Customer($address);
+        $customer = new \Skytech\Sdk\Customer($address);
 
         $this->operation = new Operation($order, $customer, $merchant);
     }

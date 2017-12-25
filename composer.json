@@ -2,7 +2,7 @@
   "name": "skytech/payment-php-sdk",
   "description": "Prototipe",
   "minimum-stability": "stable",
-  "license": "proprietary",
+  "license": "MIT",
   "authors": [
     {
       "name": "Elena Arevkina",
@@ -32,6 +32,6 @@
     "symfony/process": "^3.3.0"
   },
   "autoload": {
-    "psr-4": {"Skytech\\": "src/"}
+    "psr-4": {"Skytech\\Sdk\\": "src/"}
   }
 }

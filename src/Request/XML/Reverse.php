@@ -1,13 +1,14 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
-namespace Skytech\Request\XML;
+namespace Skytech\Sdk\Request\XML;
 
-use Skytech\Service;
-use Skytech\Request\DataProvider;
-use Skytech\Operation\Operation;
+use Skytech\Sdk\Operation\Operation;
+use Skytech\Sdk\Request\DataProvider;
+use Skytech\Sdk\Service;
 
 /**
  * Class Reverse
@@ -22,7 +23,7 @@ class Reverse extends DataProvider
      */
     public function __construct(Operation $operation)
     {
-        $this->operation=$operation;
+        $this->operation = $operation;
     }
 
     /**
@@ -48,12 +49,12 @@ class Reverse extends DataProvider
                 "Order" => [
                     "Merchant" => $this->operation->merchant->getId(),
                     "OrderID" => $this->operation->order->getOrderId()
-                    ],
+                ],
                 "Amount" => $this->operation->order->getAmount(),
                 "Description" => $this->operation->order->getDescription(),
                 "SessionID" => $this->operation->order->getSessionId()
-                ]
-            ]);
+            ]
+        ]);
         if ($xml) {
             return $xml;
         } else {

@@ -1,12 +1,10 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: arevkina
- * Date: 22.12.2017
- * Time: 12:51
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
-namespace Skytech;
+namespace Skytech\Sdk;
 
 /**
  * Class OrderExt

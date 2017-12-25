@@ -1,9 +1,16 @@
 <?php
+/**
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
+ */
 
-//use Skytech\Card;
+//use Skytech\Sdk\Card;
 
-use Skytech\Customer\Card;
+use Skytech\Sdk\Customer\Card;
 
+/**
+ * Class CardTest
+ */
 class CardTest extends \Codeception\Test\Unit
 {
     /**
@@ -90,6 +97,9 @@ class CardTest extends \Codeception\Test\Unit
         $this->card->setExpireYear($year);
     }
 
+    /**
+     * @return array
+     */
     public function providerWrongPanType()
     {
         return [
@@ -99,6 +109,9 @@ class CardTest extends \Codeception\Test\Unit
         ];
     }
 
+    /**
+     * @return array
+     */
     public function providerWrongCardLength()
     {
         return [
@@ -109,6 +122,9 @@ class CardTest extends \Codeception\Test\Unit
         ];
     }
 
+    /**
+     * @return array
+     */
     public function providerPan()
     {
         return [
@@ -120,6 +136,9 @@ class CardTest extends \Codeception\Test\Unit
         ];
     }
 
+    /**
+     * @return array
+     */
     public function providerMonth()
     {
         return [
@@ -130,6 +149,9 @@ class CardTest extends \Codeception\Test\Unit
         ];
     }
 
+    /**
+     * @return array
+     */
     public function providerLetters()
     {
         return [
@@ -138,6 +160,9 @@ class CardTest extends \Codeception\Test\Unit
         ];
     }
 
+    /**
+     * @return array
+     */
     public function providerYear()
     {
         return [
@@ -150,7 +175,7 @@ class CardTest extends \Codeception\Test\Unit
 
     protected function _before()
     {
-        $this->card = new Skytech\Customer\Card();
+        $this->card = new Skytech\Sdk\Customer\Card();
     }
 
     protected function _after()

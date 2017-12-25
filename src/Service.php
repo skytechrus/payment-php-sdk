@@ -1,9 +1,10 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
-namespace Skytech;
+namespace Skytech\Sdk;
 
 /**
  * Class Service
@@ -27,7 +28,7 @@ class Service extends \Sabre\Xml\Service
      * of the domain.
      *
      * @param string $rootElementName
-     * @param string|array|XmlSerializable $value
+     * @param string|array $value
      * @param string|null $contextUri
      * @return string
      */
@@ -41,5 +42,4 @@ class Service extends \Sabre\Xml\Service
         $w->writeElement($rootElementName, $value);
         return $w->outputMemory();
     }
-
 }

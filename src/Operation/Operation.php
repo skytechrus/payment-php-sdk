@@ -1,15 +1,16 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
-namespace Skytech\Operation;
+namespace Skytech\Sdk\Operation;
 
-use Skytech\Customer;
-use Skytech\Customer\Card;
-use Skytech\Merchant;
-use Skytech\Order;
 use Respect\Validation\Validator as v;
+use Skytech\Sdk\Customer;
+use Skytech\Sdk\Customer\Card;
+use Skytech\Sdk\Merchant;
+use Skytech\Sdk\Order;
 
 /**
  * Class Operation
@@ -94,6 +95,11 @@ class Operation
         $this->merchant = $merchant;
     }
 
+    public function getRefundAmount()
+    {
+        return $this->refundAmount;
+    }
+
     /**
      * @param $amount
      */
@@ -106,6 +112,11 @@ class Operation
         $this->refundAmount = $amount;
     }
 
+    public function getRefundCurrency()
+    {
+        return $this->refundCurrency;
+    }
+
     /**
      * @param $currency
      */
@@ -115,15 +126,5 @@ class Operation
             throw new \InvalidArgumentException('Currency not in ISO 4217 numeric-3 format');
         }
         $this->refundCurrency = (int)$currency;
-    }
-
-    public function getRefundAmount()
-    {
-        return $this->refundAmount;
-    }
-
-    public function getRefundCurrency()
-    {
-        return $this->refundCurrency;
     }
 }

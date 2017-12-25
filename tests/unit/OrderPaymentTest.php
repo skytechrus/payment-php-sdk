@@ -1,11 +1,17 @@
 <?php
+/**
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
+ */
 
+use Skytech\Sdk\Customer;
+use Skytech\Sdk\Merchant;
+use Skytech\Sdk\Operation\Operation;
+use Skytech\Sdk\OrderPayment;
 
-use Skytech\Customer;
-use Skytech\Merchant;
-use Skytech\Operation\Operation;
-use Skytech\OrderPayment;
-
+/**
+ * Class OrderPaymentTest
+ */
 class OrderPaymentTest extends \Codeception\Test\Unit
 {
     /**
@@ -72,9 +78,8 @@ class OrderPaymentTest extends \Codeception\Test\Unit
   </Order>   
  </Request>
 </TKKPG>
-
 XML;
-        $paymentOperation = new \Skytech\Request\XML\Payment($this->operation);
+        $paymentOperation = new \Skytech\Sdk\Request\XML\Payment($this->operation);
         $xmlActual = $paymentOperation->getRequestData();
         $this->assertXmlStringEqualsXmlString($xmlExpect, $xmlActual);
     }

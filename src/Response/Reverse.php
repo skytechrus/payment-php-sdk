@@ -1,12 +1,17 @@
 <?php
 /**
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
+ */
+
+/**
  * Created by PhpStorm.
  * User: arevkina
  * Date: 01.11.2017
  * Time: 17:07
  */
 
-namespace Skytech\Response;
+namespace Skytech\Sdk\Response;
 
 /**
  * Class Reverse

@@ -1,11 +1,12 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
-namespace Skytech;
+namespace Skytech\Sdk;
 
-use Skytech\Customer\Address;
+use Skytech\Sdk\Customer\Address;
 
 /**
  * Class Customer
@@ -28,15 +29,15 @@ class Customer
     /**
      * @var string
      */
-    private $email;
-    /**
-     * @var string
-     */
     public $phone;
     /**
      * @var Address
      */
     public $address;
+    /**
+     * @var string
+     */
+    private $email;
     /**
      * @var string
      */
@@ -100,6 +101,15 @@ class Customer
     }
 
     /**
+     * @param $phone
+     * @return int
+     */
+    private function validatePhone($phone)
+    {
+        return preg_match('/^((\+7|7|8)+([0-9]){10})$/', $phone);
+    }
+
+    /**
      * @return string
      */
     public function getEmail()
@@ -120,6 +130,14 @@ class Customer
     }
 
     /**
+     * @return mixed
+     */
+    public function getIp()
+    {
+        return $this->ip;
+    }
+
+    /**
      * @param mixed $ip
      */
     public function setIp($ip)
@@ -128,14 +146,6 @@ class Customer
             throw new \InvalidArgumentException('Invalid ip address');
         }
         $this->ip = $ip;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIp()
-    {
-        return $this->ip;
     }
 
     /**
@@ -148,14 +158,5 @@ class Customer
             return true;
         }
         return false;
-    }
-
-    /**
-     * @param $phone
-     * @return int
-     */
-    private function validatePhone($phone)
-    {
-        return preg_match('/^((\+7|7|8)+([0-9]){10})$/', $phone);
     }
 }

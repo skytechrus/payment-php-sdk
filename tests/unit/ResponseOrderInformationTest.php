@@ -1,6 +1,7 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
 class ResponseOrderInformationTest extends \Codeception\Test\Unit
@@ -14,6 +15,10 @@ class ResponseOrderInformationTest extends \Codeception\Test\Unit
      */
     private $response;
 
+    /**
+     * @param $fileName
+     * @return mixed
+     */
     private function loadFile($fileName)
     {
         $xml = simplexml_load_file($fileName);
@@ -23,7 +28,7 @@ class ResponseOrderInformationTest extends \Codeception\Test\Unit
     {
         $filePath = '.\tests\_support\xml\OrderInformation.xml';
         $fileData = $this->loadFile($filePath);
-        $this->response = new Skytech\Response\XML\Provider($fileData);
+        $this->response = new Skytech\Sdk\Response\XML\Provider($fileData);
     }
 
     protected function _after()
@@ -44,6 +49,10 @@ class ResponseOrderInformationTest extends \Codeception\Test\Unit
         return (int)$this->response->get($fieldName);
     }
 
+    /**
+     * @param $fieldName
+     * @return string
+     */
     protected function getString($fieldName)
     {
         return (string)$this->response->get($fieldName);

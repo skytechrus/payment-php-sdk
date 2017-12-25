@@ -1,19 +1,19 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
-namespace Skytech\Request\XML;
+namespace Skytech\Sdk\Request\XML;
 
-use Skytech\Operation\Operation;
+use Skytech\Sdk\Operation\Operation;
+use Skytech\Sdk\Request\DataProvider;
 
 /**
  * Class OrderPurchase
  *
- * @package Skytech\DataProvider\XML
- *
  */
-class Purchase extends \Skytech\Request\DataProvider
+class Purchase extends DataProvider
 {
     /**
      * @var Operation
@@ -35,7 +35,7 @@ class Purchase extends \Skytech\Request\DataProvider
      */
     public function getRequestData()
     {
-        $service = new \Skytech\Service();
+        $service = new \Skytech\Sdk\Service();
         $xml = $service->write("TKKPG", [
             "Request" => [
                 "Operation" => "CreateOrder",

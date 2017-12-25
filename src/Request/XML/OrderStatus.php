@@ -1,13 +1,14 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
-namespace Skytech\Request\XML;
+namespace Skytech\Sdk\Request\XML;
 
-use Skytech\Operation\Operation;
-use Skytech\Service;
-use Skytech\Request\DataProvider;
+use Skytech\Sdk\Operation\Operation;
+use Skytech\Sdk\Request\DataProvider;
+use Skytech\Sdk\Service;
 
 /**
  * Class OrderStatus
@@ -18,12 +19,12 @@ class OrderStatus extends DataProvider
 {
 
     /**
-    * XMLDataGetOrderStatus constructor.
-    * @param Operation $operation
-    */
+     * XMLDataGetOrderStatus constructor.
+     * @param Operation $operation
+     */
     public function __construct(Operation $operation)
     {
-        $this->operation=$operation;
+        $this->operation = $operation;
     }
 
     /**

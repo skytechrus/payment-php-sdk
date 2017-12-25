@@ -1,13 +1,14 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
-namespace Skytech\Request\XML;
+namespace Skytech\Sdk\Request\XML;
 
-use Skytech\Request\DataProvider;
-use Skytech\Operation\Operation;
-use Skytech\Service;
+use Skytech\Sdk\Operation\Operation;
+use Skytech\Sdk\Request\DataProvider;
+use Skytech\Sdk\Service;
 
 /**
  * Class OrderInformation

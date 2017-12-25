@@ -1,0 +1,6 @@
+# Auto-detect text files, ensure they use LF.
+*       text=auto eol=lf
+
+# Exclude non-essential files from dist
+/tests export-ignore
+/bitbucket-pipelines.yml export-ignore

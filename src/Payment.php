@@ -1,12 +1,12 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
-namespace Skytech;
+namespace Skytech\Sdk;
 
-use GuzzleHttp\Client;
-use Skytech\Operation\OperationType;
+use Skytech\Sdk\Operation\OperationType;
 
 /**
  * Class Payment
@@ -42,65 +42,9 @@ class Payment
     public function purchase()
     {
         $response = $this->send(OperationType::PURCHASE);
-        return new \Skytech\Response\Order($response);
+        return new \Skytech\Sdk\Response\Order($response);
     }
 
-    /**
-     * @return \Skytech\Response\Reverse
-     * @throws \Exception
-     */
-    public function reverse()
-    {
-        $response = $this->send(OperationType::REVERSE);
-        return new \Skytech\Response\Reverse($response);
-    }
-
-    /**
-     * @return \Skytech\Response\OrderStatus
-     * @throws \Exception
-     */
-    public function orderStatus()
-    {
-        $response = $this->send(OperationType::ORDERSTATUS);
-        return new \Skytech\Response\OrderStatus($response);
-    }
-
-    /**
-     * @return \Skytech\Response\OrderInformation
-     */
-    public function orderInformation()
-    {
-        $response = $this->send(OperationType::ORDER_INFORMATION);
-        return new \Skytech\Response\OrderInformation($response);
-    }
-
-    /**
-     * @return Response\Order
-     */
-    public function preAuthorisation()
-    {
-        $response = $this->send(OperationType::ORDER_PREAUTHORISATION);
-        return new \Skytech\Response\Order($response);
-    }
-
-    /**
-     * @return Response\Completion
-     */
-    public function completion()
-    {
-        $response = $this->send(OperationType::COMPLETION);
-        return new \Skytech\Response\Completion($response);
-    }
-
-    /**
-     * @return Response\Order
-     * @throws \Exception
-     */
-    public function payment()
-    {
-         $response = $this->send(OperationType::PAYMENT);
-         return new \Skytech\Response\Order($response);
-    }
     /**
      * Send request
      * @param $operationType
@@ -110,7 +54,7 @@ class Payment
     private function send($operationType)
     {
         $data = $this->payload($operationType);
-        $this->connector->orderdata = $data;
+        $this->connector->orderData = $data;
         return $this->connector->sendRequest();
     }
 
@@ -121,8 +65,68 @@ class Payment
      */
     private function payload($operationType)
     {
-        $data = new \Skytech\Request\DataProviderStrategy($operationType, $this->operation);
+        $data = new \Skytech\Sdk\Request\DataProviderStrategy($operationType, $this->operation);
         return $data->getPayload();
+    }
+
+    /**
+     * @return \Skytech\Response\Reverse
+     * @throws \Exception
+     */
+    public function reverse()
+    {
+        $response = $this->send(OperationType::REVERSE);
+        return new \Skytech\Sdk\Response\Reverse($response);
+    }
+
+    /**
+     * @return \Skytech\Response\OrderStatus
+     * @throws \Exception
+     */
+    public function orderStatus()
+    {
+        $response = $this->send(OperationType::ORDERSTATUS);
+        return new \Skytech\Sdk\Response\OrderStatus($response);
+    }
+
+    /**
+     * @return \Skytech\Response\OrderInformation
+     * @throws \Exception
+     */
+    public function orderInformation()
+    {
+        $response = $this->send(OperationType::ORDER_INFORMATION);
+        return new \Skytech\Sdk\Response\OrderInformation($response);
+    }
+
+    /**
+     * @return Response\Order
+     * @throws \Exception
+     */
+    public function preAuthorisation()
+    {
+        $response = $this->send(OperationType::ORDER_PREAUTHORISATION);
+        return new \Skytech\Sdk\Response\Order($response);
+    }
+
+    /**
+     * @return Response\Completion
+     * @throws \Exception
+     */
+    public function completion()
+    {
+        $response = $this->send(OperationType::COMPLETION);
+        return new \Skytech\Sdk\Response\Completion($response);
+    }
+
+    /**
+     * @return Response\Order
+     * @throws \Exception
+     */
+    public function payment()
+    {
+        $response = $this->send(OperationType::PAYMENT);
+        return new \Skytech\Sdk\Response\Order($response);
     }
 
     /**
@@ -136,6 +140,6 @@ class Payment
         $this->operation->setRefundAmount($amount);
         $this->operation->setRefundCurrency($currency);
         $response = $this->send(OperationType::REFUND);
-        return new \Skytech\Response\Refund($response);
+        return new \Skytech\Sdk\Response\Refund($response);
     }
 }

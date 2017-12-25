@@ -1,15 +1,16 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
-namespace Skytech\Customer;
+namespace Skytech\Sdk\Customer;
 
 use InvalidArgumentException;
-use function is_numeric;
 use LengthException;
-use function strlen;
 use UnexpectedValueException;
+use function is_numeric;
+use function strlen;
 
 /**
  * Class Card
@@ -21,11 +22,14 @@ class Card
     /**
      * @var
      */
-    private $pan; /** @var  string */
+    private $pan;
+    /** @var  string */
     private $expireMonth;
     /** @var  string */
-    private $expyear; /** @var  string */
-    private $brand;  /** @var  string */
+    private $expyear;
+    /** @var  string */
+    private $brand;
+    /** @var  string */
     private $cardUID;
 
     /**
@@ -33,14 +37,6 @@ class Card
      */
     public function __construct()
     {
-    }
-
-    /**
-     * @param string $pan
-     */
-    public function setPan($pan)
-    {
-        $this->pan = $pan;
     }
 
     /**
@@ -52,11 +48,11 @@ class Card
     }
 
     /**
-     * @param string $brand
+     * @param string $pan
      */
-    public function setBrand($brand)
+    public function setPan($pan)
     {
-        $this->brand = $brand;
+        $this->pan = $pan;
     }
 
     /**
@@ -65,6 +61,14 @@ class Card
     public function getBrand()
     {
         return $this->brand;
+    }
+
+    /**
+     * @param string $brand
+     */
+    public function setBrand($brand)
+    {
+        $this->brand = $brand;
     }
 
     /**
@@ -82,6 +86,23 @@ class Card
     {
         $this->cardUID = $cardUID;
     }
+
+    /**
+     * @return string
+     */
+    public function getExpDate()
+    {
+        return $this->expyear . $this->expireMonth;
+    }
+
+    /**
+     * @return string
+     */
+    public function getExpireMonth()
+    {
+        return $this->expireMonth;
+    }
+
     /**
      * @param string $expireMonth
      */
@@ -96,20 +117,6 @@ class Card
         $this->expireMonth = $expireMonth;
     }
 
-    /**
-     * @return string
-     */
-    public function getExpDate()
-    {
-        return $this->expyear . $this->expireMonth;
-    }
-    /**
-     * @return string
-     */
-    public function getExpireMonth()
-    {
-        return $this->expireMonth;
-    }
     /**
      * @param integer $expireYear
      */

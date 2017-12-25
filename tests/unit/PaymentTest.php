@@ -1,6 +1,7 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
 class PaymentTest extends \Codeception\Test\Unit
@@ -27,27 +28,27 @@ class PaymentTest extends \Codeception\Test\Unit
      */
     protected function _before()
     {
-        $order = new \Skytech\Order();
+        $order = new \Skytech\Sdk\Order();
         $date = new DateTime();
         $order->setOrderId(1);
         $order->setCurrency(840);
         $order->setAmount(100);
         $order->setOrderDate($date);
 
-        $merchant = new \Skytech\Merchant();
+        $merchant = new \Skytech\Sdk\Merchant();
         $merchant->setMerchantId(1);
         $merchant->setLanguage("RU");
         $merchant->setApproveUrl("");
         $merchant->setCancelUrl("");
         $merchant->setDeclineUrl("");
 
-        $address = new \Skytech\Customer\Address();
+        $address = new \Skytech\Sdk\Customer\Address();
         $address->setCity("Moscow");
         $address->setRegion("MO");
         $address->setCountry(840);
         $address->setZip("140182");
 
-        $customer = new \Skytech\Customer($address);
+        $customer = new \Skytech\Sdk\Customer($address);
         $customer->setIp("192.168.0.1");
         $customer->setPhone("89269999999");
         $customer->setEmail("test@test.com");
@@ -75,13 +76,13 @@ class PaymentTest extends \Codeception\Test\Unit
 XML;
             }
         ));
-        /** @var Skytech\Connector $connector */
-        $connector = \Codeception\Util\Stub::make('Skytech\Connector', array(
+        /** @var Skytech\Sdk\Connector $connector */
+        $connector = \Codeception\Util\Stub::make('Skytech\Sdk\Connector', array(
             'sendRequest' => function () use ($response) {
-                return new \Skytech\Response\ResponseStrategy($response);
+                return new \Skytech\Sdk\Response\ResponseStrategy($response);
             }
         ));
-        $this->payment = new \Skytech\Payment($order, $merchant, $customer, $connector);
+        $this->payment = new \Skytech\Sdk\Payment($order, $merchant, $customer, $connector);
     }
 
     // tests

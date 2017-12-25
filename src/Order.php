@@ -1,12 +1,13 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
-namespace Skytech;
+namespace Skytech\Sdk;
 
-use function htmlentities;
 use Respect\Validation\Validator as v;
+use function htmlentities;
 
 /**
  * Class Order
@@ -173,18 +174,18 @@ class Order
     }
 
     /**
-     * @param string $sessionId
-     */
-    public function setSessionId($sessionId)
-    {
-        $this->sessionId = $sessionId;
-    }
-
-    /**
      * @return string
      */
     public function getSessionId()
     {
         return $this->sessionId;
+    }
+
+    /**
+     * @param string $sessionId
+     */
+    public function setSessionId($sessionId)
+    {
+        $this->sessionId = $sessionId;
     }
 }

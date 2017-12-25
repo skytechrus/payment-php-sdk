@@ -1,6 +1,7 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
 /**
@@ -10,10 +11,10 @@
  * Time: 14:34
  */
 
-namespace Skytech\Request\XML;
+namespace Skytech\Sdk\Request\XML;
 
-use Skytech\Request\DataProvider;
-use Skytech\Service;
+use Skytech\Sdk\Request\DataProvider;
+use Skytech\Sdk\Service;
 
 /**
  * Class Completion
@@ -33,7 +34,7 @@ class Completion extends DataProvider
         $value["Request"]["Language"] = "";
         $value["Request"]["Order"] = array();
         $value["Request"]["Order"]["Merchant"] = $this->operation->merchant->getId();
-        $value["Request"]["Order"]["OrderID"] =  $this->operation->order->getOrderId();
+        $value["Request"]["Order"]["OrderID"] = $this->operation->order->getOrderId();
         $value["Request"]["SessionID"] = $this->operation->order->getSessionId();
 
         if (!empty($this->operation->order->getAmount())) {

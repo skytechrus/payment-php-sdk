@@ -1,9 +1,10 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
-namespace Skytech\Response;
+namespace Skytech\Sdk\Response;
 
 /**
  * Class Response
@@ -26,12 +27,11 @@ class Response
     }
 
     /**
-     * @param $fieldName
-     * @return int
+     * @return string
      */
-    protected function getInteger($fieldName)
+    public function getStatus()
     {
-        return $this->response->get($fieldName);
+        return $this->getString('Status');
     }
 
     /**
@@ -41,14 +41,6 @@ class Response
     protected function getString($fieldName)
     {
         return $this->response->get($fieldName);
-    }
-
-    /**
-     * @return string
-     */
-    public function getStatus()
-    {
-        return $this->getString('Status');
     }
 
     /**
@@ -68,5 +60,14 @@ class Response
     public function getAttributeName($parentNode, $fieldName, $attributeValue)
     {
         return (string)$this->response->getAttributeName($parentNode, $fieldName, $attributeValue);
+    }
+
+    /**
+     * @param $fieldName
+     * @return int
+     */
+    protected function getInteger($fieldName)
+    {
+        return $this->response->get($fieldName);
     }
 }

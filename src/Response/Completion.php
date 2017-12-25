@@ -1,12 +1,17 @@
 <?php
 /**
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
+ */
+
+/**
  * Created by PhpStorm.
  * User: arevkina
  * Date: 06.12.2017
  * Time: 15:39
  */
 
-namespace Skytech\Response;
+namespace Skytech\Sdk\Response;
 
 /**
  * Class Completion
@@ -27,7 +32,7 @@ class Completion extends Response
      */
     public function getCardType()
     {
-        return  $this->getAttributeName("POSResponse", "f", "R");
+        return $this->getAttributeName("POSResponse", "f", "R");
     }
 
     /**
@@ -35,11 +40,14 @@ class Completion extends Response
      */
     public function getApprovalCode()
     {
-        return  $this->getAttributeName("POSResponse", "f", "F");
+        return $this->getAttributeName("POSResponse", "f", "F");
     }
 
+    /**
+     * @return string
+     */
     public function getSequenceNumber()
     {
-        return  $this->getAttributeName("POSResponse", "f", "h");
+        return $this->getAttributeName("POSResponse", "f", "h");
     }
 }

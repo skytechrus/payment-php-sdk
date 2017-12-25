@@ -1,9 +1,15 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
-namespace Skytech;
+/**
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
+ */
+
+namespace Skytech\Sdk;
 
 use Respect\Validation\Validator as v;
 
@@ -34,6 +40,13 @@ class Merchant
      * @var
      */
     private $declineUrl;
+
+    /**
+     * Merchant constructor.
+     */
+    public function __construct()
+    {
+    }
 
     /**
      * @return mixed
@@ -85,13 +98,6 @@ class Merchant
     }
 
     /**
-     * Merchant constructor.
-     */
-    public function __construct()
-    {
-    }
-
-    /**
      * @return mixed
      */
     public function getLanguage()
@@ -107,7 +113,7 @@ class Merchant
         if (!empty($language)) {
             $language = strtolower($language);
             if (!v::languageCode('alpha-2')->validate($language)) {
-                throw new \InvalidArgumentException('Language not in RFC 1766 format');
+                throw new \InvalidArgumentException('Language not in ISO 639-1 format');
             }
         }
         $this->language = $language;
@@ -124,6 +130,7 @@ class Merchant
         }
         return true;
     }
+
     /**
      * @return mixed
      */

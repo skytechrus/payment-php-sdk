@@ -1,15 +1,20 @@
 <?php
 /**
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
+ */
+
+/**
  * Created by PhpStorm.
  * User: arevkina
  * Date: 07.11.2017
  * Time: 14:31
  */
 
-namespace Skytech;
+namespace Skytech\Sdk;
 
-use Skytech\Request\DataProviderStrategy;
-use Skytech\Operation\OperationType;
+use Skytech\Sdk\Operation\OperationType;
+use Skytech\Sdk\Request\DataProviderStrategy;
 
 /**
  * Class OrderInformation

@@ -1,6 +1,13 @@
 <?php
+/**
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
+ */
 
 
+/**
+ * Class CompletionResponceTest
+ */
 class CompletionResponceTest extends \Codeception\Test\Unit
 {
     /**
@@ -34,7 +41,7 @@ class CompletionResponceTest extends \Codeception\Test\Unit
 </TKKPG>
 
 XML;
-        $this->response =  new Skytech\Response\XML\Provider($xml);
+        $this->response =  new Skytech\Sdk\Response\XML\Provider($xml);
     }
 
     protected function _after()

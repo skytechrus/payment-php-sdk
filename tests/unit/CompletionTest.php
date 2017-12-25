@@ -1,7 +1,14 @@
 <?php
+/**
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
+ */
 
-use Skytech\Operation\Operation;
+use Skytech\Sdk\Operation\Operation;
 
+/**
+ * Class CompletionTest
+ */
 class CompletionTest extends \Codeception\Test\Unit
 {
     /**
@@ -16,7 +23,7 @@ class CompletionTest extends \Codeception\Test\Unit
 
     protected function _before()
     {
-        $this->order = new \Skytech\Order();
+        $this->order = new \Skytech\Sdk\Order();
         $date = new DateTime();
         $this->order->setOrderId(1);
 
@@ -24,14 +31,14 @@ class CompletionTest extends \Codeception\Test\Unit
         $this->order->setDescription('auff');
         $this->order->setSessionId('8768767656747456A5D0D');
 
-        $this->merchant = new \Skytech\Merchant();
+        $this->merchant = new \Skytech\Sdk\Merchant();
         $this->merchant->setMerchantId(1);
         $this->merchant->setLanguage("RU");
 
-        $address = new \Skytech\Customer\Address();
+        $address = new \Skytech\Sdk\Customer\Address();
         $address->setCity("Moscow");
         $address->setRegion("MO");
-        $this->customer = new \Skytech\Customer($address);
+        $this->customer = new \Skytech\Sdk\Customer($address);
         $this->customer->setPhone("89269999999");
 
 
@@ -69,7 +76,7 @@ class CompletionTest extends \Codeception\Test\Unit
 </TKKPG>
 
 XML;
-        $compileOperation = new \Skytech\Request\XML\Completion($operation);
+        $compileOperation = new \Skytech\Sdk\Request\XML\Completion($operation);
         $xmlActual = $compileOperation->getRequestData();
         $this->assertXmlStringEqualsXmlString($xmlExpect, $xmlActual);
     }
@@ -95,7 +102,7 @@ XML;
 </TKKPG>  
 
 XML;
-        $compileOperation = new \Skytech\Request\XML\Completion($operation);
+        $compileOperation = new \Skytech\Sdk\Request\XML\Completion($operation);
         $xmlActual = $compileOperation->getRequestData();
         $this->assertXmlStringEqualsXmlString($xmlExpect, $xmlActual);
     }

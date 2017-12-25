@@ -1,13 +1,14 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
-namespace Skytech;
+namespace Skytech\Sdk;
 
-use Skytech\Config\Config;
 use GuzzleHttp\Client;
-use Skytech\Request\DataProvider;
+use Skytech\Sdk\Config\Config;
+use Skytech\Sdk\Request\DataProvider;
 use SplFileInfo;
 
 /**
@@ -20,7 +21,7 @@ class Connector
     /**
      * @var DataProvider
      */
-    public $orderdata;
+    public $orderData;
     /**
      * @var
      */
@@ -48,8 +49,37 @@ class Connector
     public function sendRequest()
     {
         $url = $this->getUrl();
-        $body = $this->orderdata;
+        $body = $this->orderData;
         return $this->getResponse($url, $body);
+    }
+
+    /**
+     * @return string TWPG server url
+     */
+    private function getUrl()
+    {
+        if (Config::getPort()) {
+            $url = Config::getHostName() . ':' . Config::getPort() . '/exec';
+        } else {
+            $url = Config::getHostName() . '/exec';
+        }
+
+        if (!strpos($url, "://")) {
+            $url = 'https://' . $url;
+        }
+
+        return $url;
+    }
+
+    /**
+     * @param $url
+     * @param $body
+     * @return mixed|\Psr\Http\Message\ResponseInterface
+     */
+    private function getResponse($url, $body)
+    {
+        $response = $this->send($url, $body);
+        return new Response\ResponseStrategy($response);
     }
 
     /**
@@ -69,7 +99,7 @@ class Connector
                 'curl' => [
                     CURLOPT_SSL_VERIFYHOST => 2,
                     CURLOPT_SSL_VERIFYPEER => true,
-                    CURLOPT_CAINFO =>dirname(__DIR__) . DIRECTORY_SEPARATOR . $caCertFileName
+                    CURLOPT_CAINFO => dirname(__DIR__) . DIRECTORY_SEPARATOR . $caCertFileName
                 ]
             ],
             'allow_redirects' => [
@@ -90,17 +120,6 @@ class Connector
     }
 
     /**
-     * @param $url
-     * @param $body
-     * @return mixed|\Psr\Http\Message\ResponseInterface
-     */
-    private function getResponse($url, $body)
-    {
-        $response = $this->send($url, $body);
-        return new Response\ResponseStrategy($response);
-    }
-
-    /**
      *
      */
     public function setUnsecuredConnection()
@@ -117,7 +136,7 @@ class Connector
     public function setCert($pathToCert, $password)
     {
         $info = new SplFileInfo($pathToCert);
-        if(!$info->isFile()){
+        if (!$info->isFile()) {
             throw new \InvalidArgumentException('Cert file not found');
         }
         if (!$info->isReadable()) {
@@ -125,23 +144,5 @@ class Connector
         }
         $this->pathToCertFile = $info->getRealPath(); // ???
         $this->certPassword = $password;
-    }
-
-    /**
-     * @return string TWPG server url
-     */
-    private function getUrl()
-    {
-        if (Config::getPort()) {
-            $url = Config::getHostName() . ':' . Config::getPort() . '/exec';
-        } else {
-            $url = Config::getHostName() . '/exec';
-        }
-
-        if (!strpos($url, "://")) {
-            $url = 'https://' . $url;
-        }
-
-        return $url;
     }
 }

@@ -1,12 +1,13 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
-namespace Skytech\Response\XML;
+namespace Skytech\Sdk\Response\XML;
 
 use SimpleXMLElement;
-use Skytech\Response\ResponseInterface;
+use Skytech\Sdk\Response\ResponseInterface;
 
 /**
  * Class Response
@@ -56,8 +57,8 @@ class Provider implements ResponseInterface
      */
     public function getAttributeName($parentNode, $fieldName, $attributeValue)
     {
-        $path =  $parentNode . "/" . $fieldName . "[@name ='" .$attributeValue . "']" ."/@value";
-        $attribute = (string) $this->xml->xpath("//" . $path)[0];
+        $path = $parentNode . "/" . $fieldName . "[@name ='" . $attributeValue . "']" . "/@value";
+        $attribute = (string)$this->xml->xpath("//" . $path)[0];
         return $attribute;
     }
 }

@@ -1,6 +1,13 @@
 <?php
+/**
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
+ */
 
 
+/**
+ * Class OrderTest
+ */
 class OrderTest extends \Codeception\Test\Unit
 {
     /**
@@ -110,7 +117,7 @@ class OrderTest extends \Codeception\Test\Unit
 
     protected function _before()
     {
-        $this->order = new \Skytech\Order();
+        $this->order = new \Skytech\Sdk\Order();
     }
 
     protected function _after()

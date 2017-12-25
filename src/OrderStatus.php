@@ -1,14 +1,19 @@
 <?php
 /**
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
+ */
+
+/**
  * Created by PhpStorm.
  * User: arevkina
  * Date: 02.11.2017
  * Time: 16:51
  */
 
-namespace Skytech;
+namespace Skytech\Sdk;
 
-use Skytech\Operation\OperationType;
+use Skytech\Sdk\Operation\OperationType;
 
 /**
  * Class OrderStatus

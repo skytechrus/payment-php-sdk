@@ -1,17 +1,15 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: arevkina
- * Date: 22.12.2017
- * Time: 13:25
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
-namespace Skytech\Request\XML;
+namespace Skytech\Sdk\Request\XML;
 
-use Skytech\Operation\Operation;
-use Skytech\OrderPayment;
-use Skytech\Request\DataProvider;
-use Skytech\Service;
+use Skytech\Sdk\Operation\Operation;
+use Skytech\Sdk\OrderPayment;
+use Skytech\Sdk\Request\DataProvider;
+use Skytech\Sdk\Service;
 use function str_replace;
 
 /**
@@ -21,6 +19,10 @@ use function str_replace;
 class Payment extends DataProvider
 {
 
+    /**
+     * Payment constructor.
+     * @param Operation $operation
+     */
     public function __construct(Operation $operation)
     {
         parent::__construct($operation);
@@ -63,6 +65,10 @@ class Payment extends DataProvider
         }
     }
 
+    /**
+     * @param OrderPayment $orderExt
+     * @return array
+     */
     public function getAddParams(OrderPayment $orderExt)
     {
         $addParams = array();

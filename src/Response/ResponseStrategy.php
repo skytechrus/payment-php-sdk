@@ -1,14 +1,14 @@
 <?php
 /**
  * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
-namespace Skytech\Response;
+namespace Skytech\Sdk\Response;
 
-use function GuzzleHttp\Psr7\stream_for;
 use GuzzleHttp\Stream\Stream;
-use Skytech\Config\Config;
-use Skytech\Response\XML\Provider;
+use Skytech\Sdk\Config\Config;
+use Skytech\Sdk\Response\XML\Provider;
 
 /**
  * Class ResponseStrategy
@@ -38,17 +38,11 @@ class ResponseStrategy implements ResponseInterface
      */
     private function loadResponse($response)
     {
-//        var_dump($response);
-        if(is_string($response)){
-//            var_dump('STRINGGGGGG');
+        if (is_string($response)) {
             $response_temp = new \GuzzleHttp\Message\Response(200);
             $response_temp->setHeader('Content-Type', 'text/xml');
-//            $response_temp->setHeader('Content-Language', 'en-US');
             $response_temp->setBody(Stream::factory($response));
-//            var_dump($response_temp);
             $response = $response_temp;
-        } else {
-//            var_dump('NOTSTRING');
         }
         switch ($this->getResponseFormat($response)) {
             case Config::XML:
