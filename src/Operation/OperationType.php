@@ -22,4 +22,5 @@ class OperationType
     const ORDER_INFORMATION = "OrderInformation";
     const ORDER_PREAUTHORISATION = "PreAuthorisation";
     const COMPLETION = "Completion";
+    const PAYMENT = "Payment";
 }

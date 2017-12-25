@@ -93,6 +93,15 @@ class Payment
     }
 
     /**
+     * @return Response\Order
+     * @throws \Exception
+     */
+    public function payment()
+    {
+         $response = $this->send(OperationType::PAYMENT);
+         return new \Skytech\Response\Order($response);
+    }
+    /**
      * Send request
      * @param $operationType
      * @return mixed|\Psr\Http\Message\ResponseInterface
