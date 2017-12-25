@@ -1,23 +1,52 @@
 {
-  "name": "skytech/PHP_SDK",
-  "description": "Prototipe",
+  "name": "skytech/payment-sdk",
+  "description": "Skytech's Payment SDK for PHP",
+  "keywords" : [ "payment", "skytech", "sdk" ],
   "minimum-stability": "stable",
-  "license": "proprietary",
+  "license": "MIT",
   "authors": [
     {
       "name": "Elena Arevkina",
       "email": "ea@skytecrussia.com"
     },
     {
-      "name": "Sergei Ivanov",
+      "name": "Sergey Ivanov",
       "email": "sv@skytecrussia.com"
     }
   ],
   "require": {
-    "codeception/codeception": "2.3.6",
-    "league/iso3166": "^2.0"
+    "php": "^5.6",
+    "league/iso3166": "^2.0",
+    "respect/validation": "1.1.14",
+    "guzzlehttp/guzzle": "~5.1",
+    "sabre/xml": "^1.5",
+    "matriphe/iso-639": "^1.2",
+    "monolog/monolog": "^1.23"
   },
+  "require-dev": {
+    "codeception/codeception": "2.3.6",
+    "squizlabs/php_codesniffer": "^3.1",
+    "phpmd/phpmd": "^2.6",
+    "sebastian/phpdcd": "^1.0",
+    "phploc/phploc": "^4.0",
+    "consolidation/robo": "^1.0.0",
+    "symfony/process": "^3.3.0",
+    "wimg/php-compatibility": "*",
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4"
+  },
+  "prefer-stable" : true,
   "autoload": {
-    "psr-4": {"Skytech\\": "src/"}
-  }
+    "psr-4": {"Skytech\\Sdk\\": "src/"}
+  },
+  "scripts": {
+    "test": [
+      "@composer install",
+      "codecept run"
+    ]
+  },
+  "support" : {
+    "issues" : "https://github.com/skytechrus/payment-php-sdk/issues",
+    "source" : "https://github.com/skytechrus/payment-php-sdk"
+  },
+  "homepage" : "https://github.com/skytechrus/payment-php-sdk"
 }

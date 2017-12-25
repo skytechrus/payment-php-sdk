@@ -1,8 +1,14 @@
 <?php
+/**
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
+ */
 
+use Skytech\Sdk\Customer\Address;
 
-use Skytech\CustAddress;
-
+/**
+ * Class CustAddressTest
+ */
 class CustAddressTest extends \Codeception\Test\Unit
 {
     /**
@@ -13,7 +19,7 @@ class CustAddressTest extends \Codeception\Test\Unit
 
     protected function _before()
     {
-        $this->custAddress =new CustAddress();
+        $this->custAddress = new Address();
     }
 
     protected function _after()
@@ -22,6 +28,8 @@ class CustAddressTest extends \Codeception\Test\Unit
 
     /**
      * @dataProvider providerZip
+     * @param $zipcode
+     * @param $expect
      */
     public function testZip($zipcode,$expect)
     {
@@ -36,6 +44,9 @@ class CustAddressTest extends \Codeception\Test\Unit
 
     /**
      * @dataProvider providerCountry
+     * @param $alfa
+     * @param $country
+     * @param $expect
      */
     public function testCountryCode($alfa,$country,$expect)
     {
@@ -53,6 +64,8 @@ class CustAddressTest extends \Codeception\Test\Unit
 
     /**
      * @dataProvider  providerCity
+     * @param $city
+     * @param $expect
      */
     public function testCityName($city,$expect)
     {
@@ -67,6 +80,8 @@ class CustAddressTest extends \Codeception\Test\Unit
 
     /**
      * @dataProvider  providerRegion
+     * @param $region
+     * @param $expect
      */
     public function testRegion($region,$expect)
     {
@@ -81,6 +96,8 @@ class CustAddressTest extends \Codeception\Test\Unit
 
     /**
      * @dataProvider provideAddress
+     * @param $addressline
+     * @param $expect
      */
     public function testAddress($addressline,$expect)
     {
@@ -92,6 +109,10 @@ class CustAddressTest extends \Codeception\Test\Unit
         $this->custAddress->setAddressline($addressline);
         $this->assertEquals($addressline, $this->custAddress->getAddressline());
     }
+
+    /**
+     * @return array
+     */
     public function providerCountry()
     {
         return [
@@ -103,6 +124,10 @@ class CustAddressTest extends \Codeception\Test\Unit
             [true,'RU',false]
         ];
     }
+
+    /**
+     * @return array
+     */
     public function providerCity()
     {
         return [
@@ -114,6 +139,10 @@ class CustAddressTest extends \Codeception\Test\Unit
             ['Velikiy Zlatoust Uralskiy 7',true]
         ];
     }
+
+    /**
+     * @return array
+     */
     public function providerRegion()
     {
         return [
@@ -125,6 +154,10 @@ class CustAddressTest extends \Codeception\Test\Unit
             ['hу',false]
         ];
     }
+
+    /**
+     * @return array
+     */
     public function providerZip()
     {
         return [
@@ -134,6 +167,10 @@ class CustAddressTest extends \Codeception\Test\Unit
             ['j',false]
         ];
     }
+
+    /**
+     * @return array
+     */
     public function provideAddress()
     {
         return [

@@ -1,17 +1,12 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: arevkina
- * Date: 06.10.2017
- * Time: 12:50
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
  */
 
-namespace Skytech;
+namespace Skytech\Sdk;
 
-
-use function filter_var;
-use function htmlentities;
-use UnexpectedValueException;
+use Skytech\Sdk\Customer\Address;
 
 /**
  * Class Customer
@@ -22,46 +17,68 @@ class Customer
     /**
      * @var string
      */
-    public $firstname;
+    public $firstName;
     /**
      * @var string
      */
-    public $lastname;
+    public $lastName;
     /**
      * @var string
      */
-    public $middlename;
-    /**
-     * @var string
-     */
-    private $emailaddr;
+    public $middleName;
     /**
      * @var string
      */
     public $phone;
     /**
-     * @var CustAddress
+     * @var Address
      */
     public $address;
     /**
      * @var string
      */
+    private $email;
+    /**
+     * @var string
+     */
     private $ip;
     /**
-     * Customer constructor.
-     * @param CustAddress $address
+     * @var string
      */
-    public function __construct(CustAddress $address)
+    private $sessionId;
+
+    /**
+     * Customer constructor.
+     *
+     * @param Address $address
+     */
+    public function __construct(Address $address)
     {
         $this->address = $address;
     }
 
     /**
-     * @param CustAddress $address
+     * @param Address $address
      */
-    public function setAddress(CustAddress $address)
+    public function setAddress(Address $address)
     {
         $this->address = $address;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSessionId()
+    {
+        return $this->sessionId;
+    }
+
+    /**
+     * @param mixed $sessionId
+     */
+    public function setSessionId($sessionId)
+    {
+        $this->sessionId = $sessionId;
     }
 
     /**
@@ -84,23 +101,40 @@ class Customer
     }
 
     /**
-     * @return string
+     * @param $phone
+     * @return int
      */
-    public function getEmailaddr()
+    private function validatePhone($phone)
     {
-        return $this->emailaddr;
+        return preg_match('/^((\+7|7|8)+([0-9]){10})$/', $phone);
     }
 
     /**
-     * @param string $emailaddr
-     * @covers Customer::setEmailaddr()
+     * @return string
      */
-    public function setEmailaddr($emailaddr)
+    public function getEmail()
     {
-        if (!filter_var($emailaddr, FILTER_VALIDATE_EMAIL)) {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     * @covers Customer::setEmail()
+     */
+    public function setEmail($email)
+    {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             throw new \InvalidArgumentException('Invalid email address');
         }
-        $this->emailaddr = $emailaddr;
+        $this->email = $email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIp()
+    {
+        return $this->ip;
     }
 
     /**
@@ -115,14 +149,6 @@ class Customer
     }
 
     /**
-     * @return mixed
-     */
-    public function getIp()
-    {
-        return $this->ip;
-    }
-
-    /**
      * @param $ip
      * @return bool
      */
@@ -132,14 +158,5 @@ class Customer
             return true;
         }
         return false;
-    }
-
-    /**
-     * @param $phone
-     * @return int
-     */
-    private function validatePhone($phone)
-    {
-        return preg_match('/^((\+7|7|8)+([0-9]){10})$/', $phone);
     }
 }

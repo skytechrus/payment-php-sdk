@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+  ~ Copyright (c) 2017 Skytech LLC. All rights reserved.
+  -->
+
+<TKKPG>
+<Response>
+<Operation>CreateOrder</Operation>
+<Status>00</Status>
+<Order>
+<OrderID>999</OrderID>
+<SessionID>ECDE79574458EC0BF2897A0F46CC0CEF</SessionID>
+<URL>PayGateURL2</URL>
+</Order>
+</Response>
+</TKKPG>

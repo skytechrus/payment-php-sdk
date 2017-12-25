@@ -1,6 +1,13 @@
 <?php
+/**
+ * Copyright (c) 2017 Skytech LLC. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project root for details.
+ */
 
 
+/**
+ * Class CustomerTest
+ */
 class CustomerTest extends \Codeception\Test\Unit
 {
     /**
@@ -19,8 +26,8 @@ class CustomerTest extends \Codeception\Test\Unit
     public function testSetAddress($country, $region, $city, $zip)
     {
 
-        /** @var \Skytech\CustAddress $address */
-        $address = \Codeception\Util\Stub::make(\Skytech\CustAddress::class, [
+        /** @var \Skytech\Sdk\Customer\Address $address */
+        $address = \Codeception\Util\Stub::make(\Skytech\Sdk\Customer\Address::class, [
             'getRegion' => $region,
             'getCountry' => $country,
             'getCity' => $city,
@@ -65,7 +72,7 @@ class CustomerTest extends \Codeception\Test\Unit
     public function testSetWrongEmailAddress($email)
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->customer->setEmailaddr($email);
+        $this->customer->setEmail($email);
     }
 
     /** @dataProvider dataProviderEmails
@@ -73,9 +80,12 @@ class CustomerTest extends \Codeception\Test\Unit
      */
     public function testSetEmailAddress($email)
     {
-        $this->assertEquals($this->customer->getEmailaddr(), $this->customer->setEmailaddr($email));
+        $this->assertEquals($this->customer->getEmail(), $this->customer->setEmail($email));
     }
 
+    /**
+     * @return array
+     */
     public function dataProviderBadEmails()
     {
         return [
@@ -84,6 +94,9 @@ class CustomerTest extends \Codeception\Test\Unit
         ];
     }
 
+    /**
+     * @return array
+     */
     public function dataProviderEmails()
     {
         return [
@@ -92,6 +105,9 @@ class CustomerTest extends \Codeception\Test\Unit
         ];
     }
 
+    /**
+     * @return array
+     */
     public function dataProviderAddress()
     {
         return [
@@ -99,6 +115,9 @@ class CustomerTest extends \Codeception\Test\Unit
         ];
     }
 
+    /**
+     * @return array
+     */
     public function dataProviderPhone()
     {
         return [
@@ -108,6 +127,9 @@ class CustomerTest extends \Codeception\Test\Unit
         ];
     }
 
+    /**
+     * @return array
+     */
     public function dataProviderIp()
     {
         return [
@@ -122,9 +144,9 @@ class CustomerTest extends \Codeception\Test\Unit
      */
     protected function _before()
     {
-        /** @var \Skytech\CustAddress $address */
-        $address = \Codeception\Util\Stub::make(\Skytech\CustAddress::class, []);
-        $this->customer = new \Skytech\Customer($address);
+        /** @var \Skytech\Sdk\Customer\Address $address */
+        $address = \Codeception\Util\Stub::make(\Skytech\Sdk\Customer\Address::class, []);
+        $this->customer = new \Skytech\Sdk\Customer($address);
     }
 
     protected function _after()

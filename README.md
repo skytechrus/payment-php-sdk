@@ -1,31 +1,72 @@
 [![codecov](https://codecov.io/bb/skytechrus/payment-php-sdk/branch/master/graph/badge.svg?token=dCZ556fNrg)](https://codecov.io/bb/skytechrus/payment-php-sdk)
 
-# README #
+# PHP Payment SDK #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+## Install
+Via Composer
+* Add to ```composer.json```
+```json
+{
+"require": {
+        "skytech/payment-php-sdk": "dev-develop"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "https://github.com/skytechrus/payment-php-sdk.git"
+        }
+    ]
+}
+```
+```bash
+$ composer install
+```
 
-### What is this repository for? ###
+## Usage
+Purchase
+```php
+$order = new \Skytech\Sdk\Order();
+$order->setAmount(100);
+$order->setCurrency(643); //Russian rubles. ISO 4217 numeric-3
+$order->setDescription("Test description");
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+$merchant = new \Skytech\Sdk\Merchant();
+$merchant->setLanguage('RU'); // ISO 639-1
+$merchant->setMerchantId("ES000000");
+$merchant->setApproveUrl($approveUrl);
+$merchant->setCancelUrl($cancelUrl);
+$merchant->setDeclineUrl($declineUrl);
 
-### How do I get set up? ###
+$address = new \Skytech\Sdk\Customer\Address();
+$address->setCountry(643); // ISO 3166-1 numeric
+$address->setRegion("Moscow");
+$address->setCity("Moscow");
+$address->setAddressline("evergreen street");
+$address->setZip("123123");
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+$customer = new \Skytech\Sdk\Customer($address);
+$customer->setEmail($email);
+$customer->setPhone($phone);
+$customer->setIp($clientIp);
 
-### Contribution guidelines ###
+$connector = new \Skytech\Sdk\Connector();
+$connector->setCert('C:\Payment_php_sdk\test.pem', ''); // Path to the client certificate
+$payment = new \Skytech\Sdk\Payment($order, $merchant, $customer, $connector);
+try {
+    $response = $payment->purchase();
+} catch (Exception $e) {
+    echo $e->getMessage();
+}
 
-* Writing tests
-* Code review
-* Other guidelines
+$url = $response->getPaymentUrl(); // Redirect client to payment page by this url
+header('Location: ' . $url);
+```
 
-### Who do I talk to? ###
+## Changelog
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
-* Repo owner or admin
-* Other community or team contact
+## Testing
+## Security
+If you discover any security related issues, please email sv@skytecrusiia.com instead of using the issue tracker. 
+## License
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
