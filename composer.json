@@ -1,5 +1,5 @@
 {
-  "name": "skytech/payment-sdk",
+  "name": "skytech/payment-php-sdk",
   "description": "Skytech's Payment SDK for PHP",
   "keywords" : [ "payment", "skytech", "sdk" ],
   "minimum-stability": "stable",
