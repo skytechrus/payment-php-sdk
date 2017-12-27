@@ -53,6 +53,6 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 ## Testing
 ## Security
-If you discover any security related issues, please email sv@skytecrusiia.com instead of using the issue tracker. 
+If you discover any security related issues, please email sv@skytecrussia.com instead of using the issue tracker. 
 ## License
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
