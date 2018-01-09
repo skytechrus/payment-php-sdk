@@ -19,11 +19,11 @@ class Response
     /**
      * Response constructor.
      *
-     * @param ResponseStrategy $response
+     * @param $data
      */
-    public function __construct(ResponseStrategy $response)
+    public function __construct($data)
     {
-        $this->response = $response;
+        $this->response = new ResponseStrategy($data);
     }
 
     /**
