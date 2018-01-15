@@ -27,4 +27,8 @@ class UnitTester extends \Codeception\Actor
    /**
     * Define custom actions here
     */
+    public function _before()
+    {
+        date_default_timezone_set('Europe/Moscow');
+   }
 }
