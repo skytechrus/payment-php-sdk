@@ -27,6 +27,7 @@ class ResponseOrderInformationTest extends \Codeception\Test\Unit
     protected function _before()
     {
 //        $filePath = 'tests\_support\xml\OrderInformation.xml';
+        var_dump(phpinfo());
         $filePath = dirname(__DIR__) . DIRECTORY_SEPARATOR . '_support' . DIRECTORY_SEPARATOR . 'xml' . DIRECTORY_SEPARATOR . 'OrderInformation.xml';
         $fileData = $this->loadFile($filePath);
         $this->response = new Skytech\Sdk\Response\XML\Provider($fileData);
