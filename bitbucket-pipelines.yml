@@ -16,5 +16,5 @@ pipelines:
           - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
           - composer install
           - export CODECOV_TOKEN=$CODECOV_TOKEN
-          - vendor/bin/codecept run --coverage-xml
+          - vendor/bin/codecept run unit --coverage-xml
           - if [ $? -eq 0 ]; then bash <(curl -s https://codecov.io/bash); fi
