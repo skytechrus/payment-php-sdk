@@ -11,7 +11,7 @@ class PaymentTest extends \Codeception\Test\Unit
      */
     protected $tester;
     /**
-     * @var \Skytech\Payment
+     * @var \Skytech\Sdk\Payment
      */
     private $payment;
 
@@ -54,8 +54,8 @@ class PaymentTest extends \Codeception\Test\Unit
         $customer->setEmail("test@test.com");
         $customer->setSessionId("asdf");
 
-        /** @var GuzzleHttp\Psr7\Response $response */
-        $response = \Codeception\Util\Stub::make('\\GuzzleHttp\\Psr7\\Response', array(
+        /** @var \GuzzleHttp\Message\Response $response */
+        $response = \Codeception\Util\Stub::makeEmpty('\\GuzzleHttp\\Message\\Response', array(
             'getHeader' => function () {
                 return 'application/xml';
             },
@@ -77,9 +77,9 @@ XML;
             }
         ));
         /** @var Skytech\Sdk\Connector $connector */
-        $connector = \Codeception\Util\Stub::make('Skytech\Sdk\Connector', array(
+        $connector = \Codeception\Util\Stub::make('\\Skytech\\Sdk\\Connector', array(
             'sendRequest' => function () use ($response) {
-                return new \Skytech\Sdk\Response\ResponseStrategy($response);
+                return $response;
             }
         ));
         $this->payment = new \Skytech\Sdk\Payment($order, $merchant, $customer, $connector);

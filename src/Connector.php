@@ -74,12 +74,13 @@ class Connector
     /**
      * @param $url
      * @param $body
-     * @return mixed|\Psr\Http\Message\ResponseInterface
+     * @return \GuzzleHttp\Message\FutureResponse|\GuzzleHttp\Message\ResponseInterface|\GuzzleHttp\Ring\Future\FutureInterface|null
+     * @throws \Exception
      */
     private function getResponse($url, $body)
     {
         $response = $this->send($url, $body);
-        return new Response\ResponseStrategy($response);
+        return $response;
     }
 
     /**

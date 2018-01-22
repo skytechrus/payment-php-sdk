@@ -18,7 +18,7 @@ class Order extends Response
      */
     public function getPaymentUrl()
     {
-        return $this->getURL() . '/?SESSIONID=' . $this->getSessionID() . '&ORDERID=' . $this->getOrderId();
+        return $this->getURL() . '?SESSIONID=' . $this->getSessionID() . '&ORDERID=' . $this->getOrderId();
     }
 
     /**

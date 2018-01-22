@@ -20,6 +20,7 @@ class Response
      * Response constructor.
      *
      * @param $data
+     * @throws \Exception
      */
     public function __construct($data)
     {

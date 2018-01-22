@@ -18,7 +18,7 @@ use Skytech\Sdk\Response\XML\Provider;
 class ResponseStrategy implements ResponseInterface
 {
     /**
-     * @var  \Skytech\Response\ResponseStrategy
+     * @var  \Skytech\Sdk\Response\ResponseStrategy
      */
     private $response;
 
